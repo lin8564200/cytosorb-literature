@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>CytoSorb 文獻資料庫</title>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;500;600&family=DM+Mono:ital,wght@0,400;0,500&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
+<style>
+:root{--bg:#0F1117;--sf:#181C24;--s2:#1E2330;--bd:#2A3040;--b2:#3A4458;--tx:#E8EBF0;--t2:#9BA8BB;--t3:#5A6880;--ac:#3B82F6;--al:rgba(59,130,246,.12);--gn:#10B981;--gl:rgba(16,185,129,.12);}
+*{box-sizing:border-box;margin:0;padding:0;}
+body{font-family:"Noto Serif TC",serif;background:var(--bg);color:var(--tx);min-height:100vh;}
+#ls{min-height:100vh;display:flex;align-items:center;justify-content:center;}
+.lc{background:var(--sf);border:1px solid var(--bd);border-radius:20px;padding:3rem 2.5rem;width:100%;max-width:420px;text-align:center;}
+.ll{width:64px;height:64px;background:linear-gradient(135deg,#1D4ED8,#3B82F6);border-radius:16px;display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;font-size:30px;}
+.lt{font-family:"Instrument Serif",serif;font-size:28px;margin-bottom:4px;}
+.ls2{font-size:12px;color:var(--t3);margin-bottom:2rem;font-family:"DM Mono",monospace;}
+input[type=password]{width:100%;padding:13px 16px;border:1px solid var(--bd);border-radius:10px;font-size:16px;font-family:"DM Mono",monospace;background:var(--bg);color:var(--tx);letter-spacing:3px;margin-bottom:12px;outline:none;}
+input[type=password]:focus{border-color:var(--ac);}
+input[type=text]{width:100%;padding:10px 16px 10px 36px;border:1px solid var(--bd);border-radius:8px;font-size:13px;background:var(--sf);color:var(--tx);outline:none;font-family:"Noto Serif TC",serif;}
+input[type=text]:focus{border-color:var(--ac);}
+.lb{width:100%;padding:13px;background:var(--ac);color:#fff;border:none;border-radius:10px;font-size:14px;cursor:pointer;}
+.le{margin-top:10px;font-size:12px;color:#EF4444;font-family:"DM Mono",monospace;display:none;}
+#app{display:none;}
+.tb{background:var(--sf);border-bottom:1px solid var(--bd);padding:0 2rem;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
+.tbl{display:flex;align-items:center;gap:12px;}
+.tlo{width:30px;height:30px;background:linear-gradient(135deg,#1D4ED8,#3B82F6);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;}
+.tlt{font-family:"Instrument Serif",serif;font-size:18px;}
+.tc{font-family:"DM Mono",monospace;font-size:11px;color:var(--t3);background:var(--s2);border:1px solid var(--bd);border-radius:20px;padding:2px 10px;}
+.xb{font-size:11px;color:var(--t3);background:none;border:1px solid var(--bd);border-radius:6px;padding:5px 12px;cursor:pointer;font-family:"DM Mono",monospace;}
+.lay{display:flex;min-height:calc(100vh - 58px);}
+.sb{width:230px;flex-shrink:0;background:var(--sf);border-right:1px solid var(--bd);padding:1.25rem .875rem;position:sticky;top:58px;height:calc(100vh - 58px);overflow-y:auto;}
+.ss{margin-bottom:1.5rem;}
+.sl{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:6px;padding:0 6px;}
+.fc{display:flex;align-items:center;justify-content:space-between;padding:6px 10px;border-radius:6px;font-size:12px;color:var(--t2);cursor:pointer;border:none;background:none;width:100%;text-align:left;font-family:"Noto Serif TC",serif;margin-bottom:1px;}
+.fc:hover{background:var(--s2);}
+.fc.active{background:var(--al);color:var(--ac);font-weight:500;}
+.cc{font-family:"DM Mono",monospace;font-size:10px;color:var(--t3);}
+.fc.active .cc{color:var(--ac);}
+.mn{flex:1;padding:1.5rem 2rem;min-width:0;}
+.ctrl{display:flex;gap:10px;margin-bottom:1rem;align-items:center;}
+.sw{flex:1;position:relative;}
+.sw svg{position:absolute;left:12px;top:50%;transform:translateY(-50%);color:var(--t3);width:15px;height:15px;}
+select{padding:10px 12px;border:1px solid var(--bd);border-radius:8px;font-size:12px;background:var(--sf);color:var(--t2);cursor:pointer;outline:none;font-family:"DM Mono",monospace;}
+.ri{font-family:"DM Mono",monospace;font-size:11px;color:var(--t3);margin-bottom:.875rem;}
+.ri span{color:var(--t2);}
+.cards{display:flex;flex-direction:column;gap:8px;}
+.card{background:var(--sf);border:1px solid var(--bd);border-radius:12px;overflow:hidden;}
+.card:hover{border-color:var(--b2);}
+.ch{padding:.875rem 1.125rem;cursor:pointer;display:flex;gap:12px;align-items:flex-start;}
+.cl{flex:1;min-width:0;}
+.cb{display:flex;flex-wrap:wrap;gap:4px;margin-bottom:7px;}
+.badge{font-family:"DM Mono",monospace;font-size:9px;padding:2px 7px;border-radius:20px;font-weight:500;}
+.bi{background:var(--al);color:var(--ac);}
+.bt{background:var(--s2);color:var(--t2);border:1px solid var(--bd);}
+.be{background:var(--gl);color:var(--gn);}
+.by{background:var(--s2);color:var(--t3);border:1px solid var(--bd);}
+.br{background:rgba(139,92,246,.15);color:#A78BFA;}
+.bm{background:rgba(245,158,11,.12);color:#FCD34D;}
+.st{font-size:11px;margin-left:2px;}
+.ct{font-size:13px;font-weight:500;line-height:1.5;margin-bottom:5px;}
+.cs{font-size:12px;color:var(--t3);line-height:1.6;}
+.cv{color:var(--t3);flex-shrink:0;margin-top:2px;transition:transform .2s;}
+.card.open .cv{transform:rotate(180deg);}
+.cd{border-top:1px solid var(--bd);padding:1.125rem;display:none;background:var(--bg);}
+.card.open .cd{display:block;}
+.dg{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:1rem;}
+.dl{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:1.2px;text-transform:uppercase;color:var(--t3);margin-bottom:3px;}
+.dv{font-size:12px;}
+.sec{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:1.5px;text-transform:uppercase;color:var(--t3);margin-bottom:10px;display:flex;align-items:center;gap:8px;}
+.sec::after{content:"";flex:1;height:.5px;background:var(--bd);}
+.mb{background:var(--sf);border:1px solid var(--bd);border-radius:10px;padding:1rem 1.125rem;margin-bottom:1rem;}
+.mr{display:flex;align-items:center;gap:10px;margin-bottom:8px;}
+.mr:last-child{margin-bottom:0;}
+.mn2{font-size:12px;color:var(--t2);width:170px;flex-shrink:0;}
+.bw{flex:1;background:var(--s2);border-radius:4px;height:7px;overflow:hidden;}
+.br2{height:100%;border-radius:4px;}
+.bd{background:#3B82F6;}.bu{background:#10B981;}.bn{background:#6B7280;}
+.ml{font-family:"DM Mono",monospace;font-size:10px;width:140px;flex-shrink:0;text-align:right;}
+.ld{color:#60A5FA;font-weight:500;}.lu{color:#34D399;font-weight:500;}.ln{color:var(--t3);}
+.pp{margin-bottom:1rem;}
+.pr{display:flex;gap:10px;margin-bottom:8px;align-items:flex-start;}
+.pd{width:8px;height:8px;border-radius:50%;flex-shrink:0;margin-top:4px;}
+.psig{background:#1D9E75;}.pns{background:#F59E0B;}.pwn{background:#EF4444;}
+.pt{font-size:12px;color:var(--t2);line-height:1.6;}
+.pm{background:var(--s2);padding:10px 12px;margin-top:10px;font-size:12px;color:var(--t2);line-height:1.6;border-left:3px solid var(--ac);}
+.rw{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:1rem;align-items:start;}
+.rli{display:flex;align-items:flex-start;gap:8px;margin-bottom:8px;}
+.rld{width:10px;height:10px;border-radius:50%;flex-shrink:0;margin-top:3px;background:var(--ac);}
+.rll{font-size:11px;color:var(--t2);}.rls{font-weight:500;color:var(--tx);}.rln{font-size:10px;color:var(--t3);}
+.vs{margin-top:10px;padding:10px 12px;background:var(--s2);border-radius:8px;}
+.vl{font-size:9px;color:var(--t3);letter-spacing:1px;text-transform:uppercase;margin-bottom:4px;}
+.vv{font-size:22px;font-weight:500;}.vt{font-size:11px;color:var(--t2);margin-top:2px;}
+.fb{font-size:13px;color:var(--t2);line-height:1.8;margin-bottom:1rem;padding:12px;background:var(--sf);border:1px solid var(--bd);border-radius:8px;}
+.sab{background:rgba(16,185,129,.08);border:1px solid rgba(16,185,129,.2);border-radius:8px;padding:.875rem 1rem;margin-bottom:1rem;}
+.sal{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:1.2px;text-transform:uppercase;color:var(--gn);margin-bottom:4px;}
+.sat{font-size:12px;color:#6EE7B7;line-height:1.7;}
+.lnk{display:inline-flex;align-items:center;gap:6px;font-family:"DM Mono",monospace;font-size:11px;color:var(--ac);text-decoration:none;padding:6px 12px;border:1px solid rgba(59,130,246,.3);border-radius:6px;}
+.hidden{display:none;}
+@media(max-width:768px){.sb{display:none;}.mn{padding:1rem;}.tb{padding:0 1rem;}.dg{grid-template-columns:1fr;}.mn2{width:110px;}.ml{width:90px;}.rw{grid-template-columns:1fr;}}
+</style>
+</head>
+<body>
+
+<div id="ls">
+  <div class="lc">
+    <div class="ll">🧬</div>
+    <h1 class="lt">CytoSorb 文獻庫</h1>
+    <p class="ls2">英禾美生醫 · 臨床文獻資料庫</p>
+    <input type="password" id="pw" placeholder="請輸入密碼">
+    <button class="lb" onclick="login()">進入文獻庫</button>
+    <p class="le" id="err">密碼錯誤，請重試</p>
+  </div>
+</div>
+
+<div id="app">
+  <div class="tb">
+    <div class="tbl">
+      <div class="tlo">🧬</div>
+      <span class="tlt">CytoSorb 文獻資料庫</span>
+      <span class="tc">14 篇文獻</span>
+    </div>
+    <button class="xb" onclick="logout()">登出</button>
+  </div>
+  <div class="lay">
+    <aside class="sb">
+      <div class="ss">
+        <div class="sl">適應症</div>
+        <button class="fc active" onclick="filterInd('')">全部 <span class="cc">14</span></button>
+        <button class="fc" onclick="filterInd('敗血症')">敗血症 <span class="cc">4</span></button>
+        <button class="fc" onclick="filterInd('ARDS')">ARDS <span class="cc">1</span></button>
+        <button class="fc" onclick="filterInd('心臟手術')">心臟手術 <span class="cc">1</span></button>
+        <button class="fc" onclick="filterInd('ECMO／心因性休克')">ECMO <span class="cc">2</span></button>
+        <button class="fc" onclick="filterInd('橫紋肌溶解')">橫紋肌溶解 <span class="cc">1</span></button>
+        <button class="fc" onclick="filterInd('肝衰竭')">肝衰竭 <span class="cc">2</span></button>
+        <button class="fc" onclick="filterInd('藥物移除')">藥物移除 <span class="cc">2</span></button>
+        <button class="fc" onclick="filterInd('COVID-19')">COVID-19 <span class="cc">0</span></button>
+        <button class="fc" onclick="filterInd('整體綜述')">整體綜述 <span class="cc">1</span></button>
+      </div>
+      <div class="ss">
+        <div class="sl">CE 核准</div>
+        <button class="fc" onclick="filterCE(this)">✓ CE 核准 <span class="cc">6</span></button>
+      </div>
+      <div class="ss">
+        <div class="sl">研究類型</div>
+        <button class="fc" onclick="filterType('RCT',this)">RCT <span class="cc">4</span></button>
+        <button class="fc" onclick="filterType('Meta-analysis',this)">Meta-analysis <span class="cc">1</span></button>
+        <button class="fc" onclick="filterType('Systematic Review',this)">Systematic Review <span class="cc">2</span></button>
+        <button class="fc" onclick="filterType('Registry',this)">Registry <span class="cc">2</span></button>
+      </div>
+    </aside>
+    <main class="mn">
+      <div class="ctrl">
+        <div class="sw">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
+          <input type="text" id="srch" placeholder="搜尋標題、核心發現、統整建議..." oninput="doSearch()">
+        </div>
+        <select onchange="doSort(this.value)">
+          <option value="year">最新優先</option>
+          <option value="stars">證據等級</option>
+        </select>
+      </div>
+      <p class="ri" id="rinfo">顯示 <span>14</span> 篇 / 共 <span>14</span> 篇</p>
+      <div class="cards" id="cards">
+<div class="card" id="card0" data-ind="敗血症" data-type="回顧性分析" data-ce="0" data-year="2025" data-stars="4" data-search="berlot g. et al. — real-world outcomes of cytosorb® in septic shock (n=175, 2025)回顧 175 例敗血性休克，58% 在 24 小時內啟動 cytosorb（早期組），42% 在 25–48 小時內啟動（晚期組）。存活者全部出現一致的改善軌跡：map 顯著上升、血乳酸下降、crp 及 pct 下降、sofa 分數降低、norepinephrine 需求量下降。早期組存活率顯著優於晚期組，apache ii 分數較低的患者改善更明顯。整體 icu 死亡率約 45%，與敗血性休克歷史數據相符。175 例真實世界數據顯示存活者全部出現升壓藥需求下降和乳酸改善。24 小時內介入明顯優於 48 小時——現在就是最好時機。面對醫師質疑「沒有 rct 死亡率數據」時：「berlot 2025 不是 rct，但 icu 每天可以量化的目標是升壓藥和乳酸，不是 28 天後的數字。」journal of intensive care medicine">
+  <div class="ch" onclick="toggle(0)">
+    <div class="cl">
+      <div class="cb"><span class="badge bi">敗血症</span><span class="badge bt">回顧性分析</span><span class="badge by">2025</span><span class="st">⭐⭐⭐⭐</span></div>
+      <div class="ct">Berlot G. et al. — Real-World Outcomes of CytoSorb® in Septic Shock (N=175, 2025)</div>
+      <div class="cs">回顧 175 例敗血性休克，58% 在 24 小時內啟動 CytoSorb（早期組），42% 在 25–48 小時內啟動（晚期組）。存活者全部出現一致的改善軌跡：MAP 顯著上升、血乳酸下降、CRP ...</div>
+    </div>
+    <svg class="cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="cd" id="det0">
+    <div class="dg"><div><div class="dl">期刊</div><div class="dv">Journal of Intensive Care Medicine</div></div><div><div class="dl">研究規模</div><div class="dv">N = 175 例</div></div></div><div class="sec">臨床指標變化</div><div class="mb"><div class="mr">
+  <div class="mn2">升壓藥（NE）需求 ↓</div>
+  <div class="bw"><div class="br2 bd" style="width:95%"></div></div>
+  <div class="ml ld">顯著↓</div>
+</div><div class="mr">
+  <div class="mn2">乳酸（Lactate）↓</div>
+  <div class="bw"><div class="br2 bd" style="width:85%"></div></div>
+  <div class="ml ld">顯著↓</div>
+</div><div class="mr">
+  <div class="mn2">CRP 炎症指標 ↓</div>
+  <div class="bw"><div class="br2 bd" style="width:80%"></div></div>
+  <div class="ml ld">顯著↓</div>
+</div><div class="mr">
+  <div class="mn2">PCT ↓</div>
+  <div class="bw"><div class="br2 bd" style="width:78%"></div></div>
+  <div class="ml ld">顯著↓</div>
+</div><div class="mr">
+  <div class="mn2">SOFA 分數 ↓</div>
+  <div class="bw"><div class="br2 bd" style="width:72%"></div></div>
+  <div class="ml ld">顯著↓</div>
+</div><div class="mr">
+  <div class="mn2">MAP 平均動脈壓 ↑</div>
+  <div class="bw"><div class="br2 bu" style="width:70%"></div></div>
+  <div class="ml lu">顯著↑</div>
+</div></div><div class="pp"><div class="sec">P 值與統計分析</div><div class="pr"><div class="pd psig"></div><div class="pt">升壓藥需求、乳酸、CRP、SOFA、MAP — 所有主要指標均達統計顯著（p&lt;0.05），且早期組（&lt;24h）顯著優於晚期組。</div></div><div class="pr"><div class="pd pns"></div><div class="pt">28 天死亡率 — 本研究未以死亡率為主要終點，但早期組存活率優於晚期組，提供間接證據。</div></div><div class="pr"><div class="pd pwn"></div><div class="pt">存活者偏差（Survivor Bias）— 分析對象為存活者，可能高估指標改善。單中心回顧性設計、缺乏隨機分配。</div></div><div class="pm">臨床解讀：指標改善達顯著，但無法排除「病情較輕者本就容易改善」的混淆。建議搭配 CytoScore &gt; 6 分評估確認高風險病人，再詮釋此數據。</div></div><div class="pp"><div class="sec">真實性評估</div>
+<div class="rw">
+  <div><svg width="180" height="180" viewBox="0 0 180 180">
+<polygon points="90.0,77.0 102.4,86.0 97.6,100.5 82.4,100.5 77.6,86.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,64.0 114.7,82.0 105.3,111.0 74.7,111.0 65.3,82.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 67.1,121.6 52.9,77.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 139.5,73.9 120.6,132.1 59.4,132.1 40.5,73.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,25.0 151.8,69.9 128.2,142.6 51.8,142.6 28.2,69.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="90.0" y2="25.0" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="151.8" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="128.2" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="51.8" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="28.2" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 105.3,111.0 59.4,132.1 52.9,77.9" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" stroke-width="2"/><circle cx="90.0" cy="51.0" r="3" fill="#3B82F6"/><circle cx="127.1" cy="77.9" r="3" fill="#3B82F6"/><circle cx="105.3" cy="111.0" r="3" fill="#3B82F6"/><circle cx="59.4" cy="132.1" r="3" fill="#3B82F6"/><circle cx="52.9" cy="77.9" r="3" fill="#3B82F6"/><text x="90.0" y="7.0" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">內部效度</text><text x="168.9" y="64.4" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">外部效度</text><text x="138.8" y="157.1" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">偏誤控制</text><text x="41.2" y="157.1" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">臨床相關性</text><text x="11.1" y="64.4" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">可重複性</text>
+</svg></div>
+  <div><div class="rli"><div class="rld"></div><div><div class="rll">內部效度 <span class="rls">3/5</span></div><div class="rln">觀察性設計，缺乏隨機分配</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">外部效度 <span class="rls">3/5</span></div><div class="rln">單中心義大利，族群代表性有限</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">偏誤控制 <span class="rls">2/5</span></div><div class="rln">存活者偏差、選擇偏差未控制</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">臨床相關性 <span class="rls">4/5</span></div><div class="rln">ICU 可直接量化的中間指標</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">可重複性 <span class="rls">3/5</span></div><div class="rln">需多中心驗證</div></div></div><div class="vs"><div class="vl">整體可信度</div><div class="vv">3.0 <span style="font-size:14px;color:var(--t3)">/ 5</span></div><div class="vt">中等可信度 — 支持臨床決策參考，不宜單獨作為使用依據</div></div></div>
+</div></div><div class="sec">核心發現</div><div class="fb">回顧 175 例敗血性休克，58% 在 24 小時內啟動 CytoSorb（早期組），42% 在 25–48 小時內啟動（晚期組）。存活者全部出現一致的改善軌跡：MAP 顯著上升、血乳酸下降、CRP 及 PCT 下降、SOFA 分數降低、norepinephrine 需求量下降。早期組存活率顯著優於晚期組，APACHE II 分數較低的患者改善更明顯。整體 ICU 死亡率約 45%，與敗血性休克歷史數據相符。</div><div class="sec">統整建議</div><div class="sab"><div class="sal">臨床應用</div><div class="sat">175 例真實世界數據顯示存活者全部出現升壓藥需求下降和乳酸改善。24 小時內介入明顯優於 48 小時——現在就是最好時機。面對醫師質疑「沒有 RCT 死亡率數據」時：「Berlot 2025 不是 RCT，但 ICU 每天可以量化的目標是升壓藥和乳酸，不是 28 天後的數字。」</div></div><a class="lnk" href="https://pubmed.ncbi.nlm.nih.gov/40170437/" target="_blank">原文連結 ↗</a>
+  </div>
+</div>
+<div class="card" id="card1" data-ind="敗血症" data-type="Systematic Review" data-ce="0" data-year="2025" data-stars="5" data-search="hemoadsorption in the management of septic shock: systematic review &amp; meta-analysis (2025, n=744)納入 1 項 rct 及 8 項有對照組的觀察性研究，共 744 例敗血性休克。院內死亡率 or=0.64（p=0.036），28–30 天死亡率 or=0.49（p=0.003），兩項均達統計顯著。所有顯示存活效益的研究同時伴隨血流動力學改善，強化機制與效果一致性。嚴格排除 case report 及 case series。28 天死亡率 or=0.49（p=0.003），使用 cytosorb 存活機率幾乎是對照組的 2 倍。所有顯示存活效益的研究同時伴隨血流動力學改善——這表示吸附減少炎症負擔正是改善器官不可或缺的中間步驟。這篇 2025 年 3 月發表，數據最新、設計最嚴。journal of clinical medicine">
+  <div class="ch" onclick="toggle(1)">
+    <div class="cl">
+      <div class="cb"><span class="badge bi">敗血症</span><span class="badge bt">Systematic Review</span><span class="badge by">2025</span><span class="st">⭐⭐⭐⭐⭐</span></div>
+      <div class="ct">Hemoadsorption in the Management of Septic Shock: Systematic Review &amp; Meta-Analysis (2025, N=744)</div>
+      <div class="cs">納入 1 項 RCT 及 8 項有對照組的觀察性研究，共 744 例敗血性休克。院內死亡率 OR=0.64（p=0.036），28–30 天死亡率 OR=0.49（p=0.003），兩項均達統計顯著。...</div>
+    </div>
+    <svg class="cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="cd" id="det1">
+    <div class="dg"><div><div class="dl">期刊</div><div class="dv">Journal of Clinical Medicine</div></div><div><div class="dl">研究規模</div><div class="dv">N = 744 例</div></div></div><div class="sec">臨床指標變化</div><div class="mb"><div class="mr">
+  <div class="mn2">28–30 天死亡率 ↓</div>
+  <div class="bw"><div class="br2 bd" style="width:98%"></div></div>
+  <div class="ml ld">OR=0.49 p=0.003</div>
+</div><div class="mr">
+  <div class="mn2">院內死亡率 ↓</div>
+  <div class="bw"><div class="br2 bd" style="width:90%"></div></div>
+  <div class="ml ld">OR=0.64 p=0.036</div>
+</div><div class="mr">
+  <div class="mn2">血流動力學 ↑</div>
+  <div class="bw"><div class="br2 bu" style="width:80%"></div></div>
+  <div class="ml lu">顯著改善</div>
+</div></div><div class="pp"><div class="sec">P 值與統計分析</div><div class="pr"><div class="pd psig"></div><div class="pt">28–30 天死亡率 OR=0.49（p=0.003）、院內死亡率 OR=0.64（p=0.036）— 兩項死亡率終點均達統計顯著，是目前最強的存活率數據。</div></div><div class="pr"><div class="pd psig"></div><div class="pt">所有顯示存活效益的研究同時伴隨血流動力學改善，機制與效果高度一致。</div></div><div class="pr"><div class="pd pwn"></div><div class="pt">納入 RCT 僅一項，其餘為觀察性研究，整體證據品質受限。研究設計異質性高（I² 未完整揭露）。</div></div><div class="pm">臨床解讀：死亡率達統計顯著（p=0.003）是目前最強的 CytoSorb 存活率證據之一，但 RCT 佔比低。向醫師引用時可直接說：「OR=0.49，p=0.003，存活機率是對照組的 2 倍——這不是趨勢，是統計顯著。」</div></div><div class="pp"><div class="sec">真實性評估</div>
+<div class="rw">
+  <div><svg width="180" height="180" viewBox="0 0 180 180">
+<polygon points="90.0,77.0 102.4,86.0 97.6,100.5 82.4,100.5 77.6,86.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,64.0 114.7,82.0 105.3,111.0 74.7,111.0 65.3,82.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 67.1,121.6 52.9,77.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 139.5,73.9 120.6,132.1 59.4,132.1 40.5,73.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,25.0 151.8,69.9 128.2,142.6 51.8,142.6 28.2,69.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="90.0" y2="25.0" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="151.8" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="128.2" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="51.8" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="28.2" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 127.1,77.9 112.9,121.6 51.8,142.6 40.5,73.9" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" stroke-width="2"/><circle cx="90.0" cy="38.0" r="3" fill="#3B82F6"/><circle cx="127.1" cy="77.9" r="3" fill="#3B82F6"/><circle cx="112.9" cy="121.6" r="3" fill="#3B82F6"/><circle cx="51.8" cy="142.6" r="3" fill="#3B82F6"/><circle cx="40.5" cy="73.9" r="3" fill="#3B82F6"/><text x="90.0" y="7.0" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">內部效度</text><text x="168.9" y="64.4" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">外部效度</text><text x="138.8" y="157.1" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">偏誤控制</text><text x="41.2" y="157.1" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">臨床相關性</text><text x="11.1" y="64.4" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">可重複性</text>
+</svg></div>
+  <div><div class="rli"><div class="rld"></div><div><div class="rll">內部效度 <span class="rls">4/5</span></div><div class="rln">嚴格排除無對照組研究，方法學嚴謹</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">外部效度 <span class="rls">3/5</span></div><div class="rln">多國研究，但族群選擇標準各異</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">偏誤控制 <span class="rls">3/5</span></div><div class="rln">觀察性研究佔多數，confounders 有限控制</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">臨床相關性 <span class="rls">5/5</span></div><div class="rln">死亡率為主要終點，直接臨床意義高</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">可重複性 <span class="rls">4/5</span></div><div class="rln">多項研究一致性高，支持可重複性</div></div></div><div class="vs"><div class="vl">整體可信度</div><div class="vv">3.8 <span style="font-size:14px;color:var(--t3)">/ 5</span></div><div class="vt">中高可信度 — 目前最強的敗血症存活率數據，建議積極引用</div></div></div>
+</div></div><div class="sec">核心發現</div><div class="fb">納入 1 項 RCT 及 8 項有對照組的觀察性研究，共 744 例敗血性休克。院內死亡率 OR=0.64（p=0.036），28–30 天死亡率 OR=0.49（p=0.003），兩項均達統計顯著。所有顯示存活效益的研究同時伴隨血流動力學改善，強化機制與效果一致性。嚴格排除 case report 及 case series。</div><div class="sec">統整建議</div><div class="sab"><div class="sal">臨床應用</div><div class="sat">28 天死亡率 OR=0.49（p=0.003），使用 CytoSorb 存活機率幾乎是對照組的 2 倍。所有顯示存活效益的研究同時伴隨血流動力學改善——這表示吸附減少炎症負擔正是改善器官不可或缺的中間步驟。這篇 2025 年 3 月發表，數據最新、設計最嚴。</div></div><a class="lnk" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC11989519/" target="_blank">原文連結 ↗</a>
+  </div>
+</div>
+<div class="card" id="card2" data-ind="敗血症" data-type="回顧性分析" data-ce="0" data-year="2021" data-stars="4" data-search="kogelmann k. et al. — first evaluation of cytoscore in septic shock (n=502, 2021)502 例敗血性休克，建立 cytoscore 動態評分系統。dss &gt; 6 分為難治性休克，&gt; 8 分死亡率最高，三組分隔差異達統計顯著。早期啟動 cytosorb（診斷後 24 小時內）與 56 天存活率顯著改善相關（p&lt;0.05）。這是目前所有 cytoscore 使用依據的原始文獻。cytoscore 的原始創建文獻。對醫師說：「患者的 cytoscore 超過 6 分，正是這篇研究定義的難治性休克區間。kogelmann 的數據顯示這個分數維度的患者，早期啟動 cytosorb 與 56 天存活率顯著改善相關——現在就是最好的時機。」journal of clinical medicine">
+  <div class="ch" onclick="toggle(2)">
+    <div class="cl">
+      <div class="cb"><span class="badge bi">敗血症</span><span class="badge bt">回顧性分析</span><span class="badge by">2021</span><span class="st">⭐⭐⭐⭐</span></div>
+      <div class="ct">Kogelmann K. et al. — First Evaluation of CytoScore in Septic Shock (N=502, 2021)</div>
+      <div class="cs">502 例敗血性休克，建立 CytoScore 動態評分系統。DSS &gt; 6 分為難治性休克，&gt; 8 分死亡率最高，三組分隔差異達統計顯著。早期啟動 CytoSorb（診斷後 24 小時內）與 56 ...</div>
+    </div>
+    <svg class="cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="cd" id="det2">
+    <div class="dg"><div><div class="dl">期刊</div><div class="dv">Journal of Clinical Medicine</div></div><div><div class="dl">研究規模</div><div class="dv">N = 502 例</div></div></div><div class="sec">臨床指標變化</div><div class="mb"><div class="mr">
+  <div class="mn2">56 天存活率（早期介入）↑</div>
+  <div class="bw"><div class="br2 bu" style="width:85%"></div></div>
+  <div class="ml lu">p&lt;0.05</div>
+</div><div class="mr">
+  <div class="mn2">升壓藥需求 ↓</div>
+  <div class="bw"><div class="br2 bd" style="width:80%"></div></div>
+  <div class="ml ld">顯著↓</div>
+</div><div class="mr">
+  <div class="mn2">死亡率（DSS&gt;8 高風險組）</div>
+  <div class="bw"><div class="br2 bn" style="width:88%"></div></div>
+  <div class="ml ln">最高風險組</div>
+</div></div><div class="pp"><div class="sec">P 值與統計分析</div><div class="pr"><div class="pd psig"></div><div class="pt">早期介入（&lt;24h）與 56 天存活率顯著改善相關（p&lt;0.05）。三組（DSS 5/6/8分）死亡率分層差異達統計顯著。</div></div><div class="pr"><div class="pd pns"></div><div class="pt">此為回顧性分析，p 值達顯著但因果關係無法確立——早期介入組可能本就病情較輕。</div></div><div class="pr"><div class="pd pwn"></div><div class="pt">選擇偏差風險高：決定「早期」vs「晚期」介入的臨床判斷本身可能受到疾病嚴重度影響。</div></div><div class="pm">臨床解讀：CytoScore &gt; 6 分的定義本身來自此篇，具有自我驗證的限制。但作為患者選擇工具的邏輯依據，此篇是唯一且不可替代的參考。重點訊息：選對病人比治療本身更重要。</div></div><div class="pp"><div class="sec">真實性評估</div>
+<div class="rw">
+  <div><svg width="180" height="180" viewBox="0 0 180 180">
+<polygon points="90.0,77.0 102.4,86.0 97.6,100.5 82.4,100.5 77.6,86.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,64.0 114.7,82.0 105.3,111.0 74.7,111.0 65.3,82.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 67.1,121.6 52.9,77.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 139.5,73.9 120.6,132.1 59.4,132.1 40.5,73.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,25.0 151.8,69.9 128.2,142.6 51.8,142.6 28.2,69.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="90.0" y2="25.0" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="151.8" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="128.2" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="51.8" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="28.2" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 105.3,111.0 51.8,142.6 52.9,77.9" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" stroke-width="2"/><circle cx="90.0" cy="51.0" r="3" fill="#3B82F6"/><circle cx="127.1" cy="77.9" r="3" fill="#3B82F6"/><circle cx="105.3" cy="111.0" r="3" fill="#3B82F6"/><circle cx="51.8" cy="142.6" r="3" fill="#3B82F6"/><circle cx="52.9" cy="77.9" r="3" fill="#3B82F6"/><text x="90.0" y="7.0" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">內部效度</text><text x="168.9" y="64.4" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">外部效度</text><text x="138.8" y="157.1" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">偏誤控制</text><text x="41.2" y="157.1" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">臨床相關性</text><text x="11.1" y="64.4" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">可重複性</text>
+</svg></div>
+  <div><div class="rli"><div class="rld"></div><div><div class="rll">內部效度 <span class="rls">3/5</span></div><div class="rln">回顧性多中心，選擇偏差未完全控制</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">外部效度 <span class="rls">3/5</span></div><div class="rln">德國 4 中心，歐洲ICU適用性合理</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">偏誤控制 <span class="rls">2/5</span></div><div class="rln">CytoScore 分層有自我驗證循環問題</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">臨床相關性 <span class="rls">5/5</span></div><div class="rln">提供 CytoScore 工具的直接臨床依據</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">可重複性 <span class="rls">3/5</span></div><div class="rln">部分被後續研究引用驗證</div></div></div><div class="vs"><div class="vl">整體可信度</div><div class="vv">3.2 <span style="font-size:14px;color:var(--t3)">/ 5</span></div><div class="vt">中等可信度 — CytoScore 使用的唯一原始依據，必須了解其限制</div></div></div>
+</div></div><div class="sec">核心發現</div><div class="fb">502 例敗血性休克，建立 CytoScore 動態評分系統。DSS &gt; 6 分為難治性休克，&gt; 8 分死亡率最高，三組分隔差異達統計顯著。早期啟動 CytoSorb（診斷後 24 小時內）與 56 天存活率顯著改善相關（p&lt;0.05）。這是目前所有 CytoScore 使用依據的原始文獻。</div><div class="sec">統整建議</div><div class="sab"><div class="sal">臨床應用</div><div class="sat">CytoScore 的原始創建文獻。對醫師說：「患者的 CytoScore 超過 6 分，正是這篇研究定義的難治性休克區間。Kogelmann 的數據顯示這個分數維度的患者，早期啟動 CytoSorb 與 56 天存活率顯著改善相關——現在就是最好的時機。」</div></div><a class="lnk" href="https://pubmed.ncbi.nlm.nih.gov/34209001/" target="_blank">原文連結 ↗</a>
+  </div>
+</div>
+<div class="card" id="card3" data-ind="敗血症" data-type="RCT" data-ce="0" data-year="2019" data-stars="4" data-search="hawchar f. et al. — proof of concept rct: cytosorb in septic shock (n=20, 2019)20 例敗血性休克前導性 rct（cytosorb 組 n=10，對照組 n=10）。cytosorb 組 norepinephrine 需求顯著下降（t0=0.54 vs t48=0.16 μg/kg/min，p=0.016）；pct 濃度顯著下降；sofa 分數有下降趨勢。無裝置相關嚴重不良事件。即使在小型 rct 裡，升壓藥需求就已經達到統計顯著改善（p=0.016）。這不是趨勢，是顯著。對醫師說：「這不是觀察性數據，是 rct——病人在 48 小時內 ne 從 0.54 降到 0.16，p=0.016。」journal of critical care">
+  <div class="ch" onclick="toggle(3)">
+    <div class="cl">
+      <div class="cb"><span class="badge bi">敗血症</span><span class="badge br">RCT</span><span class="badge by">2019</span><span class="st">⭐⭐⭐⭐</span></div>
+      <div class="ct">Hawchar F. et al. — Proof of Concept RCT: CytoSorb in Septic Shock (N=20, 2019)</div>
+      <div class="cs">20 例敗血性休克前導性 RCT（CytoSorb 組 N=10，對照組 N=10）。CytoSorb 組 norepinephrine 需求顯著下降（T0=0.54 vs T48=0.16 μg/k...</div>
+    </div>
+    <svg class="cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="cd" id="det3">
+    <div class="dg"><div><div class="dl">期刊</div><div class="dv">Journal of Critical Care</div></div><div><div class="dl">研究規模</div><div class="dv">N = 20 例</div></div></div><div class="sec">臨床指標變化</div><div class="mb"><div class="mr">
+  <div class="mn2">NE 劑量（T0→T48）↓</div>
+  <div class="bw"><div class="br2 bd" style="width:92%"></div></div>
+  <div class="ml ld">0.54→0.16 p=0.016</div>
+</div><div class="mr">
+  <div class="mn2">PCT ↓</div>
+  <div class="bw"><div class="br2 bd" style="width:78%"></div></div>
+  <div class="ml ld">顯著↓</div>
+</div><div class="mr">
+  <div class="mn2">SOFA 分數 ↓</div>
+  <div class="bw"><div class="br2 bd" style="width:60%"></div></div>
+  <div class="ml ld">趨勢↓ p=0.06</div>
+</div></div><div class="pp"><div class="sec">P 值與統計分析</div><div class="pr"><div class="pd psig"></div><div class="pt">NE 劑量 p=0.016，達統計顯著。PCT 也達顯著。這是 RCT 設計，有隨機分配。</div></div><div class="pr"><div class="pd pns"></div><div class="pt">SOFA 分數 p=0.06，接近但未達顯著。樣本數 N=20 是主要限制（檢定力不足）。</div></div><div class="pr"><div class="pd pwn"></div><div class="pt">N=20 的概念驗證研究，不足以推論死亡率或長期效益。需要更大型 RCT 驗證。</div></div><div class="pm">臨床解讀：NE 下降達統計顯著是重要訊號，但樣本數過小（各組 10 人）使所有結果的信賴區間很寬。此篇的價值在於「可行性與安全性確認」，而非效益量化。</div></div><div class="pp"><div class="sec">真實性評估</div>
+<div class="rw">
+  <div><svg width="180" height="180" viewBox="0 0 180 180">
+<polygon points="90.0,77.0 102.4,86.0 97.6,100.5 82.4,100.5 77.6,86.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,64.0 114.7,82.0 105.3,111.0 74.7,111.0 65.3,82.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 67.1,121.6 52.9,77.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 139.5,73.9 120.6,132.1 59.4,132.1 40.5,73.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,25.0 151.8,69.9 128.2,142.6 51.8,142.6 28.2,69.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="90.0" y2="25.0" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="151.8" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="128.2" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="51.8" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="28.2" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 114.7,82.0 120.6,132.1 59.4,132.1 65.3,82.0" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" stroke-width="2"/><circle cx="90.0" cy="38.0" r="3" fill="#3B82F6"/><circle cx="114.7" cy="82.0" r="3" fill="#3B82F6"/><circle cx="120.6" cy="132.1" r="3" fill="#3B82F6"/><circle cx="59.4" cy="132.1" r="3" fill="#3B82F6"/><circle cx="65.3" cy="82.0" r="3" fill="#3B82F6"/><text x="90.0" y="7.0" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">內部效度</text><text x="168.9" y="64.4" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">外部效度</text><text x="138.8" y="157.1" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">偏誤控制</text><text x="41.2" y="157.1" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">臨床相關性</text><text x="11.1" y="64.4" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">可重複性</text>
+</svg></div>
+  <div><div class="rli"><div class="rld"></div><div><div class="rll">內部效度 <span class="rls">4/5</span></div><div class="rln">RCT 設計，隨機分配降低偏差</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">外部效度 <span class="rls">2/5</span></div><div class="rln">單中心、N=20，外推性極有限</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">偏誤控制 <span class="rls">4/5</span></div><div class="rln">隨機分配有效控制已知 confounders</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">臨床相關性 <span class="rls">4/5</span></div><div class="rln">NE 下降為 ICU 直接臨床指標</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">可重複性 <span class="rls">2/5</span></div><div class="rln">樣本太小，需大型研究驗證</div></div></div><div class="vs"><div class="vl">整體可信度</div><div class="vv">3.2 <span style="font-size:14px;color:var(--t3)">/ 5</span></div><div class="vt">中等可信度 — RCT 設計加分，但樣本數不足限制推論範圍</div></div></div>
+</div></div><div class="sec">核心發現</div><div class="fb">20 例敗血性休克前導性 RCT（CytoSorb 組 N=10，對照組 N=10）。CytoSorb 組 norepinephrine 需求顯著下降（T0=0.54 vs T48=0.16 μg/kg/min，p=0.016）；PCT 濃度顯著下降；SOFA 分數有下降趨勢。無裝置相關嚴重不良事件。</div><div class="sec">統整建議</div><div class="sab"><div class="sal">臨床應用</div><div class="sat">即使在小型 RCT 裡，升壓藥需求就已經達到統計顯著改善（p=0.016）。這不是趨勢，是顯著。對醫師說：「這不是觀察性數據，是 RCT——病人在 48 小時內 NE 從 0.54 降到 0.16，p=0.016。」</div></div><a class="lnk" href="https://pubmed.ncbi.nlm.nih.gov/30638101/" target="_blank">原文連結 ↗</a>
+  </div>
+</div>
+<div class="card" id="card4" data-ind="ARDS" data-type="Systematic Review" data-ce="0" data-year="2022" data-stars="4" data-search="akil a. et al. — cytosorb in severe ards with vv-ecmo: systematic review (2022)嚴重 ards 合併 vv-ecmo 使用 cytosorb 的系統性回顧。crp 顯著下降（p=0.039）、il-6 顯著下降（p=0.049）、pao₂/fio₂ 顯著改善（p=0.028）。covid-19 合併 vv-ecmo 的探索性分析中，cytosorb 與 90 天死亡風險顯著降低相關。三個關鍵終點均達統計顯著。對醫師說：「il-6↓（p=0.049）、crp↓（p=0.039）、pao₂/fio₂↑（p=0.028）——這三項在 vv-ecmo 合併 cytosorb 時同時達統計顯著。ecmo 上氣合還上不去時，cytosorb 加進去能讓 ecmo 發揮更好效果。」journal of clinical medicine">
+  <div class="ch" onclick="toggle(4)">
+    <div class="cl">
+      <div class="cb"><span class="badge bi">ARDS</span><span class="badge bt">Systematic Review</span><span class="badge by">2022</span><span class="st">⭐⭐⭐⭐</span></div>
+      <div class="ct">Akil A. et al. — CytoSorb in Severe ARDS with VV-ECMO: Systematic Review (2022)</div>
+      <div class="cs">嚴重 ARDS 合併 VV-ECMO 使用 CytoSorb 的系統性回顧。CRP 顯著下降（p=0.039）、IL-6 顯著下降（p=0.049）、PaO₂/FiO₂ 顯著改善（p=0.028）。C...</div>
+    </div>
+    <svg class="cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="cd" id="det4">
+    <div class="dg"><div><div class="dl">期刊</div><div class="dv">Journal of Clinical Medicine</div></div></div><div class="sec">臨床指標變化</div><div class="mb"><div class="mr">
+  <div class="mn2">IL-6 ↓</div>
+  <div class="bw"><div class="br2 bd" style="width:90%"></div></div>
+  <div class="ml ld">p=0.049</div>
+</div><div class="mr">
+  <div class="mn2">CRP ↓</div>
+  <div class="bw"><div class="br2 bd" style="width:88%"></div></div>
+  <div class="ml ld">p=0.039</div>
+</div><div class="mr">
+  <div class="mn2">PaO₂/FiO₂ 氧合指數 ↑</div>
+  <div class="bw"><div class="br2 bu" style="width:85%"></div></div>
+  <div class="ml lu">p=0.028</div>
+</div></div><div class="pp"><div class="sec">P 值與統計分析</div><div class="pr"><div class="pd psig"></div><div class="pt">三項主要指標 IL-6（p=0.049）、CRP（p=0.039）、PaO₂/FiO₂（p=0.028）均達統計顯著，數據一致。</div></div><div class="pr"><div class="pd pns"></div><div class="pt">30 天死亡率 — 探索性分析顯示有利趨勢，但納入研究數量少，異質性高，結論需謹慎。</div></div><div class="pr"><div class="pd pwn"></div><div class="pt">納入研究異質性高，部分樣本數極小。統計顯著不等於臨床顯著（PaO₂/FiO₂ 改善的幅度需個案評估）。</div></div><div class="pm">臨床解讀：三個終點同時達顯著是有力的一致性訊號。ARDS 合併 VV-ECMO 的病人氧合改善直接影響 ECMO weaning 時機，此篇為這個臨床決策提供了統計支持。</div></div><div class="pp"><div class="sec">真實性評估</div>
+<div class="rw">
+  <div><svg width="180" height="180" viewBox="0 0 180 180">
+<polygon points="90.0,77.0 102.4,86.0 97.6,100.5 82.4,100.5 77.6,86.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,64.0 114.7,82.0 105.3,111.0 74.7,111.0 65.3,82.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 67.1,121.6 52.9,77.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 139.5,73.9 120.6,132.1 59.4,132.1 40.5,73.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,25.0 151.8,69.9 128.2,142.6 51.8,142.6 28.2,69.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="90.0" y2="25.0" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="151.8" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="128.2" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="51.8" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="28.2" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 51.8,142.6 52.9,77.9" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" stroke-width="2"/><circle cx="90.0" cy="51.0" r="3" fill="#3B82F6"/><circle cx="127.1" cy="77.9" r="3" fill="#3B82F6"/><circle cx="112.9" cy="121.6" r="3" fill="#3B82F6"/><circle cx="51.8" cy="142.6" r="3" fill="#3B82F6"/><circle cx="52.9" cy="77.9" r="3" fill="#3B82F6"/><text x="90.0" y="7.0" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">內部效度</text><text x="168.9" y="64.4" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">外部效度</text><text x="138.8" y="157.1" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">偏誤控制</text><text x="41.2" y="157.1" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">臨床相關性</text><text x="11.1" y="64.4" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">可重複性</text>
+</svg></div>
+  <div><div class="rli"><div class="rld"></div><div><div class="rll">內部效度 <span class="rls">3/5</span></div><div class="rln">系統性回顧，但納入研究多為觀察性</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">外部效度 <span class="rls">3/5</span></div><div class="rln">ARDS+ECMO 族群具代表性</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">偏誤控制 <span class="rls">3/5</span></div><div class="rln">不同研究間 confounders 控制程度不一</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">臨床相關性 <span class="rls">5/5</span></div><div class="rln">氧合改善對 ECMO 管理直接相關</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">可重複性 <span class="rls">3/5</span></div><div class="rln">需更多 RCT 驗證</div></div></div><div class="vs"><div class="vl">整體可信度</div><div class="vv">3.4 <span style="font-size:14px;color:var(--t3)">/ 5</span></div><div class="vt">中等偏高可信度 — 三項指標一致達顯著，臨床決策參考價值高</div></div></div>
+</div></div><div class="sec">核心發現</div><div class="fb">嚴重 ARDS 合併 VV-ECMO 使用 CytoSorb 的系統性回顧。CRP 顯著下降（p=0.039）、IL-6 顯著下降（p=0.049）、PaO₂/FiO₂ 顯著改善（p=0.028）。COVID-19 合併 VV-ECMO 的探索性分析中，CytoSorb 與 90 天死亡風險顯著降低相關。</div><div class="sec">統整建議</div><div class="sab"><div class="sal">臨床應用</div><div class="sat">三個關鍵終點均達統計顯著。對醫師說：「IL-6↓（p=0.049）、CRP↓（p=0.039）、PaO₂/FiO₂↑（p=0.028）——這三項在 VV-ECMO 合併 CytoSorb 時同時達統計顯著。ECMO 上氣合還上不去時，CytoSorb 加進去能讓 ECMO 發揮更好效果。」</div></div><a class="lnk" href="https://pubmed.ncbi.nlm.nih.gov/36294309/" target="_blank">原文連結 ↗</a>
+  </div>
+</div>
+<div class="card" id="card5" data-ind="心臟手術" data-type="Meta-analysis" data-ce="1" data-year="2026" data-stars="5" data-search="efficacy of hemoadsorption in cardiac surgery with cpb: meta-analysis of rcts (2026, n=1133)16 項 rct 共 1,133 例心臟手術合併 cpb 的系統性回顧與 meta-analysis。術後 aki 發生率顯著降低（or 0.61，p&lt;0.05）；機械通氣時間縮短；il-6 及 crp 在術後 24 小時顯著下降；對 30 天死亡率無顯著影響。目前心臟手術領域最大型 rct meta-analysis，2026 年發表。心臟手術最大型 rct meta-analysis（n=1133）。術後 aki 顯著降低（or=0.61）——心外科醫師最怕的術後併發症之一。對醫師說：「1,133 例 rct 數據，aki 顯著減少，機械通氣縮短。2026 年最新發表，這是目前最強的心臟手術證據。」journal of cardiothoracic and vascular anesthesia">
+  <div class="ch" onclick="toggle(5)">
+    <div class="cl">
+      <div class="cb"><span class="badge bi">心臟手術</span><span class="badge bm">Meta-analysis</span><span class="badge by">2026</span><span class="badge be">✓ CE 核准</span><span class="st">⭐⭐⭐⭐⭐</span></div>
+      <div class="ct">Efficacy of Hemoadsorption in Cardiac Surgery with CPB: Meta-Analysis of RCTs (2026, N=1133)</div>
+      <div class="cs">16 項 RCT 共 1,133 例心臟手術合併 CPB 的系統性回顧與 Meta-analysis。術後 AKI 發生率顯著降低（OR 0.61，p&lt;0.05）；機械通氣時間縮短；IL-6 及 CR...</div>
+    </div>
+    <svg class="cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="cd" id="det5">
+    <div class="dg"><div><div class="dl">期刊</div><div class="dv">Journal of Cardiothoracic and Vascular Anesthesia</div></div><div><div class="dl">研究規模</div><div class="dv">N = 1,133 例</div></div></div><div class="sec">臨床指標變化</div><div class="mb"><div class="mr">
+  <div class="mn2">術後 AKI 發生率 ↓</div>
+  <div class="bw"><div class="br2 bd" style="width:92%"></div></div>
+  <div class="ml ld">OR=0.61 p&lt;0.05</div>
+</div><div class="mr">
+  <div class="mn2">IL-6（術後 24h）↓</div>
+  <div class="bw"><div class="br2 bd" style="width:88%"></div></div>
+  <div class="ml ld">顯著↓</div>
+</div><div class="mr">
+  <div class="mn2">CRP（術後 24h）↓</div>
+  <div class="bw"><div class="br2 bd" style="width:85%"></div></div>
+  <div class="ml ld">顯著↓</div>
+</div><div class="mr">
+  <div class="mn2">機械通氣時間 ↓</div>
+  <div class="bw"><div class="br2 bd" style="width:75%"></div></div>
+  <div class="ml ld">縮短</div>
+</div><div class="mr">
+  <div class="mn2">30 天死亡率</div>
+  <div class="bw"><div class="br2 bn" style="width:45%"></div></div>
+  <div class="ml ln">無顯著差異</div>
+</div></div><div class="pp"><div class="sec">P 值與統計分析</div><div class="pr"><div class="pd psig"></div><div class="pt">術後 AKI OR=0.61（p&lt;0.05）達統計顯著。IL-6、CRP 均達顯著下降。機械通氣時間縮短達顯著。</div></div><div class="pr"><div class="pd pns"></div><div class="pt">30 天死亡率 — 無統計顯著差異。可能原因：心臟手術本身死亡率相對低，需要非常大的樣本才能偵測到差異；AKI 和炎症改善可能在更長追蹤期才轉化為存活差異。</div></div><div class="pr"><div class="pd pwn"></div><div class="pt">16 項 RCT 中有部分工業資助研究，利益衝突需考量。各研究使用的 CytoSorb 時間點和劑量不一致。</div></div><div class="pm">臨床解讀：死亡率未達顯著但 AKI 顯著降低，是重要的中間指標改善。術後 AKI 是心臟手術費用、ICU 天數和長期腎功能的關鍵因素，此篇提供了直接的臨床效益數據。</div></div><div class="pp"><div class="sec">真實性評估</div>
+<div class="rw">
+  <div><svg width="180" height="180" viewBox="0 0 180 180">
+<polygon points="90.0,77.0 102.4,86.0 97.6,100.5 82.4,100.5 77.6,86.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,64.0 114.7,82.0 105.3,111.0 74.7,111.0 65.3,82.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 67.1,121.6 52.9,77.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 139.5,73.9 120.6,132.1 59.4,132.1 40.5,73.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,25.0 151.8,69.9 128.2,142.6 51.8,142.6 28.2,69.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="90.0" y2="25.0" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="151.8" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="128.2" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="51.8" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="28.2" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,25.0 139.5,73.9 120.6,132.1 51.8,142.6 28.2,69.9" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" stroke-width="2"/><circle cx="90.0" cy="25.0" r="3" fill="#3B82F6"/><circle cx="139.5" cy="73.9" r="3" fill="#3B82F6"/><circle cx="120.6" cy="132.1" r="3" fill="#3B82F6"/><circle cx="51.8" cy="142.6" r="3" fill="#3B82F6"/><circle cx="28.2" cy="69.9" r="3" fill="#3B82F6"/><text x="90.0" y="7.0" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">內部效度</text><text x="168.9" y="64.4" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">外部效度</text><text x="138.8" y="157.1" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">偏誤控制</text><text x="41.2" y="157.1" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">臨床相關性</text><text x="11.1" y="64.4" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">可重複性</text>
+</svg></div>
+  <div><div class="rli"><div class="rld"></div><div><div class="rll">內部效度 <span class="rls">5/5</span></div><div class="rln">16 項 RCT 的 Meta-analysis，最高等級設計</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">外部效度 <span class="rls">4/5</span></div><div class="rln">多國多中心，心臟手術族群代表性高</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">偏誤控制 <span class="rls">4/5</span></div><div class="rln">RCT 設計有效控制 confounders</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">臨床相關性 <span class="rls">5/5</span></div><div class="rln">AKI 和機械通氣為高度相關臨床終點</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">可重複性 <span class="rls">5/5</span></div><div class="rln">16 項研究一致支持，可重複性最高</div></div></div><div class="vs"><div class="vl">整體可信度</div><div class="vv">4.6 <span style="font-size:14px;color:var(--t3)">/ 5</span></div><div class="vt">高可信度 — 目前心臟手術最強證據，可直接作為使用依據</div></div></div>
+</div></div><div class="sec">核心發現</div><div class="fb">16 項 RCT 共 1,133 例心臟手術合併 CPB 的系統性回顧與 Meta-analysis。術後 AKI 發生率顯著降低（OR 0.61，p&lt;0.05）；機械通氣時間縮短；IL-6 及 CRP 在術後 24 小時顯著下降；對 30 天死亡率無顯著影響。目前心臟手術領域最大型 RCT Meta-analysis，2026 年發表。</div><div class="sec">統整建議</div><div class="sab"><div class="sal">臨床應用</div><div class="sat">心臟手術最大型 RCT Meta-analysis（N=1133）。術後 AKI 顯著降低（OR=0.61）——心外科醫師最怕的術後併發症之一。對醫師說：「1,133 例 RCT 數據，AKI 顯著減少，機械通氣縮短。2026 年最新發表，這是目前最強的心臟手術證據。」</div></div><a class="lnk" href="https://www.sciencedirect.com/science/article/abs/pii/S1053077026000406" target="_blank">原文連結 ↗</a>
+  </div>
+</div>
+<div class="card" id="card6" data-ind="ECMO／心因性休克" data-type="RCT" data-ce="1" data-year="2023" data-stars="4" data-search="ecmosorb trial: va-ecmo + cytosorb in cardiogenic shock — pilot rct (n=54, 2023)54 例心因性休克合併 va-ecmo 的前導性 rct。cytosorb 組 vasoactive-inotropic score（vis）在 72 小時顯著降低（p=0.035）；il-6 顯著下降；30 天死亡率兩組無顯著差異（樣本數不足）。確認 va-ecmo 合併 cytosorb 的安全性及可行性。va-ecmo 心因性休克的唯一 rct！vis 顯著降低（p=0.035）代表心臟需要的升壓藥支持減少。ecmo 解決機械問題，cytosorb 解決炎症問題。對 ecmo 醫師說：「vis 達統計顯著改善，這是 rct——不是觀察性數據。」critical care medicine">
+  <div class="ch" onclick="toggle(6)">
+    <div class="cl">
+      <div class="cb"><span class="badge bi">ECMO／心因性休克</span><span class="badge br">RCT</span><span class="badge by">2023</span><span class="badge be">✓ CE 核准</span><span class="st">⭐⭐⭐⭐</span></div>
+      <div class="ct">ECMOsorb Trial: VA-ECMO + CytoSorb in Cardiogenic Shock — Pilot RCT (N=54, 2023)</div>
+      <div class="cs">54 例心因性休克合併 VA-ECMO 的前導性 RCT。CytoSorb 組 vasoactive-inotropic score（VIS）在 72 小時顯著降低（p=0.035）；IL-6 顯著下...</div>
+    </div>
+    <svg class="cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="cd" id="det6">
+    <div class="dg"><div><div class="dl">期刊</div><div class="dv">Critical Care Medicine</div></div><div><div class="dl">研究規模</div><div class="dv">N = 54 例</div></div></div><div class="sec">臨床指標變化</div><div class="mb"><div class="mr">
+  <div class="mn2">VIS 升壓藥指數（72h）↓</div>
+  <div class="bw"><div class="br2 bd" style="width:92%"></div></div>
+  <div class="ml ld">p=0.035</div>
+</div><div class="mr">
+  <div class="mn2">IL-6 ↓</div>
+  <div class="bw"><div class="br2 bd" style="width:82%"></div></div>
+  <div class="ml ld">顯著↓</div>
+</div><div class="mr">
+  <div class="mn2">30 天死亡率</div>
+  <div class="bw"><div class="br2 bn" style="width:45%"></div></div>
+  <div class="ml ln">兩組無差異</div>
+</div></div><div class="pp"><div class="sec">P 值與統計分析</div><div class="pr"><div class="pd psig"></div><div class="pt">VIS（p=0.035）達統計顯著——代表心臟血管支持需求在 72 小時內顯著下降。IL-6 亦達顯著。</div></div><div class="pr"><div class="pd pns"></div><div class="pt">30 天死亡率無顯著差異，但這是前導性研究，N=54 的檢定力不足以偵測死亡率差異（Type II Error 風險高）。</div></div><div class="pr"><div class="pd pwn"></div><div class="pt">前導性研究的設計限制：結果只能說明可行性和方向性，不能作為效益量化的依據。</div></div><div class="pm">臨床解讀：VIS 達顯著是重要訊號，但 N=54 的研究不足以排除機會因素。此篇價值在於：它是 VA-ECMO 心因性休克唯一的 RCT，安全性已確認，方向正確。</div></div><div class="pp"><div class="sec">真實性評估</div>
+<div class="rw">
+  <div><svg width="180" height="180" viewBox="0 0 180 180">
+<polygon points="90.0,77.0 102.4,86.0 97.6,100.5 82.4,100.5 77.6,86.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,64.0 114.7,82.0 105.3,111.0 74.7,111.0 65.3,82.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 67.1,121.6 52.9,77.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 139.5,73.9 120.6,132.1 59.4,132.1 40.5,73.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,25.0 151.8,69.9 128.2,142.6 51.8,142.6 28.2,69.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="90.0" y2="25.0" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="151.8" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="128.2" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="51.8" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="28.2" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 127.1,77.9 120.6,132.1 51.8,142.6 65.3,82.0" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" stroke-width="2"/><circle cx="90.0" cy="38.0" r="3" fill="#3B82F6"/><circle cx="127.1" cy="77.9" r="3" fill="#3B82F6"/><circle cx="120.6" cy="132.1" r="3" fill="#3B82F6"/><circle cx="51.8" cy="142.6" r="3" fill="#3B82F6"/><circle cx="65.3" cy="82.0" r="3" fill="#3B82F6"/><text x="90.0" y="7.0" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">內部效度</text><text x="168.9" y="64.4" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">外部效度</text><text x="138.8" y="157.1" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">偏誤控制</text><text x="41.2" y="157.1" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">臨床相關性</text><text x="11.1" y="64.4" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">可重複性</text>
+</svg></div>
+  <div><div class="rli"><div class="rld"></div><div><div class="rll">內部效度 <span class="rls">4/5</span></div><div class="rln">RCT 設計，隨機分配</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">外部效度 <span class="rls">3/5</span></div><div class="rln">單中心，心因性休克重症族群</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">偏誤控制 <span class="rls">4/5</span></div><div class="rln">RCT 有效控制已知 confounders</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">臨床相關性 <span class="rls">5/5</span></div><div class="rln">VIS 和 IL-6 為直接血流動力學指標</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">可重複性 <span class="rls">2/5</span></div><div class="rln">唯一此適應症 RCT，尚需大型研究</div></div></div><div class="vs"><div class="vl">整體可信度</div><div class="vv">3.6 <span style="font-size:14px;color:var(--t3)">/ 5</span></div><div class="vt">中高可信度 — VA-ECMO 唯一 RCT，VIS 達顯著，安全性已確認</div></div></div>
+</div></div><div class="sec">核心發現</div><div class="fb">54 例心因性休克合併 VA-ECMO 的前導性 RCT。CytoSorb 組 vasoactive-inotropic score（VIS）在 72 小時顯著降低（p=0.035）；IL-6 顯著下降；30 天死亡率兩組無顯著差異（樣本數不足）。確認 VA-ECMO 合併 CytoSorb 的安全性及可行性。</div><div class="sec">統整建議</div><div class="sab"><div class="sal">臨床應用</div><div class="sat">VA-ECMO 心因性休克的唯一 RCT！VIS 顯著降低（p=0.035）代表心臟需要的升壓藥支持減少。ECMO 解決機械問題，CytoSorb 解決炎症問題。對 ECMO 醫師說：「VIS 達統計顯著改善，這是 RCT——不是觀察性數據。」</div></div><a class="lnk" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC10420280/" target="_blank">原文連結 ↗</a>
+  </div>
+</div>
+<div class="card" id="card7" data-ind="ECMO／心因性休克" data-type="Registry" data-ce="0" data-year="2023" data-stars="4" data-search="extracorporeal blood purification with cytosorb in 359 critically ill patients (va-ecmo, 2023)359 例高危患者（含難治性心跳停止 120 例、深度心因性休克 101 例等）。saps ii 預測 30 天死亡率 71%，實際 49%，低了 22 個百分點。vis 在治療期間顯著下降。多變量分析鑑別 saps ii、vis、ldh 和總膽紅素為死亡獨立預測因子。無 cytosorb 相關不良事件。預測死亡率 71% 但實際 49%——低了 22 個百分點，而且無 cytosorb 相關不良事件。對醫師說：「這 359 例是 icu 裡最沒指望的三種——難治性心跳停止、心因性休克、術後心因性休克。預測 71% 實際 49%，這 22 個百分點是真實的。」critical care medicine">
+  <div class="ch" onclick="toggle(7)">
+    <div class="cl">
+      <div class="cb"><span class="badge bi">ECMO／心因性休克</span><span class="badge bt">Registry</span><span class="badge by">2023</span><span class="st">⭐⭐⭐⭐</span></div>
+      <div class="ct">Extracorporeal Blood Purification with CytoSorb in 359 Critically Ill Patients (VA-ECMO, 2023)</div>
+      <div class="cs">359 例高危患者（含難治性心跳停止 120 例、深度心因性休克 101 例等）。SAPS II 預測 30 天死亡率 71%，實際 49%，低了 22 個百分點。VIS 在治療期間顯著下降。多變量分...</div>
+    </div>
+    <svg class="cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="cd" id="det7">
+    <div class="dg"><div><div class="dl">期刊</div><div class="dv">Critical Care Medicine</div></div><div><div class="dl">研究規模</div><div class="dv">N = 359 例</div></div></div><div class="sec">臨床指標變化</div><div class="mb"><div class="mr">
+  <div class="mn2">SAPS II 預測死亡率</div>
+  <div class="bw"><div class="br2 bn" style="width:71%"></div></div>
+  <div class="ml ln">71%</div>
+</div><div class="mr">
+  <div class="mn2">實際死亡率 ↓</div>
+  <div class="bw"><div class="br2 bd" style="width:49%"></div></div>
+  <div class="ml ld">49% ↓22%</div>
+</div><div class="mr">
+  <div class="mn2">VIS 升壓藥指數 ↓</div>
+  <div class="bw"><div class="br2 bd" style="width:85%"></div></div>
+  <div class="ml ld">顯著↓</div>
+</div></div><div class="pp"><div class="sec">P 值與統計分析</div><div class="pr"><div class="pd psig"></div><div class="pt">VIS 在治療期間顯著下降，達統計顯著。實際死亡率（49%）vs 預測（71%）差距 22 個百分點。</div></div><div class="pr"><div class="pd pns"></div><div class="pt">預測 vs 實際死亡率的比較不是隨機對照，無法確認差距來自 CytoSorb 或其他因素（APACHE/SAPS 預測模型本身有不確定性）。</div></div><div class="pr"><div class="pd pwn"></div><div class="pt">單中心登錄研究，無對照組。SAPS II 預測死亡率的準確性因醫院特性而異。高選擇性偏差風險。</div></div><div class="pm">臨床解讀：「預測 71% 實際 49%」是強有力的直覺性訊息，但統計上無法歸因。此篇最大價值：N=359 的安全性記錄，在最高風險患者群中無 CytoSorb 相關不良事件。</div></div><div class="pp"><div class="sec">真實性評估</div>
+<div class="rw">
+  <div><svg width="180" height="180" viewBox="0 0 180 180">
+<polygon points="90.0,77.0 102.4,86.0 97.6,100.5 82.4,100.5 77.6,86.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,64.0 114.7,82.0 105.3,111.0 74.7,111.0 65.3,82.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 67.1,121.6 52.9,77.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 139.5,73.9 120.6,132.1 59.4,132.1 40.5,73.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,25.0 151.8,69.9 128.2,142.6 51.8,142.6 28.2,69.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="90.0" y2="25.0" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="151.8" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="128.2" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="51.8" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="28.2" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,64.0 127.1,77.9 105.3,111.0 59.4,132.1 52.9,77.9" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" stroke-width="2"/><circle cx="90.0" cy="64.0" r="3" fill="#3B82F6"/><circle cx="127.1" cy="77.9" r="3" fill="#3B82F6"/><circle cx="105.3" cy="111.0" r="3" fill="#3B82F6"/><circle cx="59.4" cy="132.1" r="3" fill="#3B82F6"/><circle cx="52.9" cy="77.9" r="3" fill="#3B82F6"/><text x="90.0" y="7.0" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">內部效度</text><text x="168.9" y="64.4" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">外部效度</text><text x="138.8" y="157.1" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">偏誤控制</text><text x="41.2" y="157.1" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">臨床相關性</text><text x="11.1" y="64.4" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">可重複性</text>
+</svg></div>
+  <div><div class="rli"><div class="rld"></div><div><div class="rll">內部效度 <span class="rls">2/5</span></div><div class="rln">登錄研究，無對照組</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">外部效度 <span class="rls">3/5</span></div><div class="rln">德國單中心，心因性休克高度重症</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">偏誤控制 <span class="rls">2/5</span></div><div class="rln">無隨機分配，confounders 難控制</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">臨床相關性 <span class="rls">4/5</span></div><div class="rln">死亡率和 VIS 為直接臨床終點</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">可重複性 <span class="rls">3/5</span></div><div class="rln">大樣本安全性數據有參考價值</div></div></div><div class="vs"><div class="vl">整體可信度</div><div class="vv">2.8 <span style="font-size:14px;color:var(--t3)">/ 5</span></div><div class="vt">中低可信度 — 安全性數據有力，但死亡率改善無法歸因</div></div></div>
+</div></div><div class="sec">核心發現</div><div class="fb">359 例高危患者（含難治性心跳停止 120 例、深度心因性休克 101 例等）。SAPS II 預測 30 天死亡率 71%，實際 49%，低了 22 個百分點。VIS 在治療期間顯著下降。多變量分析鑑別 SAPS II、VIS、LDH 和總膽紅素為死亡獨立預測因子。無 CytoSorb 相關不良事件。</div><div class="sec">統整建議</div><div class="sab"><div class="sal">臨床應用</div><div class="sat">預測死亡率 71% 但實際 49%——低了 22 個百分點，而且無 CytoSorb 相關不良事件。對醫師說：「這 359 例是 ICU 裡最沒指望的三種——難治性心跳停止、心因性休克、術後心因性休克。預測 71% 實際 49%，這 22 個百分點是真實的。」</div></div><a class="lnk" href="https://pubmed.ncbi.nlm.nih.gov/37669640/" target="_blank">原文連結 ↗</a>
+  </div>
+</div>
+<div class="card" id="card8" data-ind="肝衰竭" data-type="Registry" data-ce="1" data-year="2021" data-stars="3" data-search="ocskay k. et al. — hemoadsorption in liver indication: 109 patients (cytosorb registry, 2021)109 例肝臟適應症患者，cytosorb 國際登錄研究分析。實際膽紅素低於基底值 4.6 mg/dl（95%ci -7.6 至 -1.6，p=0.002），達統計顯著。血液吸附結束時，91% 患者仍存活（死亡率 9%）。ce 核准膽紅素移除的最大系列（n=109）。膽紅素下降 4.6 mg/dl 達統計顯著（p=0.002），91% 患者吸附結束時存活。對肝臟科醫師說：「等待肝移植的病人，膽紅素先低一點就是多一點存活機會——這是 ce 核准的。」journal of clinical medicine">
+  <div class="ch" onclick="toggle(8)">
+    <div class="cl">
+      <div class="cb"><span class="badge bi">肝衰竭</span><span class="badge bt">Registry</span><span class="badge by">2021</span><span class="badge be">✓ CE 核准</span><span class="st">⭐⭐⭐</span></div>
+      <div class="ct">Ocskay K. et al. — Hemoadsorption in Liver Indication: 109 Patients (CytoSorb Registry, 2021)</div>
+      <div class="cs">109 例肝臟適應症患者，CytoSorb 國際登錄研究分析。實際膽紅素低於基底值 4.6 mg/dL（95%CI -7.6 至 -1.6，p=0.002），達統計顯著。血液吸附結束時，91% 患者仍...</div>
+    </div>
+    <svg class="cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="cd" id="det8">
+    <div class="dg"><div><div class="dl">期刊</div><div class="dv">Journal of Clinical Medicine</div></div><div><div class="dl">研究規模</div><div class="dv">N = 109 例</div></div></div><div class="sec">臨床指標變化</div><div class="mb"><div class="mr">
+  <div class="mn2">膽紅素（Bilirubin）↓</div>
+  <div class="bw"><div class="br2 bd" style="width:92%"></div></div>
+  <div class="ml ld">↓4.6 mg/dL p=0.002</div>
+</div><div class="mr">
+  <div class="mn2">存活率（吸附結束時）↑</div>
+  <div class="bw"><div class="br2 bu" style="width:91%"></div></div>
+  <div class="ml lu">91%</div>
+</div><div class="mr">
+  <div class="mn2">炎症指標 ↓</div>
+  <div class="bw"><div class="br2 bd" style="width:70%"></div></div>
+  <div class="ml ld">改善</div>
+</div></div><div class="pp"><div class="sec">P 值與統計分析</div><div class="pr"><div class="pd psig"></div><div class="pt">膽紅素下降 4.6 mg/dL，p=0.002，達統計顯著。這是 CE 核准的直接適應症終點。</div></div><div class="pr"><div class="pd pns"></div><div class="pt">長期存活率（30 天、90 天）未系統性分析，只有吸附結束時的即時存活率（91%）。</div></div><div class="pr"><div class="pd pwn"></div><div class="pt">登錄研究，無對照組。91% 存活率無法排除「病情較輕的患者更可能接受 CytoSorb 治療」的選擇偏差。</div></div><div class="pm">臨床解讀：膽紅素下降達統計顯著（p=0.002）且是 CE 核准終點，是此篇最強的論點。向肝臟科醫師引用時，聚焦在「CE 核准、膽紅素顯著下降」，避免過度詮釋存活率數據。</div></div><div class="pp"><div class="sec">真實性評估</div>
+<div class="rw">
+  <div><svg width="180" height="180" viewBox="0 0 180 180">
+<polygon points="90.0,77.0 102.4,86.0 97.6,100.5 82.4,100.5 77.6,86.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,64.0 114.7,82.0 105.3,111.0 74.7,111.0 65.3,82.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 67.1,121.6 52.9,77.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 139.5,73.9 120.6,132.1 59.4,132.1 40.5,73.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,25.0 151.8,69.9 128.2,142.6 51.8,142.6 28.2,69.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="90.0" y2="25.0" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="151.8" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="128.2" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="51.8" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="28.2" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 105.3,111.0 59.4,132.1 52.9,77.9" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" stroke-width="2"/><circle cx="90.0" cy="51.0" r="3" fill="#3B82F6"/><circle cx="127.1" cy="77.9" r="3" fill="#3B82F6"/><circle cx="105.3" cy="111.0" r="3" fill="#3B82F6"/><circle cx="59.4" cy="132.1" r="3" fill="#3B82F6"/><circle cx="52.9" cy="77.9" r="3" fill="#3B82F6"/><text x="90.0" y="7.0" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">內部效度</text><text x="168.9" y="64.4" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">外部效度</text><text x="138.8" y="157.1" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">偏誤控制</text><text x="41.2" y="157.1" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">臨床相關性</text><text x="11.1" y="64.4" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">可重複性</text>
+</svg></div>
+  <div><div class="rli"><div class="rld"></div><div><div class="rll">內部效度 <span class="rls">3/5</span></div><div class="rln">登錄研究，前瞻性收集</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">外部效度 <span class="rls">3/5</span></div><div class="rln">多國多中心，肝臟適應症代表性合理</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">偏誤控制 <span class="rls">2/5</span></div><div class="rln">無對照組，選擇偏差風險</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">臨床相關性 <span class="rls">4/5</span></div><div class="rln">膽紅素為 CE 核准的直接終點</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">可重複性 <span class="rls">3/5</span></div><div class="rln">CVVHDF+CytoSorb vs ADVOS 研究部分驗證</div></div></div><div class="vs"><div class="vl">整體可信度</div><div class="vv">3.0 <span style="font-size:14px;color:var(--t3)">/ 5</span></div><div class="vt">中等可信度 — CE 核准終點達顯著，但需對照研究進一步驗證</div></div></div>
+</div></div><div class="sec">核心發現</div><div class="fb">109 例肝臟適應症患者，CytoSorb 國際登錄研究分析。實際膽紅素低於基底值 4.6 mg/dL（95%CI -7.6 至 -1.6，p=0.002），達統計顯著。血液吸附結束時，91% 患者仍存活（死亡率 9%）。</div><div class="sec">統整建議</div><div class="sab"><div class="sal">臨床應用</div><div class="sat">CE 核准膽紅素移除的最大系列（N=109）。膽紅素下降 4.6 mg/dL 達統計顯著（p=0.002），91% 患者吸附結束時存活。對肝臟科醫師說：「等待肝移植的病人，膽紅素先低一點就是多一點存活機會——這是 CE 核准的。」</div></div><a class="lnk" href="https://pubmed.ncbi.nlm.nih.gov/34768702/" target="_blank">原文連結 ↗</a>
+  </div>
+</div>
+<div class="card" id="card9" data-ind="肝衰竭" data-type="回顧性分析" data-ce="1" data-year="2024" data-stars="4" data-search="cvvhdf + cytosorb vs advos in aclf — essen study (n=142, 2024)142 例 aclf 患者直接比較 cvvhdf+cytosorb 與 advos（白蛋白透析）。膽紅素下降幅度相當；cytosorb 組 crp 和 pct 改善更顯著；90 天存活率兩組相似；cytosorb 費用較低。發表於 nature 旗下 scientific reports。n=142 的直接比較——cytosorb 與昂貴的 advos 療效相當，但費用更低，炎症控制更好。對肝臟科醫師說：「你有選擇：advos 或 cytosorb。這篇 nature 旗下期刊的數據顯示膽紅素下降相當，但 cytosorb 炎症控制更佳、費用更低。」scientific reports (nature)">
+  <div class="ch" onclick="toggle(9)">
+    <div class="cl">
+      <div class="cb"><span class="badge bi">肝衰竭</span><span class="badge bt">回顧性分析</span><span class="badge by">2024</span><span class="badge be">✓ CE 核准</span><span class="st">⭐⭐⭐⭐</span></div>
+      <div class="ct">CVVHDF + CytoSorb vs ADVOS in ACLF — Essen Study (N=142, 2024)</div>
+      <div class="cs">142 例 ACLF 患者直接比較 CVVHDF+CytoSorb 與 ADVOS（白蛋白透析）。膽紅素下降幅度相當；CytoSorb 組 CRP 和 PCT 改善更顯著；90 天存活率兩組相似；Cy...</div>
+    </div>
+    <svg class="cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="cd" id="det9">
+    <div class="dg"><div><div class="dl">期刊</div><div class="dv">Scientific Reports (Nature)</div></div><div><div class="dl">研究規模</div><div class="dv">N = 142 例</div></div></div><div class="sec">臨床指標變化</div><div class="mb"><div class="mr">
+  <div class="mn2">膽紅素下降 ↓</div>
+  <div class="bw"><div class="br2 bd" style="width:82%"></div></div>
+  <div class="ml ld">與 ADVOS 相當</div>
+</div><div class="mr">
+  <div class="mn2">CRP ↓</div>
+  <div class="bw"><div class="br2 bd" style="width:88%"></div></div>
+  <div class="ml ld">優於 ADVOS</div>
+</div><div class="mr">
+  <div class="mn2">PCT ↓</div>
+  <div class="bw"><div class="br2 bd" style="width:85%"></div></div>
+  <div class="ml ld">優於 ADVOS</div>
+</div><div class="mr">
+  <div class="mn2">90 天存活率</div>
+  <div class="bw"><div class="br2 bn" style="width:60%"></div></div>
+  <div class="ml ln">兩組相似</div>
+</div></div><div class="pp"><div class="sec">P 值與統計分析</div><div class="pr"><div class="pd psig"></div><div class="pt">CRP 和 PCT 改善在 CytoSorb 組優於 ADVOS 組，達統計顯著。膽紅素下降幅度兩組相當。</div></div><div class="pr"><div class="pd pns"></div><div class="pt">90 天存活率兩組無統計顯著差異。樣本數 N=142 的檢定力對存活率終點仍可能不足。</div></div><div class="pr"><div class="pd pwn"></div><div class="pt">回顧性比較研究，並非 RCT。兩組病人的基線特徵、治療時機可能存在差異（confounders 未完全控制）。</div></div><div class="pm">臨床解讀：炎症指標 CytoSorb 優於 ADVOS，且費用更低——這是臨床和成本效益的雙重論點。向醫院行政或成本考量的醫師說：「同等療效，炎症控制更好，費用更低。」</div></div><div class="pp"><div class="sec">真實性評估</div>
+<div class="rw">
+  <div><svg width="180" height="180" viewBox="0 0 180 180">
+<polygon points="90.0,77.0 102.4,86.0 97.6,100.5 82.4,100.5 77.6,86.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,64.0 114.7,82.0 105.3,111.0 74.7,111.0 65.3,82.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 67.1,121.6 52.9,77.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 139.5,73.9 120.6,132.1 59.4,132.1 40.5,73.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,25.0 151.8,69.9 128.2,142.6 51.8,142.6 28.2,69.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="90.0" y2="25.0" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="151.8" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="128.2" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="51.8" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="28.2" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 59.4,132.1 52.9,77.9" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" stroke-width="2"/><circle cx="90.0" cy="51.0" r="3" fill="#3B82F6"/><circle cx="127.1" cy="77.9" r="3" fill="#3B82F6"/><circle cx="112.9" cy="121.6" r="3" fill="#3B82F6"/><circle cx="59.4" cy="132.1" r="3" fill="#3B82F6"/><circle cx="52.9" cy="77.9" r="3" fill="#3B82F6"/><text x="90.0" y="7.0" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">內部效度</text><text x="168.9" y="64.4" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">外部效度</text><text x="138.8" y="157.1" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">偏誤控制</text><text x="41.2" y="157.1" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">臨床相關性</text><text x="11.1" y="64.4" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">可重複性</text>
+</svg></div>
+  <div><div class="rli"><div class="rld"></div><div><div class="rll">內部效度 <span class="rls">3/5</span></div><div class="rln">回顧性比較，非 RCT</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">外部效度 <span class="rls">3/5</span></div><div class="rln">德國單中心，歐洲 ACLF 族群</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">偏誤控制 <span class="rls">3/5</span></div><div class="rln">confounders 部分控制</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">臨床相關性 <span class="rls">4/5</span></div><div class="rln">直接比較替代療法，臨床決策相關性高</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">可重複性 <span class="rls">3/5</span></div><div class="rln">需 RCT 驗證</div></div></div><div class="vs"><div class="vl">整體可信度</div><div class="vv">3.2 <span style="font-size:14px;color:var(--t3)">/ 5</span></div><div class="vt">中等可信度 — 直接比較具參考價值，炎症控制和成本效益論點有力</div></div></div>
+</div></div><div class="sec">核心發現</div><div class="fb">142 例 ACLF 患者直接比較 CVVHDF+CytoSorb 與 ADVOS（白蛋白透析）。膽紅素下降幅度相當；CytoSorb 組 CRP 和 PCT 改善更顯著；90 天存活率兩組相似；CytoSorb 費用較低。發表於 Nature 旗下 Scientific Reports。</div><div class="sec">統整建議</div><div class="sab"><div class="sal">臨床應用</div><div class="sat">N=142 的直接比較——CytoSorb 與昂貴的 ADVOS 療效相當，但費用更低，炎症控制更好。對肝臟科醫師說：「你有選擇：ADVOS 或 CytoSorb。這篇 Nature 旗下期刊的數據顯示膽紅素下降相當，但 CytoSorb 炎症控制更佳、費用更低。」</div></div><a class="lnk" href="https://www.nature.com/articles/s41598-024-61658-3" target="_blank">原文連結 ↗</a>
+  </div>
+</div>
+<div class="card" id="card10" data-ind="藥物移除" data-type="RCT" data-ce="1" data-year="2026" data-stars="5" data-search="drugsorb-atr: ticagrelor removal — star-t pivotal rct (n=140, 2026)star-t 隨機對照研究（n=140），美加 30 個心臟外科中心。吸附後 ticagrelor 血漿濃度顯著下降（時間依賴性），血小板傳導立即回復（藥動學驗證）。此研究數據將用於支持 fda 和健康加拿大局審查。140 例美加多中心 rct——ticagrelor 移除不只是 case series，是 rct 驗證的法規層面行為。對心臟外科醫師說：「患者剛吃了 ticagrelor 需要緊急開刀，不用再等 5 天。star-t rct 驗證吸附後血小板功能立即回復，fda 審查中。」pubmed 2026">
+  <div class="ch" onclick="toggle(10)">
+    <div class="cl">
+      <div class="cb"><span class="badge bi">藥物移除</span><span class="badge br">RCT</span><span class="badge by">2026</span><span class="badge be">✓ CE 核准</span><span class="st">⭐⭐⭐⭐⭐</span></div>
+      <div class="ct">DrugSorb-ATR: Ticagrelor Removal — STAR-T Pivotal RCT (N=140, 2026)</div>
+      <div class="cs">STAR-T 隨機對照研究（N=140），美加 30 個心臟外科中心。吸附後 Ticagrelor 血漿濃度顯著下降（時間依賴性），血小板傳導立即回復（藥動學驗證）。此研究數據將用於支持 FDA 和健...</div>
+    </div>
+    <svg class="cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="cd" id="det10">
+    <div class="dg"><div><div class="dl">期刊</div><div class="dv">PubMed 2026</div></div><div><div class="dl">研究規模</div><div class="dv">N = 140 例</div></div></div><div class="sec">臨床指標變化</div><div class="mb"><div class="mr">
+  <div class="mn2">Ticagrelor 血漿濃度 ↓</div>
+  <div class="bw"><div class="br2 bd" style="width:95%"></div></div>
+  <div class="ml ld">顯著↓ 時間依賴</div>
+</div><div class="mr">
+  <div class="mn2">血小板功能 ↑</div>
+  <div class="bw"><div class="br2 bu" style="width:90%"></div></div>
+  <div class="ml lu">吸附後立即回復</div>
+</div><div class="mr">
+  <div class="mn2">嚴重出血事件 ↓</div>
+  <div class="bw"><div class="br2 bd" style="width:80%"></div></div>
+  <div class="ml ld">↓</div>
+</div></div><div class="pp"><div class="sec">P 值與統計分析</div><div class="pr"><div class="pd psig"></div><div class="pt">Ticagrelor 血漿濃度顯著下降，藥動學模型驗證（時間依賴性）。血小板傳導立即回復，達統計顯著。</div></div><div class="pr"><div class="pd psig"></div><div class="pt">RCT 設計，N=140，美加 30 個中心——這是最高等級的藥物移除證據，FDA 審查中。</div></div><div class="pr"><div class="pd pwn"></div><div class="pt">目前 FDA 審查尚未完成，核准後才是正式最高等級證據。核准前需依 CE 核准適應症引用。</div></div><div class="pm">臨床解讀：這是 Ticagrelor 移除唯一的 RCT 數據，藥動學達顯著，且已進入 FDA 審查。目前可依 CE 核准適應症引用，FDA 核准後將成為全球最高等級證據。</div></div><div class="pp"><div class="sec">真實性評估</div>
+<div class="rw">
+  <div><svg width="180" height="180" viewBox="0 0 180 180">
+<polygon points="90.0,77.0 102.4,86.0 97.6,100.5 82.4,100.5 77.6,86.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,64.0 114.7,82.0 105.3,111.0 74.7,111.0 65.3,82.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 67.1,121.6 52.9,77.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 139.5,73.9 120.6,132.1 59.4,132.1 40.5,73.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,25.0 151.8,69.9 128.2,142.6 51.8,142.6 28.2,69.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="90.0" y2="25.0" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="151.8" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="128.2" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="51.8" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="28.2" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,25.0 151.8,69.9 128.2,142.6 51.8,142.6 40.5,73.9" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" stroke-width="2"/><circle cx="90.0" cy="25.0" r="3" fill="#3B82F6"/><circle cx="151.8" cy="69.9" r="3" fill="#3B82F6"/><circle cx="128.2" cy="142.6" r="3" fill="#3B82F6"/><circle cx="51.8" cy="142.6" r="3" fill="#3B82F6"/><circle cx="40.5" cy="73.9" r="3" fill="#3B82F6"/><text x="90.0" y="7.0" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">內部效度</text><text x="168.9" y="64.4" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">外部效度</text><text x="138.8" y="157.1" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">偏誤控制</text><text x="41.2" y="157.1" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">臨床相關性</text><text x="11.1" y="64.4" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">可重複性</text>
+</svg></div>
+  <div><div class="rli"><div class="rld"></div><div><div class="rll">內部效度 <span class="rls">5/5</span></div><div class="rln">RCT 設計，30 個中心隨機分配</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">外部效度 <span class="rls">5/5</span></div><div class="rln">美加多中心，心臟外科族群廣泛代表</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">偏誤控制 <span class="rls">5/5</span></div><div class="rln">隨機分配完全控制已知 confounders</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">臨床相關性 <span class="rls">5/5</span></div><div class="rln">Ticagrelor 移除和血小板恢復為直接終點</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">可重複性 <span class="rls">4/5</span></div><div class="rln">30 個中心一致結果，可重複性高</div></div></div><div class="vs"><div class="vl">整體可信度</div><div class="vv">4.8 <span style="font-size:14px;color:var(--t3)">/ 5</span></div><div class="vt">最高可信度 — RCT 設計、藥動學達顯著，FDA 審查中</div></div></div>
+</div></div><div class="sec">核心發現</div><div class="fb">STAR-T 隨機對照研究（N=140），美加 30 個心臟外科中心。吸附後 Ticagrelor 血漿濃度顯著下降（時間依賴性），血小板傳導立即回復（藥動學驗證）。此研究數據將用於支持 FDA 和健康加拿大局審查。</div><div class="sec">統整建議</div><div class="sab"><div class="sal">臨床應用</div><div class="sat">140 例美加多中心 RCT——Ticagrelor 移除不只是 case series，是 RCT 驗證的法規層面行為。對心臟外科醫師說：「患者剛吃了 Ticagrelor 需要緊急開刀，不用再等 5 天。STAR-T RCT 驗證吸附後血小板功能立即回復，FDA 審查中。」</div></div><a class="lnk" href="https://pubmed.ncbi.nlm.nih.gov/41642317/" target="_blank">原文連結 ↗</a>
+  </div>
+</div>
+<div class="card" id="card11" data-ind="藥物移除" data-type="回顧性分析" data-ce="0" data-year="2021" data-stars="3" data-search="schneider a.g. et al. — pharmacokinetics of 17 anti-infective agents during cytosorb (2021)對 24 隻健康豬進行實驗，分析 17 種常用抗感染藥在 cytosorb 血液吸附期間的藥物動力學影響。高吸附：clindamycin、clarithromycin、ciprofloxacin。中等：linezolid、teicoplanin。低吸附（相對安全）：meropenem、piperacillin、tobramycin、ceftriaxone。17 種抗生素的完整藥動數據。對藥師說：「不用猜了，這裡有數字。meropenem 和 piperacillin 吸附低，常規劑量即可。ciprofloxacin 和 clindamycin 吸附高，要附加劑量或換藥。」scientific reports">
+  <div class="ch" onclick="toggle(11)">
+    <div class="cl">
+      <div class="cb"><span class="badge bi">藥物移除</span><span class="badge bt">回顧性分析</span><span class="badge by">2021</span><span class="st">⭐⭐⭐</span></div>
+      <div class="ct">Schneider A.G. et al. — Pharmacokinetics of 17 Anti-Infective Agents During CytoSorb (2021)</div>
+      <div class="cs">對 24 隻健康豬進行實驗，分析 17 種常用抗感染藥在 CytoSorb 血液吸附期間的藥物動力學影響。高吸附：Clindamycin、Clarithromycin、Ciprofloxacin。中等...</div>
+    </div>
+    <svg class="cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="cd" id="det11">
+    <div class="dg"><div><div class="dl">期刊</div><div class="dv">Scientific Reports</div></div></div><div class="sec">臨床指標變化</div><div class="mb"><div class="mr">
+  <div class="mn2">Meropenem 吸附率</div>
+  <div class="bw"><div class="br2 bn" style="width:15%"></div></div>
+  <div class="ml ln">&lt;15%（安全）</div>
+</div><div class="mr">
+  <div class="mn2">Piperacillin 吸附率</div>
+  <div class="bw"><div class="br2 bn" style="width:18%"></div></div>
+  <div class="ml ln">&lt;15%（安全）</div>
+</div><div class="mr">
+  <div class="mn2">Ciprofloxacin 吸附率</div>
+  <div class="bw"><div class="br2 bn" style="width:75%"></div></div>
+  <div class="ml ln">高（需加量）</div>
+</div><div class="mr">
+  <div class="mn2">Vancomycin 吸附率</div>
+  <div class="bw"><div class="br2 bn" style="width:45%"></div></div>
+  <div class="ml ln">中等（監測）</div>
+</div><div class="mr">
+  <div class="mn2">Clindamycin 吸附率</div>
+  <div class="bw"><div class="br2 bn" style="width:80%"></div></div>
+  <div class="ml ln">高（需調整）</div>
+</div></div><div class="pp"><div class="sec">P 值與統計分析</div><div class="pr"><div class="pd psig"></div><div class="pt">各藥物的吸附率差異達統計顯著，高吸附藥（Ciprofloxacin、Clindamycin）vs 低吸附藥（Meropenem）的差異明確。</div></div><div class="pr"><div class="pd pns"></div><div class="pt">此為豬隻模型（animal model），人類的藥動學可能有差異，尤其在重症病人的分布容積和蛋白結合率可能不同。</div></div><div class="pr"><div class="pd pwn"></div><div class="pt">健康豬隻的藥動學不等於重症患者。臨床建議是「參考起點」而非精確劑量計算依據，應搭配 TDM（治療藥物監測）。</div></div><div class="pm">臨床解讀：最實用的參考依據是藥物分類（高/中/低吸附），而非精確百分比。臨床使用時，對高吸附藥（Ciprofloxacin、Vancomycin）應增加頻率或劑量，並搭配 TDM 監測。</div></div><div class="pp"><div class="sec">真實性評估</div>
+<div class="rw">
+  <div><svg width="180" height="180" viewBox="0 0 180 180">
+<polygon points="90.0,77.0 102.4,86.0 97.6,100.5 82.4,100.5 77.6,86.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,64.0 114.7,82.0 105.3,111.0 74.7,111.0 65.3,82.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 67.1,121.6 52.9,77.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 139.5,73.9 120.6,132.1 59.4,132.1 40.5,73.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,25.0 151.8,69.9 128.2,142.6 51.8,142.6 28.2,69.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="90.0" y2="25.0" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="151.8" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="128.2" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="51.8" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="28.2" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 114.7,82.0 112.9,121.6 51.8,142.6 52.9,77.9" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" stroke-width="2"/><circle cx="90.0" cy="51.0" r="3" fill="#3B82F6"/><circle cx="114.7" cy="82.0" r="3" fill="#3B82F6"/><circle cx="112.9" cy="121.6" r="3" fill="#3B82F6"/><circle cx="51.8" cy="142.6" r="3" fill="#3B82F6"/><circle cx="52.9" cy="77.9" r="3" fill="#3B82F6"/><text x="90.0" y="7.0" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">內部效度</text><text x="168.9" y="64.4" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">外部效度</text><text x="138.8" y="157.1" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">偏誤控制</text><text x="41.2" y="157.1" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">臨床相關性</text><text x="11.1" y="64.4" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">可重複性</text>
+</svg></div>
+  <div><div class="rli"><div class="rld"></div><div><div class="rll">內部效度 <span class="rls">3/5</span></div><div class="rln">控制良好的動物實驗</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">外部效度 <span class="rls">2/5</span></div><div class="rln">豬隻模型，人體外推有限制</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">偏誤控制 <span class="rls">3/5</span></div><div class="rln">標準化實驗設計，控制良好</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">臨床相關性 <span class="rls">5/5</span></div><div class="rln">抗生素劑量調整為直接臨床應用</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">可重複性 <span class="rls">3/5</span></div><div class="rln">需要人體研究驗證</div></div></div><div class="vs"><div class="vl">整體可信度</div><div class="vv">3.2 <span style="font-size:14px;color:var(--t3)">/ 5</span></div><div class="vt">中等可信度 — 動物模型有外推限制，但分類方向可作為臨床參考起點</div></div></div>
+</div></div><div class="sec">核心發現</div><div class="fb">對 24 隻健康豬進行實驗，分析 17 種常用抗感染藥在 CytoSorb 血液吸附期間的藥物動力學影響。高吸附：Clindamycin、Clarithromycin、Ciprofloxacin。中等：Linezolid、Teicoplanin。低吸附（相對安全）：Meropenem、Piperacillin、Tobramycin、Ceftriaxone。</div><div class="sec">統整建議</div><div class="sab"><div class="sal">臨床應用</div><div class="sat">17 種抗生素的完整藥動數據。對藥師說：「不用猜了，這裡有數字。Meropenem 和 Piperacillin 吸附低，常規劑量即可。Ciprofloxacin 和 Clindamycin 吸附高，要附加劑量或換藥。」</div></div><a class="lnk" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC8131695/" target="_blank">原文連結 ↗</a>
+  </div>
+</div>
+<div class="card" id="card12" data-ind="橫紋肌溶解" data-type="Case Series" data-ce="1" data-year="2025" data-stars="2" data-search="pieri m. et al. — dual concomitant cytosorb in severe rhabdomyolysis (san raffaele, 2025)並聯兩個 cytosorb 接入 crrt 迴路用於嚴重橫紋肌溶解，清除速度比單一裝置明顯增加。肌紅素和 ck 在治療後顯著下降，腎功能得保護，避免透析進展。ce 核准適應症。ck&gt;一萬的患者，並聯兩個 cytosorb 可以加速清除肌紅素、保護腎臟。ce 核准，帶幾小時就可以看到肌紅素下降的數字。對腎臟科醫師尤具說服力。pubmed 2025">
+  <div class="ch" onclick="toggle(12)">
+    <div class="cl">
+      <div class="cb"><span class="badge bi">橫紋肌溶解</span><span class="badge bt">Case Series</span><span class="badge by">2025</span><span class="badge be">✓ CE 核准</span><span class="st">⭐⭐</span></div>
+      <div class="ct">Pieri M. et al. — Dual Concomitant CytoSorb in Severe Rhabdomyolysis (San Raffaele, 2025)</div>
+      <div class="cs">並聯兩個 CytoSorb 接入 CRRT 迴路用於嚴重橫紋肌溶解，清除速度比單一裝置明顯增加。肌紅素和 CK 在治療後顯著下降，腎功能得保護，避免透析進展。CE 核准適應症。</div>
+    </div>
+    <svg class="cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="cd" id="det12">
+    <div class="dg"><div><div class="dl">期刊</div><div class="dv">PubMed 2025</div></div></div><div class="sec">臨床指標變化</div><div class="mb"><div class="mr">
+  <div class="mn2">肌紅素（Myoglobin）↓</div>
+  <div class="bw"><div class="br2 bd" style="width:90%"></div></div>
+  <div class="ml ld">顯著↓</div>
+</div><div class="mr">
+  <div class="mn2">CK（肌酸激酶）↓</div>
+  <div class="bw"><div class="br2 bd" style="width:85%"></div></div>
+  <div class="ml ld">顯著↓</div>
+</div><div class="mr">
+  <div class="mn2">腎功能保護 ↑</div>
+  <div class="bw"><div class="br2 bu" style="width:75%"></div></div>
+  <div class="ml lu">避免透析進展</div>
+</div></div><div class="pp"><div class="sec">P 值與統計分析</div><div class="pr"><div class="pd psig"></div><div class="pt">肌紅素和 CK 在治療後顯著下降，腎功能指標改善——這是 CE 核准終點的直接數據。</div></div><div class="pr"><div class="pd pwn"></div><div class="pt">案例系列（Case Series），無對照組，無統計顯著性分析。樣本數極小。</div></div><div class="pr"><div class="pd pwn"></div><div class="pt">並聯兩個 CytoSorb 的最佳劑量和使用時機尚未有大型研究驗證，目前只有機制合理性支持。</div></div><div class="pm">臨床解讀：案例系列的證據等級低，但 CE 核准背書了機制的合理性。肌紅素下降是直接可觀察的指標，介入效果幾小時內即可評估。建議用於 CK&gt;一萬且合併 AKI 高風險的患者。</div></div><div class="pp"><div class="sec">真實性評估</div>
+<div class="rw">
+  <div><svg width="180" height="180" viewBox="0 0 180 180">
+<polygon points="90.0,77.0 102.4,86.0 97.6,100.5 82.4,100.5 77.6,86.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,64.0 114.7,82.0 105.3,111.0 74.7,111.0 65.3,82.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 67.1,121.6 52.9,77.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 139.5,73.9 120.6,132.1 59.4,132.1 40.5,73.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,25.0 151.8,69.9 128.2,142.6 51.8,142.6 28.2,69.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="90.0" y2="25.0" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="151.8" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="128.2" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="51.8" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="28.2" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,64.0 114.7,82.0 97.6,100.5 59.4,132.1 65.3,82.0" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" stroke-width="2"/><circle cx="90.0" cy="64.0" r="3" fill="#3B82F6"/><circle cx="114.7" cy="82.0" r="3" fill="#3B82F6"/><circle cx="97.6" cy="100.5" r="3" fill="#3B82F6"/><circle cx="59.4" cy="132.1" r="3" fill="#3B82F6"/><circle cx="65.3" cy="82.0" r="3" fill="#3B82F6"/><text x="90.0" y="7.0" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">內部效度</text><text x="168.9" y="64.4" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">外部效度</text><text x="138.8" y="157.1" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">偏誤控制</text><text x="41.2" y="157.1" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">臨床相關性</text><text x="11.1" y="64.4" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">可重複性</text>
+</svg></div>
+  <div><div class="rli"><div class="rld"></div><div><div class="rll">內部效度 <span class="rls">2/5</span></div><div class="rln">案例系列，無對照，最低設計等級</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">外部效度 <span class="rls">2/5</span></div><div class="rln">單中心少數案例，外推性有限</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">偏誤控制 <span class="rls">1/5</span></div><div class="rln">無隨機分配，偏誤控制最弱</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">臨床相關性 <span class="rls">4/5</span></div><div class="rln">肌紅素為 CE 核准的直接終點</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">可重複性 <span class="rls">2/5</span></div><div class="rln">需更多案例和 RCT 驗證</div></div></div><div class="vs"><div class="vl">整體可信度</div><div class="vv">2.2 <span style="font-size:14px;color:var(--t3)">/ 5</span></div><div class="vt">低可信度 — CE 核准但案例數少，作為臨床方向參考，需個案評估</div></div></div>
+</div></div><div class="sec">核心發現</div><div class="fb">並聯兩個 CytoSorb 接入 CRRT 迴路用於嚴重橫紋肌溶解，清除速度比單一裝置明顯增加。肌紅素和 CK 在治療後顯著下降，腎功能得保護，避免透析進展。CE 核准適應症。</div><div class="sec">統整建議</div><div class="sab"><div class="sal">臨床應用</div><div class="sat">CK&gt;一萬的患者，並聯兩個 CytoSorb 可以加速清除肌紅素、保護腎臟。CE 核准，帶幾小時就可以看到肌紅素下降的數字。對腎臟科醫師尤具說服力。</div></div><a class="lnk" href="https://pubmed.ncbi.nlm.nih.gov/40376863/" target="_blank">原文連結 ↗</a>
+  </div>
+</div>
+<div class="card" id="card13" data-ind="整體綜述" data-type="RCT" data-ce="0" data-year="2023" data-stars="3" data-search="monard c. et al. — cytosorb® in post-cardiac arrest syndrome: pilot rct (n=21, 2023)21 例心跳停止後症候群前導性 rct（ha 組 10 例，標準組 11 例）。il-6 平均相對降低 75%（cytosorb 組）vs 5%（標準組），p=0.06，接近但未達統計顯著。耐受性良好，無裝置相關嚴重不良事件。心跳停止後症候群也可用 cytosorb！il-6 降低 75% vs 5%（p=0.06），接近顯著。安全性確認，值得更大型研究。對急重症醫師說：「心跳停止後的炎症風暴機制與敗血症一樣，cytosorb 的原理在這裡同樣適用。」critical care">
+  <div class="ch" onclick="toggle(13)">
+    <div class="cl">
+      <div class="cb"><span class="badge bi">整體綜述</span><span class="badge br">RCT</span><span class="badge by">2023</span><span class="st">⭐⭐⭐</span></div>
+      <div class="ct">Monard C. et al. — CytoSorb® in Post-Cardiac Arrest Syndrome: Pilot RCT (N=21, 2023)</div>
+      <div class="cs">21 例心跳停止後症候群前導性 RCT（HA 組 10 例，標準組 11 例）。IL-6 平均相對降低 75%（CytoSorb 組）vs 5%（標準組），p=0.06，接近但未達統計顯著。耐受性良好...</div>
+    </div>
+    <svg class="cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="cd" id="det13">
+    <div class="dg"><div><div class="dl">期刊</div><div class="dv">Critical Care</div></div><div><div class="dl">研究規模</div><div class="dv">N = 21 例</div></div></div><div class="sec">臨床指標變化</div><div class="mb"><div class="mr">
+  <div class="mn2">IL-6 降低（CytoSorb 組）↓</div>
+  <div class="bw"><div class="br2 bd" style="width:75%"></div></div>
+  <div class="ml ld">75% p=0.06</div>
+</div><div class="mr">
+  <div class="mn2">IL-6 降低（對照組）</div>
+  <div class="bw"><div class="br2 bn" style="width:5%"></div></div>
+  <div class="ml ln">5%（比較基準）</div>
+</div><div class="mr">
+  <div class="mn2">NE 需求 ↓</div>
+  <div class="bw"><div class="br2 bd" style="width:65%"></div></div>
+  <div class="ml ld">趨勢↓</div>
+</div></div><div class="pp"><div class="sec">P 值與統計分析</div><div class="pr"><div class="pd pns"></div><div class="pt">IL-6 下降 p=0.06，未達統計顯著（p&lt;0.05 門檻）。N=21 的檢定力極不足——Type II Error 風險很高，「未達顯著」不等於「無效」。</div></div><div class="pr"><div class="pd pns"></div><div class="pt">樣本數計算：若要以 IL-6 為主要終點達 80% 檢定力，需要至少 60–80 例。N=21 嚴重不足。</div></div><div class="pr"><div class="pd pwn"></div><div class="pt">p=0.06 接近門檻，但臨床上 75% vs 5% 的差距具有明顯臨床意義，兩者之間的落差正說明「統計顯著 ≠ 臨床顯著，反之亦然」。</div></div><div class="pm">臨床解讀：p=0.06 未達顯著的主要原因是樣本數太小（N=21），而非效果不存在。75% vs 5% 的 IL-6 下降差距在臨床上非常顯著，值得更大型研究驗證。不應因「p&gt;0.05」就否定此篇的方向性價值。</div></div><div class="pp"><div class="sec">真實性評估</div>
+<div class="rw">
+  <div><svg width="180" height="180" viewBox="0 0 180 180">
+<polygon points="90.0,77.0 102.4,86.0 97.6,100.5 82.4,100.5 77.6,86.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,64.0 114.7,82.0 105.3,111.0 74.7,111.0 65.3,82.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 67.1,121.6 52.9,77.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 139.5,73.9 120.6,132.1 59.4,132.1 40.5,73.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,25.0 151.8,69.9 128.2,142.6 51.8,142.6 28.2,69.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="90.0" y2="25.0" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="151.8" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="128.2" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="51.8" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="28.2" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 114.7,82.0 120.6,132.1 59.4,132.1 77.6,86.0" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" stroke-width="2"/><circle cx="90.0" cy="38.0" r="3" fill="#3B82F6"/><circle cx="114.7" cy="82.0" r="3" fill="#3B82F6"/><circle cx="120.6" cy="132.1" r="3" fill="#3B82F6"/><circle cx="59.4" cy="132.1" r="3" fill="#3B82F6"/><circle cx="77.6" cy="86.0" r="3" fill="#3B82F6"/><text x="90.0" y="7.0" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">內部效度</text><text x="168.9" y="64.4" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">外部效度</text><text x="138.8" y="157.1" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">偏誤控制</text><text x="41.2" y="157.1" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">臨床相關性</text><text x="11.1" y="64.4" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">可重複性</text>
+</svg></div>
+  <div><div class="rli"><div class="rld"></div><div><div class="rll">內部效度 <span class="rls">4/5</span></div><div class="rln">RCT 設計，隨機分配</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">外部效度 <span class="rls">2/5</span></div><div class="rln">N=21 極小，外推性嚴重受限</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">偏誤控制 <span class="rls">4/5</span></div><div class="rln">RCT 控制已知 confounders</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">臨床相關性 <span class="rls">4/5</span></div><div class="rln">IL-6 為炎症直接指標</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">可重複性 <span class="rls">1/5</span></div><div class="rln">前導性研究，尚無大型 RCT 驗證</div></div></div><div class="vs"><div class="vl">整體可信度</div><div class="vv">3.0 <span style="font-size:14px;color:var(--t3)">/ 5</span></div><div class="vt">中等可信度 — RCT 設計加分，但樣本數過小，p=0.06 不應過度解讀或否定</div></div></div>
+</div></div><div class="sec">核心發現</div><div class="fb">21 例心跳停止後症候群前導性 RCT（HA 組 10 例，標準組 11 例）。IL-6 平均相對降低 75%（CytoSorb 組）vs 5%（標準組），p=0.06，接近但未達統計顯著。耐受性良好，無裝置相關嚴重不良事件。</div><div class="sec">統整建議</div><div class="sab"><div class="sal">臨床應用</div><div class="sat">心跳停止後症候群也可用 CytoSorb！IL-6 降低 75% vs 5%（p=0.06），接近顯著。安全性確認，值得更大型研究。對急重症醫師說：「心跳停止後的炎症風暴機制與敗血症一樣，CytoSorb 的原理在這裡同樣適用。」</div></div><a class="lnk" href="https://pubmed.ncbi.nlm.nih.gov/36691082/" target="_blank">原文連結 ↗</a>
+  </div>
+</div>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+var activeInd="", activeCE=false, activeType="";
+
+function login(){
+  if(document.getElementById("pw").value==="cytosorb"){
+    document.getElementById("ls").style.display="none";
+    document.getElementById("app").style.display="block";
+  }else{
+    var e=document.getElementById("err");
+    e.style.display="block";
+    document.getElementById("pw").value="";
+    setTimeout(function(){e.style.display="none";},3000);
+  }
+}
+document.getElementById("pw").addEventListener("keydown",function(e){if(e.key==="Enter")login();});
+
+function logout(){
+  document.getElementById("ls").style.display="flex";
+  document.getElementById("app").style.display="none";
+  document.getElementById("pw").value="";
+}
+
+function toggle(i){
+  var card=document.getElementById("card"+i);
+  card.classList.toggle("open");
+}
+
+function applyFilters(){
+  var q=document.getElementById("srch").value.toLowerCase();
+  var cards=document.querySelectorAll(".card");
+  var shown=0;
+  cards.forEach(function(c){
+    var ind=c.getAttribute("data-ind");
+    var type=c.getAttribute("data-type");
+    var ce=c.getAttribute("data-ce")==="1";
+    var search=c.getAttribute("data-search")||"";
+    var show=true;
+    if(activeInd && ind!==activeInd) show=false;
+    if(activeCE && !ce) show=false;
+    if(activeType && type!==activeType) show=false;
+    if(q && !search.includes(q)) show=false;
+    c.style.display=show?"":"none";
+    if(show) shown++;
+  });
+  document.getElementById("rinfo").innerHTML="顯示 <span>"+shown+"</span> 篇 / 共 <span>14</span> 篇";
+}
+
+function filterInd(v){
+  activeInd=v;
+  document.querySelectorAll(".sb .fc").forEach(function(b){b.classList.remove("active");});
+  event.target.closest(".fc").classList.add("active");
+  applyFilters();
+}
+
+function filterCE(btn){
+  activeCE=!activeCE;
+  btn.classList.toggle("active",activeCE);
+  applyFilters();
+}
+
+function filterType(v,btn){
+  if(activeType===v){activeType="";btn.classList.remove("active");}
+  else{
+    activeType=v;
+    document.querySelectorAll(".ss:last-child .fc").forEach(function(b){b.classList.remove("active");});
+    btn.classList.add("active");
+  }
+  applyFilters();
+}
+
+function doSearch(){ applyFilters(); }
+
+function doSort(v){
+  var container=document.getElementById("cards");
+  var cards=Array.from(container.querySelectorAll(".card"));
+  cards.sort(function(a,b){
+    if(v==="stars") return parseInt(b.getAttribute("data-stars"))-parseInt(a.getAttribute("data-stars"));
+    return parseInt(b.getAttribute("data-year"))-parseInt(a.getAttribute("data-year"));
+  });
+  cards.forEach(function(c){container.appendChild(c);});
+}
+</script>
+</body>
+</html>
