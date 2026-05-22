@@ -4436,5 +4436,30 @@ function doSort(v){
 }
 var mobCEon=false;function mobFilter(){var v=document.getElementById('mob-ind').value;activeInd=v;activeType="";applyFilters();}function mobCE(){mobCEon=!mobCEon;activeCE=mobCEon;var b=document.getElementById('mob-ce-btn');if(b)b.classList.toggle('on',mobCEon);applyFilters();}function openLeg(){var e=document.getElementById('leg-ov');if(e)e.style.display='flex';}function closeLeg(){var e=document.getElementById('leg-ov');if(e)e.style.display='none';}</script>
 <div id="leg-ov" style="position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:300;display:none;align-items:center;justify-content:center;padding:1rem;" onclick="if(event.target===this)closeLeg()"><div style="background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:1.5rem;max-width:500px;width:100%;max-height:88vh;overflow-y:auto;"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;"><span style="font-family:'Instrument Serif',serif;font-size:18px;color:var(--tx);">&#11088; 證據等級說明</span><button onclick="closeLeg()" style="background:none;border:none;color:var(--t3);font-size:22px;cursor:pointer;">&#10005;</button></div><div style="font-size:12px;color:var(--t2);line-height:2.2;">&#11088;&#11088;&#11088;&#11088;&#11088; 大型多中心 RCT 或 Meta-analysis<br>&#11088;&#11088;&#11088;&#11088; 小型 RCT、系統性回顧、PSM<br>&#11088;&#11088;&#11088; 登錄研究、前瞻性觀察、綜述<br>&#11088;&#11088; 小型回顧、案例系列<br>&#11088; 個案報告</div><div style="margin-top:1rem;font-size:12px;color:var(--t2);line-height:2.2;">🟢 <strong style="color:var(--tx);">達統計顯著</strong>（p&lt;0.05）<br>🟡 <strong style="color:var(--tx);">未達顯著</strong>（「未顯著」≠「無效」）<br>🔴 <strong style="color:var(--tx);">設計缺陷警示</strong><br>指標燈號：🟢強一致/達顯著 ｜ 🟡不一致/部分一致<br>雷達圖：內部效度、外部效度、偏誤控制、臨床相關性、可重複性（各1–5分）</div><div style="margin-top:1rem;background:var(--s2);border-radius:8px;padding:10px;font-size:11px;color:var(--t3);font-family:'DM Mono',monospace;border-left:3px solid var(--bd);">&#9888; 高等級≠療效確認，低等級≠無效。臨床決策應綜合患者個別狀況。</div></div></div>
+
+<!-- Dify CytoSorb AI 助理 -->
+<script>
+ window.difyChatbotConfig = {
+  token: 'TzGS6P7sLVnOB2V8',
+  inputs: {},
+  systemVariables: {},
+  userVariables: {},
+ }
+</script>
+<script
+ src="https://udify.app/embed.min.js"
+ id="TzGS6P7sLVnOB2V8"
+ defer>
+</script>
+<style>
+  #dify-chatbot-bubble-button {
+    background-color: #1C64F2 !important;
+  }
+  #dify-chatbot-bubble-window {
+    width: 24rem !important;
+    height: 40rem !important;
+  }
+</style>
+
 </body>
 </html>
