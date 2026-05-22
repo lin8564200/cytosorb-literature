@@ -3,6 +3,7 @@
 <head>
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-6BEFQJ5P1M"></script>
+<script></script>
 <script>
   window.dataLayer = window.dataLayer || [];
   function gtag(){dataLayer.push(arguments);}
@@ -139,6 +140,99 @@ select{padding:10px 12px;border:1px solid var(--bd);border-radius:8px;font-size:
   .mtbl .mv{font-size:13px;}
   .mbar{min-width:60px;}
 }
+
+/* CytoScore Calculator */
+.cs-btn{background:var(--al);color:var(--ac);border:none;border-radius:6px;padding:5px 12px;font-size:11px;cursor:pointer;font-family:"DM Mono",monospace;display:flex;align-items:center;gap:5px;white-space:nowrap;}
+.cs-btn:hover{opacity:.85;}
+.cs-ov{position:fixed;inset:0;background:rgba(0,0,0,0.75);z-index:400;display:none;align-items:center;justify-content:center;padding:1rem;}
+.cs-ov.show{display:flex;}
+.cs-box{background:var(--sf);border:1px solid var(--bd);border-radius:18px;padding:1.5rem;max-width:520px;width:100%;max-height:92vh;overflow-y:auto;}
+.cs-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;}
+.cs-title{font-family:"Instrument Serif",serif;font-size:18px;color:var(--tx);}
+.cs-cls{background:none;border:none;color:var(--t3);font-size:22px;cursor:pointer;}
+.cs-sec{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin:1rem 0 .6rem;display:flex;align-items:center;gap:8px;}
+.cs-sec::after{content:"";flex:1;height:.5px;background:var(--bd);}
+.cs-row{display:flex;align-items:center;justify-content:space-between;padding:8px 0;border-bottom:1px solid var(--bd);}
+.cs-row:last-child{border-bottom:none;}
+.cs-label{font-size:13px;color:var(--t2);flex:1;}
+.cs-sub{font-size:10px;color:var(--t3);font-family:"DM Mono",monospace;display:block;margin-top:2px;}
+.cs-pts{font-family:"DM Mono",monospace;font-size:11px;color:var(--t3);margin-right:8px;}
+.cs-chk{width:20px;height:20px;accent-color:var(--al);cursor:pointer;flex-shrink:0;}
+.cs-score-box{background:var(--s2);border-radius:12px;padding:1.25rem;margin-top:1.25rem;text-align:center;}
+.cs-total{font-family:"DM Mono",monospace;font-size:36px;font-weight:700;color:var(--al);}
+.cs-max{font-size:14px;color:var(--t3);font-family:"DM Mono",monospace;}
+.cs-verdict{font-size:14px;margin-top:.5rem;font-weight:600;}
+.cs-verdict.go{color:#4ade80;}
+.cs-verdict.caution{color:#f59e0b;}
+.cs-verdict.no{color:#ef4444;}
+.cs-bar-wrap{background:var(--bg);border-radius:6px;height:8px;overflow:hidden;margin:.75rem 0;}
+.cs-bar{height:100%;border-radius:6px;transition:width .4s ease;}
+.cs-refs{margin-top:1rem;}
+.cs-ref-title{font-family:"DM Mono",monospace;font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--t3);margin-bottom:.75rem;}
+.cs-ref-card{background:var(--s2);border-radius:8px;padding:10px 12px;margin-bottom:6px;font-size:12px;color:var(--t2);line-height:1.5;border-left:3px solid var(--al);}
+.cs-ref-card a{color:var(--al);text-decoration:none;font-size:11px;}
+@media(max-width:768px){.cs-box{padding:1.25rem;}.cs-total{font-size:28px;}}
+
+/* ── CytoScore + SOFA Calculator ── */
+.cs-btn{background:var(--al);color:var(--ac);border:none;border-radius:6px;padding:5px 12px;font-size:11px;cursor:pointer;font-family:"DM Mono",monospace;display:flex;align-items:center;gap:5px;white-space:nowrap;}
+.cs-ov{position:fixed;inset:0;background:rgba(0,0,0,0.8);z-index:400;display:none;align-items:flex-start;justify-content:center;padding:1rem;overflow-y:auto;}
+.cs-ov.show{display:flex;}
+.cs-box{background:var(--sf);border:1px solid var(--bd);border-radius:18px;padding:1.5rem;max-width:600px;width:100%;margin:auto;}
+.cs-hdr{display:flex;align-items:center;justify-content:space-between;margin-bottom:1rem;}
+.cs-title{font-family:"Instrument Serif",serif;font-size:17px;color:var(--tx);}
+.cs-cls{background:none;border:none;color:var(--t3);font-size:22px;cursor:pointer;line-height:1;}
+.cs-tabs{display:flex;gap:6px;margin-bottom:1rem;}
+.cs-tab{flex:1;padding:7px;border:1px solid var(--bd);border-radius:8px;font-size:12px;cursor:pointer;background:var(--s2);color:var(--t2);font-family:"DM Mono",monospace;text-align:center;}
+.cs-tab.active{background:var(--al);color:var(--ac);border-color:var(--al);}
+.cs-panel{display:none;}
+.cs-panel.show{display:block;}
+.cs-sec{font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--t3);font-family:"DM Mono",monospace;margin:1rem 0 .5rem;display:flex;align-items:center;gap:8px;}
+.cs-sec::after{content:"";flex:1;height:.5px;background:var(--bd);}
+.cs-row{display:grid;grid-template-columns:1fr auto;align-items:center;gap:8px;padding:6px 0;border-bottom:1px solid var(--bd);}
+.cs-row:last-child{border-bottom:none;}
+.cs-lbl{font-size:12px;color:var(--t2);line-height:1.4;}
+.cs-sub{font-size:10px;color:var(--t3);font-family:"DM Mono",monospace;}
+.cs-inp{padding:4px 8px;border:1px solid var(--bd);border-radius:6px;background:var(--s2);color:var(--tx);font-size:12px;width:90px;font-family:"DM Mono",monospace;text-align:center;}
+.cs-sel{padding:4px 6px;border:1px solid var(--bd);border-radius:6px;background:var(--s2);color:var(--tx);font-size:11px;font-family:"DM Mono",monospace;}
+.cs-dyn{display:grid;grid-template-columns:1fr auto auto;gap:6px;align-items:center;padding:6px 0;border-bottom:1px solid var(--bd);}
+.cs-dyn:last-child{border-bottom:none;}
+.cs-dyn-lbl{font-size:12px;color:var(--t2);}
+.cs-dyn-sub{font-size:10px;color:var(--t3);font-family:"DM Mono",monospace;}
+.cs-t-hdr{display:grid;grid-template-columns:1fr auto auto;gap:6px;font-size:9px;color:var(--t3);font-family:"DM Mono",monospace;text-transform:uppercase;letter-spacing:1px;padding:0 0 4px;border-bottom:1px solid var(--bd);margin-bottom:4px;}
+.cs-result{background:var(--s2);border-radius:12px;padding:1.25rem;margin-top:1rem;text-align:center;}
+.cs-score-big{font-family:"DM Mono",monospace;font-size:42px;font-weight:700;}
+.cs-score-big.go{color:#4ade80;}
+.cs-score-big.warn{color:#f59e0b;}
+.cs-score-big.no{color:#ef4444;}
+.cs-verdict{font-size:13px;font-weight:600;margin:.4rem 0;}
+.cs-sub-verdict{font-size:11px;color:var(--t3);font-family:"DM Mono",monospace;}
+.cs-bar-wrap{background:var(--bg);border-radius:4px;height:8px;overflow:hidden;margin:.75rem 0;}
+.cs-bar-fill{height:100%;border-radius:4px;transition:width .4s;}
+.cs-refs{margin-top:1rem;}
+.cs-ref-card{background:var(--s2);border-radius:8px;padding:9px 11px;margin-bottom:6px;font-size:11px;color:var(--t2);line-height:1.5;border-left:3px solid var(--al);}
+.cs-ref-card a{color:var(--al);text-decoration:none;}
+.cs-reset{margin-top:.75rem;width:100%;padding:8px;background:none;border:1px solid var(--bd);border-radius:8px;color:var(--t3);font-size:11px;cursor:pointer;font-family:"DM Mono",monospace;}
+@media(max-width:768px){
+  .cs-box{padding:1.25rem;}
+  .cs-score-big{font-size:32px;}
+  .cs-inp{width:75px;}
+}
+
+/* CytoScore button style */
+.csp-row{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid var(--bd);flex-wrap:wrap;}
+.csp-row:last-of-type{border-bottom:none;}
+.csp-num{width:24px;height:24px;border-radius:50%;background:var(--s2);color:var(--t3);font-size:11px;font-family:"DM Mono",monospace;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.csp-num.done{background:var(--al);color:var(--ac);}
+.csp-lbl{flex:1;font-size:12px;color:var(--t2);min-width:150px;}
+.csp-btns{display:flex;gap:6px;flex-wrap:wrap;}
+.cspb{padding:6px 14px;border:1.5px solid var(--bd);border-radius:20px;background:var(--s2);color:var(--t2);font-size:12px;cursor:pointer;font-family:"Noto Serif TC",serif;white-space:nowrap;transition:all .15s;}
+.cspb:hover{border-color:var(--b2);color:var(--tx);}
+.cspb.sel{background:var(--al);color:var(--ac);border-color:var(--al);font-weight:600;}
+@media(max-width:768px){
+  .csp-lbl{min-width:100%;font-size:11px;}
+  .csp-btns{width:100%;}
+  .cspb{font-size:11px;padding:5px 10px;}
+}
 </style>
 </head>
 <body>
@@ -161,7 +255,7 @@ select{padding:10px 12px;border:1px solid var(--bd);border-radius:8px;font-size:
       <span class="tlt">CytoSorb 文獻資料庫</span>
       <span class="tc">200 篇文獻</span>
     </div>
-    <button class="leg-btn" onclick="openLeg()">&#11088; 評分說明</button><button class="xb" onclick="logout()">登出</button>
+    <button class="cs-btn" onclick="openCS()">🩺 病人評估</button><button class="leg-btn" onclick="openLeg()">&#11088; 評分說明</button><button class="xb" onclick="logout()">登出</button>
   </div>
   <div class="mob-bar"><select class="mob-sel" id="mob-ind" onchange="mobFilter()"><option value="">全部適應症</option><option value="敗血症">敗血症</option><option value="ARDS">ARDS</option><option value="心臟手術">心臟手術</option><option value="ECMO／心因性休克">ECMO／心因性休克</option><option value="橫紋肌溶解">橫紋肌溶解</option><option value="肝衰竭">肝衰竭</option><option value="藥物移除">藥物移除</option><option value="COVID-19">COVID-19</option><option value="兒科">兒科</option><option value="急性中毒">急性中毒</option><option value="燒燙傷">燒燙傷</option><option value="急性胰臟炎">急性胰臟炎</option><option value="整體綜述">整體綜述</option></select><button class="mob-ce" id="mob-ce-btn" onclick="mobCE()">✓ CE</button></div>
 <div class="lay">
@@ -4442,7 +4536,133 @@ function doSort(v){
   });
   cards.forEach(function(c){container.appendChild(c);});
 }
-var mobCEon=false;function mobFilter(){var v=document.getElementById('mob-ind').value;activeInd=v;activeType="";applyFilters();}function mobCE(){mobCEon=!mobCEon;activeCE=mobCEon;var b=document.getElementById('mob-ce-btn');if(b)b.classList.toggle('on',mobCEon);applyFilters();}function openLeg(){var e=document.getElementById('leg-ov');if(e)e.style.display='flex';}function closeLeg(){var e=document.getElementById('leg-ov');if(e)e.style.display='none';}</script>
+var mobCEon=false;function mobFilter(){var v=document.getElementById('mob-ind').value;activeInd=v;activeType="";applyFilters();}function mobCE(){mobCEon=!mobCEon;activeCE=mobCEon;var b=document.getElementById('mob-ce-btn');if(b)b.classList.toggle('on',mobCEon);applyFilters();}function openLeg(){var e=document.getElementById('leg-ov');if(e)e.style.display='flex';}function closeLeg(){var e=document.getElementById('leg-ov');if(e)e.style.display='none';}
+function openCS(){document.getElementById('cs-ov').classList.add('show');}
+function closeCS(){document.getElementById('cs-ov').classList.remove('show');}
+function switchTab(tab, el){
+  document.querySelectorAll('.cs-tab').forEach(function(t){t.classList.remove('active');});
+  document.querySelectorAll('.cs-panel').forEach(function(p){p.classList.remove('show');});
+  el.classList.add('active');
+  document.getElementById('panel-'+tab).classList.add('show');
+}
+
+/* ── CytoScore ── */
+function selectCS(btn){
+  var group = btn.getAttribute('data-group');
+  document.querySelectorAll('.cspb[data-group="'+group+'"]').forEach(function(b){b.classList.remove('sel');});
+  btn.classList.add('sel');
+  // Mark number done
+  var rows = document.querySelectorAll('.csp-row');
+  rows.forEach(function(row){
+    var btns = row.querySelectorAll('.cspb');
+    var num = row.querySelector('.csp-num');
+    if(!num) return;
+    var hasSel = false;
+    btns.forEach(function(b){if(b.classList.contains('sel')) hasSel=true;});
+    if(hasSel) num.classList.add('done'); else num.classList.remove('done');
+  });
+  calcCytoScore();
+}
+
+function getCSVal(group){
+  var btn = document.querySelector('.cspb.sel[data-group="'+group+'"]');
+  return btn ? parseInt(btn.getAttribute('data-val')||0) : null;
+}
+
+function calcCytoScore(){
+  var groups = ['lac','lac-chg','ne','ne-chg','cat2','hc','vol'];
+  var allAnswered = true;
+  var total = 0;
+  groups.forEach(function(g){
+    var v = getCSVal(g);
+    if(v === null) allAnswered = false;
+    else total += v;
+  });
+
+  var el = document.getElementById('cs-result');
+  el.style.display = 'block';
+  document.getElementById('cs-score-val').textContent = total;
+  var pct = Math.min(total/14*100, 100);
+  var bar = document.getElementById('cs-bar-fill');
+  var vt = document.getElementById('cs-verdict-txt');
+  var sv = document.getElementById('cs-sub-verdict');
+  var scEl = document.getElementById('cs-score-val');
+
+  if(total > 6){
+    bar.style.background='#4ade80'; scEl.className='cs-score-big go';
+    vt.textContent='✅ CytoScore > 6：建議考慮啟動 CytoSorb';
+    sv.textContent='搭配臨床判斷，盡早（診斷後 24 小時內）啟動';
+    showCSRefs('sepsis');
+  } else if(total >= 4){
+    bar.style.background='#f59e0b'; scEl.className='cs-score-big warn';
+    vt.textContent='⚠️ CytoScore 4–6：密切觀察，6小時後重新評估';
+    sv.textContent='若病情惡化（NE增加、乳酸持續升高）考慮啟動';
+    document.getElementById('cs-refs').style.display='none';
+  } else {
+    bar.style.background='#ef4444'; scEl.className='cs-score-big no';
+    vt.textContent='❌ CytoScore < 4：目前炎症負擔不足';
+    sv.textContent='維持標準治療，持續監測';
+    document.getElementById('cs-refs').style.display='none';
+  }
+  bar.style.width = pct+'%';
+}
+
+function showCSRefs(type){
+  var refs = {
+    sepsis:[
+      {t:"Steindl 2025 N=744 — 28–30天死亡率 OR=0.49（p=0.003）",u:"https://pmc.ncbi.nlm.nih.gov/articles/PMC11989519/"},
+      {t:"Mitzner 最佳實踐共識 2023 — CytoScore > 6 啟動，1.5倍體重溶化血量",u:"https://www.ncbi.nlm.nih.gov/pmc/articles/PMC10707447/"},
+      {t:"Kogelmann 時機研究 2023 — 24小時內啟動死亡率顯著較低",u:"https://pubmed.ncbi.nlm.nih.gov/36738739/"}
+    ]
+  };
+  var list = refs[type]||[];
+  document.getElementById('cs-ref-list').innerHTML = list.map(function(r){
+    return '<div class="cs-ref-card">'+r.t+'<br><a href="'+r.u+'" target="_blank">→ 原文</a></div>';
+  }).join('');
+  document.getElementById('cs-refs').style.display = list.length ? 'block' : 'none';
+}
+
+function resetCS(){
+  document.querySelectorAll('.cspb').forEach(function(b){b.classList.remove('sel');});
+  document.querySelectorAll('.csp-num').forEach(function(n){n.classList.remove('done');});
+  document.getElementById('cs-result').style.display='none';
+}
+function calcSOFA(){
+  var ids=['sofa-resp','sofa-plt','sofa-bili','sofa-cv','sofa-gcs','sofa-renal'];
+  var total=0;
+  ids.forEach(function(id){total+=parseInt(document.getElementById(id).value)||0;});
+  document.getElementById('sofa-score-val').textContent=total;
+  var pct=Math.min(total/24*100,100);
+  document.getElementById('sofa-bar-fill').style.width=pct+'%';
+  var vt=document.getElementById('sofa-verdict-txt');
+  var sv=document.getElementById('sofa-sub-verdict');
+  var scEl=document.getElementById('sofa-score-val');
+  if(total>=12){
+    scEl.style.color='#ef4444';
+    vt.textContent='⚠️ 高度器官衰竭（死亡率 > 50%）';
+    sv.textContent='積極多器官支持，評估 CytoSorb 介入時機';
+  } else if(total>=8){
+    scEl.style.color='#f59e0b';
+    vt.textContent='中重度器官功能障礙（死亡率 20–50%）';
+    sv.textContent='密切監測，搭配 CytoScore 評估 CytoSorb';
+  } else if(total>=2){
+    scEl.style.color='#60b4ff';
+    vt.textContent='輕至中度器官功能障礙';
+    sv.textContent='持續監測，若 CytoScore > 6 考慮介入';
+  } else {
+    scEl.style.color='var(--al)';
+    vt.textContent='器官功能正常或輕微異常';
+    sv.textContent='';
+  }
+}
+
+function resetSOFA(){
+  ['sofa-resp','sofa-plt','sofa-bili','sofa-cv','sofa-gcs','sofa-renal'].forEach(function(id){
+    document.getElementById(id).value='0';
+  });
+  calcSOFA();
+}
+</script>
 <div id="leg-ov" style="position:fixed;inset:0;background:rgba(0,0,0,0.7);z-index:300;display:none;align-items:center;justify-content:center;padding:1rem;" onclick="if(event.target===this)closeLeg()"><div style="background:var(--sf);border:1px solid var(--bd);border-radius:16px;padding:1.5rem;max-width:500px;width:100%;max-height:88vh;overflow-y:auto;"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:1.25rem;"><span style="font-family:'Instrument Serif',serif;font-size:18px;color:var(--tx);">&#11088; 證據等級說明</span><button onclick="closeLeg()" style="background:none;border:none;color:var(--t3);font-size:22px;cursor:pointer;">&#10005;</button></div><div style="font-size:12px;color:var(--t2);line-height:2.2;">&#11088;&#11088;&#11088;&#11088;&#11088; 大型多中心 RCT 或 Meta-analysis<br>&#11088;&#11088;&#11088;&#11088; 小型 RCT、系統性回顧、PSM<br>&#11088;&#11088;&#11088; 登錄研究、前瞻性觀察、綜述<br>&#11088;&#11088; 小型回顧、案例系列<br>&#11088; 個案報告</div><div style="margin-top:1rem;font-size:12px;color:var(--t2);line-height:2.2;">🟢 <strong style="color:var(--tx);">達統計顯著</strong>（p&lt;0.05）<br>🟡 <strong style="color:var(--tx);">未達顯著</strong>（「未顯著」≠「無效」）<br>🔴 <strong style="color:var(--tx);">設計缺陷警示</strong><br>指標燈號：🟢強一致/達顯著 ｜ 🟡不一致/部分一致<br>雷達圖：內部效度、外部效度、偏誤控制、臨床相關性、可重複性（各1–5分）</div><div style="margin-top:1rem;background:var(--s2);border-radius:8px;padding:10px;font-size:11px;color:var(--t3);font-family:'DM Mono',monospace;border-left:3px solid var(--bd);">&#9888; 高等級≠療效確認，低等級≠無效。臨床決策應綜合患者個別狀況。</div></div></div>
 
 <!-- Dify CytoSorb AI 助理 -->
@@ -4468,6 +4688,293 @@ var mobCEon=false;function mobFilter(){var v=document.getElementById('mob-ind').
     height: 40rem !important;
   }
 </style>
+
+  <p style="font-size:12px;color:var(--t3);margin-bottom:.5rem;font-family:'DM Mono',monospace;">勾選符合病人狀況的條件，系統自動計算 CytoScore 並推薦相關文獻。</p>
+
+  <div class="cs-sec">血流動力學</div>
+  <div class="cs-row">
+    <div class="cs-label">升壓藥需求（NE ≥ 0.3 μg/kg/min）<span class="cs-sub">或等效劑量升壓藥持續 &gt; 6h</span></div>
+    <span class="cs-pts">+3</span>
+    <input type="checkbox" class="cs-chk" onchange="calcCS()" data-pts="3">
+  </div>
+  <div class="cs-row">
+    <div class="cs-label">難治性休克（升壓藥持續增加中）<span class="cs-sub">標準治療 6 小時無明顯改善</span></div>
+    <span class="cs-pts">+2</span>
+    <input type="checkbox" class="cs-chk" onchange="calcCS()" data-pts="2">
+  </div>
+
+  <div class="cs-sec">炎症指標</div>
+  <div class="cs-row">
+    <div class="cs-label">乳酸 ≥ 4 mmol/L<span class="cs-sub">或乳酸升高且無法清除</span></div>
+    <span class="cs-pts">+2</span>
+    <input type="checkbox" class="cs-chk" onchange="calcCS()" data-pts="2">
+  </div>
+  <div class="cs-row">
+    <div class="cs-label">PCT ≥ 10 ng/mL<span class="cs-sub">高感染炎症負擔</span></div>
+    <span class="cs-pts">+1</span>
+    <input type="checkbox" class="cs-chk" onchange="calcCS()" data-pts="1">
+  </div>
+  <div class="cs-row">
+    <div class="cs-label">IL-6 ≥ 10,000 pg/mL<span class="cs-sub">極重度細胞激素風暴</span></div>
+    <span class="cs-pts">+2</span>
+    <input type="checkbox" class="cs-chk" onchange="calcCS()" data-pts="2">
+  </div>
+  <div class="cs-row">
+    <div class="cs-label">CRP 顯著升高（&gt; 150 mg/L）<span class="cs-sub">全身炎症指標</span></div>
+    <span class="cs-pts">+1</span>
+    <input type="checkbox" class="cs-chk" onchange="calcCS()" data-pts="1">
+  </div>
+
+  <div class="cs-sec">器官功能</div>
+  <div class="cs-row">
+    <div class="cs-label">SOFA ≥ 10 分<span class="cs-sub">多器官衰竭</span></div>
+    <span class="cs-pts">+2</span>
+    <input type="checkbox" class="cs-chk" onchange="calcCS()" data-pts="2">
+  </div>
+  <div class="cs-row">
+    <div class="cs-label">AKI 需 CRRT<span class="cs-sub">腎功能衰竭</span></div>
+    <span class="cs-pts">+1</span>
+    <input type="checkbox" class="cs-chk" onchange="calcCS()" data-pts="1">
+  </div>
+
+  <div class="cs-sec">特殊情境加分</div>
+  <div class="cs-row">
+    <div class="cs-label">橫紋肌溶解（肌紅素 &gt; 10,000 ng/mL）<span class="cs-sub">CE 核准適應症</span></div>
+    <span class="cs-pts">+3</span>
+    <input type="checkbox" class="cs-chk" onchange="calcCS()" data-pts="3" data-tag="rhabdo">
+  </div>
+  <div class="cs-row">
+    <div class="cs-label">肝衰竭 / 膽紅素 &gt; 7 mg/dL<span class="cs-sub">CE 核准適應症</span></div>
+    <span class="cs-pts">+3</span>
+    <input type="checkbox" class="cs-chk" onchange="calcCS()" data-pts="3" data-tag="liver">
+  </div>
+  <div class="cs-row">
+    <div class="cs-label">感染性心內膜炎手術<span class="cs-sub">高炎症心臟手術情境</span></div>
+    <span class="cs-pts">+2</span>
+    <input type="checkbox" class="cs-chk" onchange="calcCS()" data-pts="2" data-tag="ie">
+  </div>
+  <div class="cs-row">
+    <div class="cs-label">ECMO 支持中<span class="cs-sub">VA-ECMO 或 VV-ECMO</span></div>
+    <span class="cs-pts">+2</span>
+    <input type="checkbox" class="cs-chk" onchange="calcCS()" data-pts="2" data-tag="ecmo">
+  </div>
+  <div class="cs-row">
+    <div class="cs-label">緊急手術前需移除抗血栓藥物<span class="cs-sub">Ticagrelor / Rivaroxaban / Apixaban</span></div>
+    <span class="cs-pts">+3</span>
+    <input type="checkbox" class="cs-chk" onchange="calcCS()" data-pts="3" data-tag="drug">
+  </div>
+
+  <!-- Score Display -->
+  <div class="cs-score-box" id="cs-score-box">
+    <div class="cs-total" id="cs-total">0</div>
+    <div class="cs-max">/ 27 分</div>
+    <div class="cs-bar-wrap"><div class="cs-bar" id="cs-bar" style="width:0%;background:#5A6880;"></div></div>
+    <div class="cs-verdict" id="cs-verdict">請勾選病人條件</div>
+  </div>
+
+  <!-- Recommended References -->
+  <div class="cs-refs" id="cs-refs" style="display:none;">
+    <div class="cs-ref-title">推薦參考文獻</div>
+    <div id="cs-ref-list"></div>
+  </div>
+
+  <button onclick="resetCS()" style="margin-top:1rem;width:100%;padding:8px;background:var(--s2);border:1px solid var(--bd);border-radius:8px;color:var(--t3);font-size:12px;cursor:pointer;font-family:'DM Mono',monospace;">重置</button>
+</div>
+</div>
+
+
+<div class="cs-ov" id="cs-ov" onclick="if(event.target===this)closeCS()">
+<div class="cs-box">
+  <div class="cs-hdr">
+    <span class="cs-title">🩺 病人評估工具</span>
+    <button class="cs-cls" onclick="closeCS()">✕</button>
+  </div>
+  <div class="cs-tabs">
+    <div class="cs-tab active" onclick="switchTab('cytoscore',this)">CytoScore</div>
+    <div class="cs-tab" onclick="switchTab('sofa',this)">SOFA Score</div>
+  </div>
+
+    <!-- ═══ CytoScore Panel ═══ -->
+  <div class="cs-panel show" id="panel-cytoscore">
+    <p style="font-size:11px;color:var(--t3);margin-bottom:.75rem;font-family:'DM Mono',monospace;">依照官方 CytoScore 7 個參數評估。分數 &gt; 6 建議考慮啟動 CytoSorb。</p>
+
+    <!-- 1. Lactate -->
+    <div class="csp-row">
+      <div class="csp-num">1</div>
+      <div class="csp-lbl">乳酸（Lactate mmol/L）</div>
+      <div class="csp-btns">
+        <button class="cspb" data-group="lac" data-val="0" onclick="selectCS(this)">&lt; 2.0</button>
+        <button class="cspb" data-group="lac" data-val="2" onclick="selectCS(this)">≥ 2.0</button>
+      </div>
+    </div>
+
+    <!-- 2. Lactate change -->
+    <div class="csp-row">
+      <div class="csp-num">2</div>
+      <div class="csp-lbl">乳酸變化（6小時後）</div>
+      <div class="csp-btns">
+        <button class="cspb" data-group="lac-chg" data-val="0" onclick="selectCS(this)">下降</button>
+        <button class="cspb" data-group="lac-chg" data-val="1" onclick="selectCS(this)">上升 ≤ 50%</button>
+        <button class="cspb" data-group="lac-chg" data-val="2" onclick="selectCS(this)">上升 &gt; 50%</button>
+      </div>
+    </div>
+
+    <!-- 3. NE dose -->
+    <div class="csp-row">
+      <div class="csp-num">3</div>
+      <div class="csp-lbl">NE 劑量 μg/kg/min（MAP ≥ 65）</div>
+      <div class="csp-btns">
+        <button class="cspb" data-group="ne" data-val="0" onclick="selectCS(this)">&lt; 0.1</button>
+        <button class="cspb" data-group="ne" data-val="2" onclick="selectCS(this)">≥ 0.1</button>
+      </div>
+    </div>
+
+    <!-- 4. NE change -->
+    <div class="csp-row">
+      <div class="csp-num">4</div>
+      <div class="csp-lbl">NE 變化（6小時後）</div>
+      <div class="csp-btns">
+        <button class="cspb" data-group="ne-chg" data-val="0" onclick="selectCS(this)">下降</button>
+        <button class="cspb" data-group="ne-chg" data-val="1" onclick="selectCS(this)">上升 ≤ 50%</button>
+        <button class="cspb" data-group="ne-chg" data-val="2" onclick="selectCS(this)">上升 &gt; 50%</button>
+      </div>
+    </div>
+
+    <!-- 5. 2nd catecholamine -->
+    <div class="csp-row">
+      <div class="csp-num">5</div>
+      <div class="csp-lbl">第二種升壓藥／兒茶酚胺</div>
+      <div class="csp-btns">
+        <button class="cspb" data-group="cat2" data-val="0" onclick="selectCS(this)">否</button>
+        <button class="cspb" data-group="cat2" data-val="2" onclick="selectCS(this)">是</button>
+      </div>
+    </div>
+
+    <!-- 6. Hydrocortisone -->
+    <div class="csp-row">
+      <div class="csp-num">6</div>
+      <div class="csp-lbl">Hydrocortisone 使用中</div>
+      <div class="csp-btns">
+        <button class="cspb" data-group="hc" data-val="0" onclick="selectCS(this)">否</button>
+        <button class="cspb" data-group="hc" data-val="2" onclick="selectCS(this)">是</button>
+      </div>
+    </div>
+
+    <!-- 7. Volume bolus -->
+    <div class="csp-row">
+      <div class="csp-num">7</div>
+      <div class="csp-lbl">輸液 Bolus（30 mL/kg 基準）</div>
+      <div class="csp-btns">
+        <button class="cspb" data-group="vol" data-val="0" onclick="selectCS(this)">未給</button>
+        <button class="cspb" data-group="vol" data-val="1" onclick="selectCS(this)">&lt; 2 次</button>
+        <button class="cspb" data-group="vol" data-val="2" onclick="selectCS(this)">≥ 2 次</button>
+      </div>
+    </div>
+
+    <!-- Result -->
+    <div class="cs-result" id="cs-result" style="display:none;">
+      <div class="cs-score-big" id="cs-score-val">0</div>
+      <div class="cs-sub-verdict">CytoScore / 最高 14 分</div>
+      <div class="cs-bar-wrap"><div class="cs-bar-fill" id="cs-bar-fill" style="width:0%;background:#5A6880;"></div></div>
+      <div class="cs-verdict" id="cs-verdict-txt"></div>
+      <div class="cs-sub-verdict" id="cs-sub-verdict"></div>
+      <div class="cs-refs" id="cs-refs" style="display:none;">
+        <div style="font-size:9px;letter-spacing:2px;text-transform:uppercase;color:var(--t3);font-family:'DM Mono',monospace;margin-bottom:.5rem;">推薦文獻</div>
+        <div id="cs-ref-list"></div>
+      </div>
+    </div>
+    <button class="cs-reset" onclick="resetCS()">🔄 重置</button>
+  </div>
+
+  <!-- ═══ SOFA Panel ═══ -->  <!-- ═══ SOFA Panel ═══ -->
+  <div class="cs-panel" id="panel-sofa">
+    <p style="font-size:11px;color:var(--t3);margin-bottom:.75rem;font-family:'DM Mono',monospace;">使用 24 小時內最低值計算。預測 ICU 死亡率。</p>
+
+    <div class="cs-sec">呼吸系統</div>
+    <div class="cs-row">
+      <div class="cs-lbl">PaO₂/FiO₂ (mmHg)</div>
+      <select class="cs-sel" id="sofa-resp" onchange="calcSOFA()">
+        <option value="0">≥ 400 → 0分</option>
+        <option value="1">&lt; 400 → 1分</option>
+        <option value="2">&lt; 300 → 2分</option>
+        <option value="3">&lt; 200 + 呼吸器 → 3分</option>
+        <option value="4">&lt; 100 + 呼吸器 → 4分</option>
+      </select>
+    </div>
+
+    <div class="cs-sec">凝血系統</div>
+    <div class="cs-row">
+      <div class="cs-lbl">血小板（×10³/μL）</div>
+      <select class="cs-sel" id="sofa-plt" onchange="calcSOFA()">
+        <option value="0">≥ 150 → 0分</option>
+        <option value="1">100–149 → 1分</option>
+        <option value="2">50–99 → 2分</option>
+        <option value="3">20–49 → 3分</option>
+        <option value="4">&lt; 20 → 4分</option>
+      </select>
+    </div>
+
+    <div class="cs-sec">肝臟系統</div>
+    <div class="cs-row">
+      <div class="cs-lbl">膽紅素（mg/dL）</div>
+      <select class="cs-sel" id="sofa-bili" onchange="calcSOFA()">
+        <option value="0">&lt; 1.2 → 0分</option>
+        <option value="1">1.2–1.9 → 1分</option>
+        <option value="2">2.0–5.9 → 2分</option>
+        <option value="3">6.0–11.9 → 3分</option>
+        <option value="4">≥ 12.0 → 4分</option>
+      </select>
+    </div>
+
+    <div class="cs-sec">心血管系統</div>
+    <div class="cs-row">
+      <div class="cs-lbl">MAP 或升壓藥需求</div>
+      <select class="cs-sel" id="sofa-cv" onchange="calcSOFA()">
+        <option value="0">MAP ≥ 70 → 0分</option>
+        <option value="1">MAP &lt; 70 → 1分</option>
+        <option value="2">Dopamine ≤5 或 Dobutamine → 2分</option>
+        <option value="3">Dopamine &gt;5 或 NE ≤0.1 → 3分</option>
+        <option value="4">Dopamine &gt;15 或 NE &gt;0.1 → 4分</option>
+      </select>
+    </div>
+
+    <div class="cs-sec">神經系統</div>
+    <div class="cs-row">
+      <div class="cs-lbl">Glasgow Coma Scale (GCS)</div>
+      <select class="cs-sel" id="sofa-gcs" onchange="calcSOFA()">
+        <option value="0">15 → 0分</option>
+        <option value="1">13–14 → 1分</option>
+        <option value="2">10–12 → 2分</option>
+        <option value="3">6–9 → 3分</option>
+        <option value="4">&lt; 6 → 4分</option>
+      </select>
+    </div>
+
+    <div class="cs-sec">腎臟系統</div>
+    <div class="cs-row">
+      <div class="cs-lbl">肌酸酐（mg/dL）或尿量</div>
+      <select class="cs-sel" id="sofa-renal" onchange="calcSOFA()">
+        <option value="0">&lt; 1.2 → 0分</option>
+        <option value="1">1.2–1.9 → 1分</option>
+        <option value="2">2.0–3.4 → 2分</option>
+        <option value="3">3.5–4.9 或尿量 &lt;500mL/天 → 3分</option>
+        <option value="4">≥ 5.0 或尿量 &lt;200mL/天 → 4分</option>
+      </select>
+    </div>
+
+    <!-- SOFA Result -->
+    <div class="cs-result" id="sofa-result">
+      <div class="cs-score-big" id="sofa-score-val" style="color:var(--al);">0</div>
+      <div class="cs-sub-verdict">SOFA Score / 最高 24 分</div>
+      <div class="cs-bar-wrap"><div class="cs-bar-fill" id="sofa-bar-fill" style="width:0%;background:var(--al);"></div></div>
+      <div class="cs-verdict" id="sofa-verdict-txt" style="color:var(--t2);"></div>
+      <div class="cs-sub-verdict" id="sofa-sub-verdict"></div>
+    </div>
+    <button class="cs-reset" onclick="resetSOFA()">🔄 重置</button>
+  </div>
+
+</div>
+</div>
 
 </body>
 </html>
