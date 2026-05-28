@@ -194,33 +194,34 @@ select{padding:10px 12px;border:1px solid var(--bd);border-radius:8px;font-size:
     <div class="tbl">
       <div class="tlo">🧬</div>
       <span class="tlt">CytoSorb 文獻資料庫</span>
-      <span class="tc">193 篇文獻</span>
+      <span class="tc">201 篇文獻</span>
     </div>
     <button class="cs-btn" onclick="openCS()">🩺 病人評估</button><button class="leg-btn" onclick="openLeg()">⭐ 評分說明</button><button class="xb" onclick="logout()">登出</button>
   </div>
-  <div class="mob-bar"><select class="mob-sel" id="mob-ind" onchange="mobFilter()"><option value="">全部適應症</option><option value="敗血症">敗血症</option><option value="ARDS">ARDS</option><option value="心臟手術">心臟手術</option><option value="ECMO／心因性休克">ECMO／心因性休克</option><option value="橫紋肌溶解">橫紋肌溶解</option><option value="肝衰竭">肝衰竭</option><option value="藥物移除">藥物移除</option><option value="COVID-19">COVID-19</option><option value="兒科">兒科</option><option value="急性中毒">急性中毒</option><option value="燒燙傷">燒燙傷</option><option value="急性胰臟炎">急性胰臟炎</option><option value="整體綜述">整體綜述</option></select><button class="mob-ce" id="mob-ce-btn" onclick="mobCE()">✓ CE</button></div>
+  <div class="mob-bar"><select class="mob-sel" id="mob-ind" onchange="mobFilter()"><option value="">全部適應症</option><option value="敗血症">敗血症</option><option value="ARDS">ARDS</option><option value="心臟手術">心臟手術</option><option value="ECMO／心因性休克">ECMO／心因性休克</option><option value="CPR／心跳停止">CPR／心跳停止</option><option value="橫紋肌溶解">橫紋肌溶解</option><option value="肝衰竭">肝衰竭</option><option value="藥物移除">藥物移除</option><option value="COVID-19">COVID-19</option><option value="兒科">兒科</option><option value="急性中毒">急性中毒</option><option value="燒燙傷">燒燙傷</option><option value="急性胰臟炎">急性胰臟炎</option><option value="整體綜述">整體綜述</option></select><button class="mob-ce" id="mob-ce-btn" onclick="mobCE()">✓ CE</button></div>
 <div class="lay">
     <aside class="sb">
       <div class="ss">
         <div class="sl">適應症</div>
-        <button class="fc active" onclick="filterInd('')">全部 <span class="cc">193</span></button>
-        <button class="fc" onclick="filterInd('敗血症')">敗血症 <span class="cc">48</span></button>
+        <button class="fc active" onclick="filterInd('')">全部 <span class="cc">201</span></button>
+        <button class="fc" onclick="filterInd('敗血症')">敗血症 <span class="cc">51</span></button>
         <button class="fc" onclick="filterInd('ARDS')">ARDS <span class="cc">6</span></button>
         <button class="fc" onclick="filterInd('心臟手術')">心臟手術 <span class="cc">28</span></button>
         <button class="fc" onclick="filterInd('ECMO／心因性休克')">ECMO <span class="cc">10</span></button>
+        <button class="fc" onclick="filterInd('CPR／心跳停止')">CPR／心跳停止 <span class="cc">3</span></button>
         <button class="fc" onclick="filterInd('橫紋肌溶解')">橫紋肌溶解 <span class="cc">9</span></button>
-        <button class="fc" onclick="filterInd('肝衰竭')">肝衰竭 <span class="cc">11</span></button>
+        <button class="fc" onclick="filterInd('肝衰竭')">肝衰竭 <span class="cc">13</span></button>
         <button class="fc" onclick="filterInd('藥物移除')">藥物移除 <span class="cc">14</span></button>
         <button class="fc" onclick="filterInd('COVID-19')">COVID-19 <span class="cc">9</span></button>
         <button class="fc" onclick="filterInd('整體綜述')">整體綜述 <span class="cc">36</span></button>
       </div>
       <div class="ss">
         <div class="sl">CE 核准</div>
-        <button class="fc" onclick="filterCE(this)">✓ CE 核准 <span class="cc">37</span></button>
+        <button class="fc" onclick="filterCE(this)">✓ CE 核准 <span class="cc">39</span></button>
       </div>
       <div class="ss">
         <div class="sl">研究類型</div>
-        <button class="fc" onclick="filterType('RCT',this)">RCT <span class="cc">18</span></button>
+        <button class="fc" onclick="filterType('RCT',this)">RCT <span class="cc">19</span></button>
         <button class="fc" onclick="filterType('Meta-analysis',this)">Meta-analysis <span class="cc">13</span></button>
         <button class="fc" onclick="filterType('Systematic Review',this)">Systematic Review <span class="cc">12</span></button>
         <button class="fc" onclick="filterType('Registry',this)">Registry <span class="cc">15</span></button>
@@ -237,7 +238,7 @@ select{padding:10px 12px;border:1px solid var(--bd);border-radius:8px;font-size:
           <option value="stars">證據等級</option>
         </select>
       </div>
-      <p class="ri" id="rinfo">顯示 <span>193</span> 篇 / 共 <span>193</span> 篇</p>
+      <p class="ri" id="rinfo">顯示 <span>201</span> 篇 / 共 <span>201</span> 篇</p>
       <div class="cards" id="cards">
 <div class="card" id="card0" data-ind="敗血症" data-type="Systematic Review" data-ce="0" data-year="2025" data-stars="5" data-search="hemoadsorption in septic shock: systematic review &amp; meta-analysis (2025, n=744)納入 1 項 rct 及 8 項有對照組觀察性研究，共 744 例敗血性休克。院內死亡率 or=0.64（p=0.036），28–30 天死亡率 or=0.49（p=0.003），兩項均達統計顯著。所有顯示存活效益的研究同時伴隨血流動力學改善。journal of clinical medicine">
   <div class="ch" onclick="toggle(0)">
@@ -4273,6 +4274,334 @@ select{padding:10px 12px;border:1px solid var(--bd);border-radius:8px;font-size:
     <div class="dg"><div><div class="dl">期刊</div><div class="dv">JMIR Research Protocols</div></div></div><div class="sec">核心發現</div><div class="fb">COSMOS（CytoSorb Treatment Of Critically Ill Patients）登錄研究方案論文（Taccone、Brunkhorst、Ferrer 等主導）。說明登錄設計：前瞻性多中心、4 個國家（德國、西班牙、葡萄牙、義大利）、多適應症（敗血症、心因性休克、橫紋肌溶解、肝衰竭等）、多時間點數據收集（治療前 24h、治療中、治療後 24h、ICU 出院、住院出院、90 天追蹤）。2024 年 8 月時已納入 199 例。是了解 COSMOS 研究完整設計和數據收集標準的必讀文獻。</div><div class="sec">臨床應用建議</div><div class="sab"><div class="sal">臨床參考</div><div class="sat">COSMOS 登錄的完整設計說明，是解讀後續 150 例和 300 例結果的重要背景文獻。多時間點前瞻性數據收集（含 90 天追蹤）和多適應症涵蓋是 COSMOS 超越 Jena 舊登錄的關鍵改進。了解研究設計才能正確解讀登錄數據的意義和限制。</div></div><a class="lnk" href="https://www.researchprotocols.org/2024/1/e55880" target="_blank">原文連結 ↗</a>
   </div>
 </div>
+
+<div class="card" id="card193" data-ind="CPR／心跳停止" data-type="RCT" data-ce="0" data-year="2022" data-stars="4" data-search="supady cyter trial cytokine adsorption ecpr post-cardiac arrest resuscitation 2022 n=50 freiburg ecmo il-6 il6 72h 主要終點未顯著 30天存活無差異 反面 rct nct03685383 resuscitation">
+  <div class="ch" onclick="toggle(193)">
+    <div class="cl">
+      <div class="cb"><span class="badge bi">CPR／心跳停止</span><span class="badge bt">RCT</span><span class="badge by">2022</span><span class="st">⭐⭐⭐⭐</span></div>
+      <div class="ct">Supady A. et al. — CYTER Trial: Cytokine Adsorption in eCPR Post-Cardiac Arrest (Resuscitation 2022, N=50)</div>
+      <div class="cs">Freiburg 單中心開放標籤 RCT。eCPR 後患者於 ECMO 迴路整合 CytoSorb 72 小時。主要終點 72h 血清 IL-6（ITT）兩組無顯著差異，30 天存活率亦無差異。</div>
+    </div>
+    <svg class="cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="cd" id="det193">
+    <div class="dg"><div><div class="dl">期刊</div><div class="dv">Resuscitation</div></div><div><div class="dl">研究規模</div><div class="dv">N = 50 例（41 分析）</div></div></div><div class="sec">臨床指標變化</div><div class="mb"><table class="mtbl"><tr>
+  <td class="mn">IL-6（72h 主要終點）</td>
+  <td colspan="3"><div class="mb-row">
+    <div class="mbar" style="flex:1"><div class="mfg fg" style="width:45%"></div></div>
+    <span class="ms w">未顯著</span>
+    <span class="mv vw">ITT 無顯著差異</span>
+  </div></td>
+</tr><tr>
+  <td class="mn">30 天存活率</td>
+  <td colspan="3"><div class="mb-row">
+    <div class="mbar" style="flex:1"><div class="mfg fg" style="width:40%"></div></div>
+    <span class="ms w">無差異</span>
+    <span class="mv vw">兩組相近</span>
+  </div></td>
+</tr><tr>
+  <td class="mn">升壓藥支持</td>
+  <td colspan="3"><div class="mb-row">
+    <div class="mbar" style="flex:1"><div class="mfg fg" style="width:40%"></div></div>
+    <span class="ms w">無差異</span>
+    <span class="mv vw">次要終點</span>
+  </div></td>
+</tr></table></div><div class="pp"><div class="sec">P 值與統計分析</div><div class="pr"><div class="pd pwn"></div><div class="pt">主要終點 72 小時血清 IL-6 經 ITT 分析兩組無顯著差異，30 天存活率亦無差異。</div></div><div class="pr"><div class="pd pwn"></div><div class="pt">單中心、開放標籤、N=50（41 例納入分析），檢定力有限；eCPR 族群病情極重。</div></div><div class="pm">eCPR 後 PCAS 的反面 RCT。術中將 CytoSorb 整合進 ECMO 迴路 72 小時，未能顯著降低 IL-6 或改善存活，提示單純 ECMO 上吸附對此族群效益有限。</div></div><div class="pp"><div class="sec">真實性評估</div>
+<div class="rw">
+  <div><svg width="180" height="180" viewBox="0 0 180 180">
+<polygon points="90.0,77.0 102.4,86.0 97.6,100.5 82.4,100.5 77.6,86.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,64.0 114.7,82.0 105.3,111.0 74.7,111.0 65.3,82.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 67.1,121.6 52.9,77.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 139.5,73.9 120.6,132.1 59.4,132.1 40.5,73.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,25.0 151.8,69.9 128.2,142.6 51.8,142.6 28.2,69.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="90.0" y2="25.0" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="151.8" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="128.2" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="51.8" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="28.2" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 114.7,82.0 120.6,132.1 59.4,132.1 65.3,82.0" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" stroke-width="2"/><circle cx="90.0" cy="38.0" r="3" fill="#3B82F6"/><circle cx="114.7" cy="82.0" r="3" fill="#3B82F6"/><circle cx="120.6" cy="132.1" r="3" fill="#3B82F6"/><circle cx="59.4" cy="132.1" r="3" fill="#3B82F6"/><circle cx="65.3" cy="82.0" r="3" fill="#3B82F6"/><text x="90.0" y="7.0" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">內部效度</text><text x="168.9" y="64.4" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">外部效度</text><text x="138.8" y="157.1" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">偏誤控制</text><text x="41.2" y="157.1" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">臨床相關性</text><text x="11.1" y="64.4" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">可重複性</text>
+</svg></div>
+  <div><div class="rli"><div class="rld"></div><div><div class="rll">內部效度 <span class="rls">4/5</span></div><div class="rln">RCT 設計隨機分配</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">外部效度 <span class="rls">2/5</span></div><div class="rln">單中心 N=50 外推性受限</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">偏誤控制 <span class="rls">4/5</span></div><div class="rln">RCT 控制偏誤</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">臨床相關性 <span class="rls">4/5</span></div><div class="rln">IL-6 與存活為直接終點</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">可重複性 <span class="rls">2/5</span></div><div class="rln">唯一此情境 eCPR RCT</div></div></div><div class="vs"><div class="vl">整體可信度</div><div class="vv">3.0 <span style="font-size:14px;color:var(--t3)">/ 5</span></div><div class="vt">中等可信度 — RCT 設計加分但屬反面結果，樣本數有限</div></div></div>
+</div></div><div class="sec">核心發現</div><div class="fb">Freiburg 大學單中心、開放標籤、1:1 隨機 RCT。eCPR 後 50 例（41 例納入主要分析）於 ECMO 迴路整合 CytoSorb，每 24 小時更換、72 小時移除。主要終點 72 小時血清 IL-6（ITT 分析）兩組無顯著差異；次要終點 30 天存活率、升壓藥支持亦無顯著差異。</div><div class="sec">臨床應用建議</div><div class="sab"><div class="sal">臨床參考</div><div class="sat">eCPR 後 PCAS 的重要反面 RCT。提示單純於 ECMO 迴路被動吸附 72 小時，對此極重症族群的 IL-6 與存活終點效益有限。患者選擇（高炎症表現型）與啟動時機可能是關鍵，建議結合 IL-6 篩選族群再評估。</div></div><a class="lnk" href="https://www.sciencedirect.com/science/article/abs/pii/S0300957222000363" target="_blank">原文連結 ↗</a>
+  </div>
+</div>
+<div class="card" id="card194" data-ind="CPR／心跳停止" data-type="回顧性分析" data-ce="0" data-year="2026" data-stars="3" data-search="markus cytosorb post-cardiac arrest syndrome ohca propensity matched cohort biomedicines 2026 vis lactate 乳酸 組內顯著 組間無差異 出院存活 48% 40% 傾向分數配對 院外心跳停止">
+  <div class="ch" onclick="toggle(194)">
+    <div class="cl">
+      <div class="cb"><span class="badge bi">CPR／心跳停止</span><span class="badge bt">回顧性分析</span><span class="badge by">2026</span><span class="st">⭐⭐⭐</span></div>
+      <div class="ct">Markus B. et al. — CytoSorb in Post-Cardiac Arrest Syndrome after OHCA: Propensity-Matched Cohort (Biomedicines 2026, n=50/組)</div>
+      <div class="cs">OHCA 後 PCAS 傾向分數 1:1 配對研究。吸附組組內 VIS 與乳酸顯著改善，但與配對對照組相比無顯著差異，出院存活相當（48% vs 40%）。</div>
+    </div>
+    <svg class="cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="cd" id="det194">
+    <div class="dg"><div><div class="dl">期刊</div><div class="dv">Biomedicines</div></div><div><div class="dl">研究規模</div><div class="dv">n = 50／組（共 100）</div></div></div><div class="sec">臨床指標變化</div><div class="mb"><table class="mtbl"><tr>
+  <td class="mn">VIS（組內 T1→T2）↓</td>
+  <td colspan="3"><div class="mb-row">
+    <div class="mbar" style="flex:1"><div class="mfg fg" style="width:85%"></div></div>
+    <span class="ms g">組內顯著</span>
+    <span class="mv vb">70.0→12.1 p=0.039</span>
+  </div></td>
+</tr><tr>
+  <td class="mn">乳酸清除（組內）↓</td>
+  <td colspan="3"><div class="mb-row">
+    <div class="mbar" style="flex:1"><div class="mfg fg" style="width:92%"></div></div>
+    <span class="ms g">強一致</span>
+    <span class="mv vb">4.1→1.1 p<0.001</span>
+  </div></td>
+</tr><tr>
+  <td class="mn">組間 VIS 變化差異</td>
+  <td colspan="3"><div class="mb-row">
+    <div class="mbar" style="flex:1"><div class="mfg fg" style="width:40%"></div></div>
+    <span class="ms w">無差異</span>
+    <span class="mv vw">Δ p=0.183</span>
+  </div></td>
+</tr><tr>
+  <td class="mn">出院存活率</td>
+  <td colspan="3"><div class="mb-row">
+    <div class="mbar" style="flex:1"><div class="mfg fg" style="width:45%"></div></div>
+    <span class="ms w">無差異</span>
+    <span class="mv vw">48% vs 40% p=0.423</span>
+  </div></td>
+</tr></table></div><div class="pp"><div class="sec">P 值與統計分析</div><div class="pr"><div class="pd psig"></div><div class="pt">吸附組組內 VIS 70.0→12.1（p=0.039）、乳酸 4.1→1.1 mmol/L（p&lt;0.001），組內改善顯著。</div></div><div class="pr"><div class="pd pwn"></div><div class="pt">但組間比較無顯著差異（VIS Δ p=0.183），出院存活 48% vs 40%（p=0.423），校正分析顯示改善主要來自基線休克嚴重度而非治療本身。</div></div><div class="pm">「組內顯著改善、組間無差異」是解讀觀察性數據的關鍵範例——VIS 大幅下降看似亮眼，但傾向分數配對對照後優勢消失。誠實呈現此細膩差異。</div></div><div class="pp"><div class="sec">真實性評估</div>
+<div class="rw">
+  <div><svg width="180" height="180" viewBox="0 0 180 180">
+<polygon points="90.0,77.0 102.4,86.0 97.6,100.5 82.4,100.5 77.6,86.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,64.0 114.7,82.0 105.3,111.0 74.7,111.0 65.3,82.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 67.1,121.6 52.9,77.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 139.5,73.9 120.6,132.1 59.4,132.1 40.5,73.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,25.0 151.8,69.9 128.2,142.6 51.8,142.6 28.2,69.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="90.0" y2="25.0" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="151.8" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="128.2" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="51.8" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="28.2" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 120.6,132.1 59.4,132.1 52.9,77.9" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" stroke-width="2"/><circle cx="90.0" cy="51.0" r="3" fill="#3B82F6"/><circle cx="127.1" cy="77.9" r="3" fill="#3B82F6"/><circle cx="120.6" cy="132.1" r="3" fill="#3B82F6"/><circle cx="59.4" cy="132.1" r="3" fill="#3B82F6"/><circle cx="52.9" cy="77.9" r="3" fill="#3B82F6"/><text x="90.0" y="7.0" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">內部效度</text><text x="168.9" y="64.4" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">外部效度</text><text x="138.8" y="157.1" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">偏誤控制</text><text x="41.2" y="157.1" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">臨床相關性</text><text x="11.1" y="64.4" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">可重複性</text>
+</svg></div>
+  <div><div class="rli"><div class="rld"></div><div><div class="rll">內部效度 <span class="rls">3/5</span></div><div class="rln">單中心回顧性配對</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">外部效度 <span class="rls">3/5</span></div><div class="rln">德國單中心 OHCA</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">偏誤控制 <span class="rls">4/5</span></div><div class="rln">1:1 傾向分數配對</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">臨床相關性 <span class="rls">4/5</span></div><div class="rln">VIS 乳酸存活為直接終點</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">可重複性 <span class="rls">3/5</span></div><div class="rln">需前瞻驗證</div></div></div><div class="vs"><div class="vl">整體可信度</div><div class="vv">3.0 <span style="font-size:14px;color:var(--t3)">/ 5</span></div><div class="vt">中等可信度 — 嚴謹配對設計，誠實呈現組間無優勢</div></div></div>
+</div></div><div class="sec">核心發現</div><div class="fb">德國單中心回顧性研究，OHCA 後 PCAS 患者接受 CytoSorb 與 1:1 傾向分數配對對照比較。吸附組組內 VIS 70.0→12.1（p=0.039）、乳酸 4.1→1.1 mmol/L（p<0.001）改善顯著；但組間溫度變化無顯著差異（VIS Δ −18.7 vs −7.7，p=0.183），出院存活 48% vs 40%（p=0.423）相當。校正分析指出改善主要由基線休克嚴重度驅動。</div><div class="sec">臨床應用建議</div><div class="sab"><div class="sal">臨床參考</div><div class="sat">對 OHCA 後 PCAS，吸附組雖見組內血流動力學與乳酸改善，但傾向配對對照後無顯著優勢。屬假說生成性質，建議未來以標準化時機與表現型導向的患者選擇進行前瞻研究。</div></div><a class="lnk" href="https://www.mdpi.com/2227-9059/14/4/930" target="_blank">原文連結 ↗</a>
+  </div>
+</div>
+<div class="card" id="card195" data-ind="CPR／心跳停止" data-type="回顧性分析" data-ce="0" data-year="2020" data-stars="3" data-search="akin early hemoadsorption ohca hacore matched pair analysis plos one 2020 hannover cooling registry 較高死亡率 反面 患者選擇 院外心跳停止 vasopressor">
+  <div class="ch" onclick="toggle(195)">
+    <div class="cl">
+      <div class="cb"><span class="badge bi">CPR／心跳停止</span><span class="badge bt">回顧性分析</span><span class="badge by">2020</span><span class="st">⭐⭐⭐</span></div>
+      <div class="ct">Akin M. et al. — Early Hemoadsorption after OHCA: HACORE Matched-Pair Analysis (PLOS One 2020)</div>
+      <div class="cs">HANNOVER COoling REgistry（HACORE）配對分析。OHCA 後早期使用 CytoSorb 的族群觀察到較高死亡率，療效與安全性不明確。明確的反面數據。</div>
+    </div>
+    <svg class="cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="cd" id="det195">
+    <div class="dg"><div><div class="dl">期刊</div><div class="dv">PLOS ONE</div></div><div><div class="dl">研究規模</div><div class="dv">Matched-pair</div></div></div><div class="sec">臨床指標變化</div><div class="mb"><table class="mtbl"><tr>
+  <td class="mn">院內死亡率</td>
+  <td colspan="3"><div class="mb-row">
+    <div class="mbar" style="flex:1"><div class="mfg fg" style="width:35%"></div></div>
+    <span class="ms w">不利趨勢</span>
+    <span class="mv vw">吸附組較高</span>
+  </div></td>
+</tr><tr>
+  <td class="mn">升壓藥需求</td>
+  <td colspan="3"><div class="mb-row">
+    <div class="mbar" style="flex:1"><div class="mfg fg" style="width:50%"></div></div>
+    <span class="ms w">無明確改善</span>
+    <span class="mv vw">無顯著差異</span>
+  </div></td>
+</tr></table></div><div class="pp"><div class="sec">P 值與統計分析</div><div class="pr"><div class="pd pwn"></div><div class="pt">於 HACORE 登錄的配對分析中，接受 CytoSorb 的 OHCA 族群觀察到較高的死亡率，療效與安全性尚不明確。</div></div><div class="pr"><div class="pd pwn"></div><div class="pt">回顧性配對、樣本有限、可能存在適應症偏差（病情較重者較常使用）。</div></div><div class="pm">明確的反面數據。OHCA 後常規早期使用 CytoSorb 未顯示效益、甚至伴隨較高死亡率，凸顯患者選擇的重要性——並非所有心跳停止族群都適用。</div></div><div class="pp"><div class="sec">真實性評估</div>
+<div class="rw">
+  <div><svg width="180" height="180" viewBox="0 0 180 180">
+<polygon points="90.0,77.0 102.4,86.0 97.6,100.5 82.4,100.5 77.6,86.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,64.0 114.7,82.0 105.3,111.0 74.7,111.0 65.3,82.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 67.1,121.6 52.9,77.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 139.5,73.9 120.6,132.1 59.4,132.1 40.5,73.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,25.0 151.8,69.9 128.2,142.6 51.8,142.6 28.2,69.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="90.0" y2="25.0" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="151.8" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="128.2" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="51.8" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="28.2" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 59.4,132.1 65.3,82.0" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" stroke-width="2"/><circle cx="90.0" cy="51.0" r="3" fill="#3B82F6"/><circle cx="127.1" cy="77.9" r="3" fill="#3B82F6"/><circle cx="112.9" cy="121.6" r="3" fill="#3B82F6"/><circle cx="59.4" cy="132.1" r="3" fill="#3B82F6"/><circle cx="65.3" cy="82.0" r="3" fill="#3B82F6"/><text x="90.0" y="7.0" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">內部效度</text><text x="168.9" y="64.4" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">外部效度</text><text x="138.8" y="157.1" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">偏誤控制</text><text x="41.2" y="157.1" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">臨床相關性</text><text x="11.1" y="64.4" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">可重複性</text>
+</svg></div>
+  <div><div class="rli"><div class="rld"></div><div><div class="rll">內部效度 <span class="rls">3/5</span></div><div class="rln">回顧性配對分析</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">外部效度 <span class="rls">3/5</span></div><div class="rln">德國單中心登錄</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">偏誤控制 <span class="rls">3/5</span></div><div class="rln">配對控制部分偏誤</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">臨床相關性 <span class="rls">4/5</span></div><div class="rln">死亡率為直接終點</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">可重複性 <span class="rls">2/5</span></div><div class="rln">需前瞻驗證</div></div></div><div class="vs"><div class="vl">整體可信度</div><div class="vv">2.8 <span style="font-size:14px;color:var(--t3)">/ 5</span></div><div class="vt">中低可信度 — 反面結果，凸顯患者選擇必要性</div></div></div>
+</div></div><div class="sec">核心發現</div><div class="fb">於 HANnover COoling REgistry（HACORE）前瞻觀察登錄中，比較 OHCA 後常規早期使用 CytoSorb 與依相同復甦後流程治療的對照組。結果觀察到吸附組死亡率較高，作者結論認為此族群的療效與安全性仍不明確，但強調控制過度缺血再灌注傷害的介入仍有迫切需求。</div><div class="sec">臨床應用建議</div><div class="sab"><div class="sal">臨床參考</div><div class="sat">明確的反面證據。提示 OHCA 後不加選擇地常規早期使用 CytoSorb 未見效益、甚至伴隨較高死亡率。應避免將心跳停止視為單一適應症，需以炎症表現型謹慎篩選可能受益的次族群。</div></div><a class="lnk" href="https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0241709" target="_blank">原文連結 ↗</a>
+  </div>
+</div>
+<div class="card" id="card196" data-ind="敗血症" data-type="回顧性分析" data-ce="0" data-year="2019" data-stars="4" data-search="brouwer cytosorb septic shock propensity score weighted study critical care 2019 n=116 crrt siptw 28天死亡率 sofa 預測 荷蘭 erasmus 乳酸 去甲腎上腺素 ince">
+  <div class="ch" onclick="toggle(196)">
+    <div class="cl">
+      <div class="cb"><span class="badge bi">敗血症</span><span class="badge bt">回顧性分析</span><span class="badge by">2019</span><span class="st">⭐⭐⭐⭐</span></div>
+      <div class="ct">Brouwer WP. et al. — CytoSorb in Septic Shock: Propensity-Score-Weighted Study (Critical Care 2019, N=116)</div>
+      <div class="cs">荷蘭單中心回顧。CRRT+CytoSorb（n=67）vs CRRT alone（n=49），以 sIPTW 加權。吸附組基線病情更重，但實際 28 天死亡率低於 SOFA 預測值。</div>
+    </div>
+    <svg class="cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="cd" id="det196">
+    <div class="dg"><div><div class="dl">期刊</div><div class="dv">Critical Care</div></div><div><div class="dl">研究規模</div><div class="dv">N = 116 例</div></div></div><div class="sec">臨床指標變化</div><div class="mb"><table class="mtbl"><tr>
+  <td class="mn">28 天死亡率（實際 vs 預測）↓</td>
+  <td colspan="3"><div class="mb-row">
+    <div class="mbar" style="flex:1"><div class="mfg fg" style="width:80%"></div></div>
+    <span class="ms g">達顯著</span>
+    <span class="mv vb">低於 SOFA 預測</span>
+  </div></td>
+</tr><tr>
+  <td class="mn">基線乳酸（吸附組更高）</td>
+  <td colspan="3"><div class="mb-row">
+    <div class="mbar" style="flex:1"><div class="mfg fg" style="width:70%"></div></div>
+    <span class="ms g">病情更重</span>
+    <span class="mv vb">p<0.001</span>
+  </div></td>
+</tr><tr>
+  <td class="mn">基線去甲腎上腺素</td>
+  <td colspan="3"><div class="mb-row">
+    <div class="mbar" style="flex:1"><div class="mfg fg" style="width:70%"></div></div>
+    <span class="ms g">病情更重</span>
+    <span class="mv vb">0.96 vs 0.28 p<0.001</span>
+  </div></td>
+</tr></table></div><div class="pp"><div class="sec">P 值與統計分析</div><div class="pr"><div class="pd psig"></div><div class="pt">CytoSorb 組基線病情更重（乳酸 p&lt;0.001、MAP p=0.007、NE p&lt;0.001），但實際 28 天死亡率低於 SOFA 預測值。</div></div><div class="pr"><div class="pd pwn"></div><div class="pt">單中心回顧性、sIPTW 加權雖控制部分基線差異，仍無法完全排除未測量混淆；肺源性敗血症在吸附組死亡風險較高。</div></div><div class="pm">早期經典文獻。以穩定化逆機率加權處理基線不平衡，發現病情更重的吸附組死亡率反而低於預測，方向具說服力但屬觀察性設計。</div></div><div class="pp"><div class="sec">真實性評估</div>
+<div class="rw">
+  <div><svg width="180" height="180" viewBox="0 0 180 180">
+<polygon points="90.0,77.0 102.4,86.0 97.6,100.5 82.4,100.5 77.6,86.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,64.0 114.7,82.0 105.3,111.0 74.7,111.0 65.3,82.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 67.1,121.6 52.9,77.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 139.5,73.9 120.6,132.1 59.4,132.1 40.5,73.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,25.0 151.8,69.9 128.2,142.6 51.8,142.6 28.2,69.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="90.0" y2="25.0" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="151.8" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="128.2" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="51.8" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="28.2" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 127.1,77.9 112.9,121.6 51.8,142.6 52.9,77.9" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" stroke-width="2"/><circle cx="90.0" cy="38.0" r="3" fill="#3B82F6"/><circle cx="127.1" cy="77.9" r="3" fill="#3B82F6"/><circle cx="112.9" cy="121.6" r="3" fill="#3B82F6"/><circle cx="51.8" cy="142.6" r="3" fill="#3B82F6"/><circle cx="52.9" cy="77.9" r="3" fill="#3B82F6"/><text x="90.0" y="7.0" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">內部效度</text><text x="168.9" y="64.4" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">外部效度</text><text x="138.8" y="157.1" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">偏誤控制</text><text x="41.2" y="157.1" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">臨床相關性</text><text x="11.1" y="64.4" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">可重複性</text>
+</svg></div>
+  <div><div class="rli"><div class="rld"></div><div><div class="rll">內部效度 <span class="rls">4/5</span></div><div class="rln">sIPTW 加權控制基線</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">外部效度 <span class="rls">3/5</span></div><div class="rln">荷蘭單中心</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">偏誤控制 <span class="rls">3/5</span></div><div class="rln">加權後部分可比</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">臨床相關性 <span class="rls">5/5</span></div><div class="rln">28 天死亡率為直接終點</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">可重複性 <span class="rls">3/5</span></div><div class="rln">需多中心驗證</div></div></div><div class="vs"><div class="vl">整體可信度</div><div class="vv">3.4 <span style="font-size:14px;color:var(--t3)">/ 5</span></div><div class="vt">中等可信度 — 加權方法嚴謹，方向具說服力</div></div></div>
+</div></div><div class="sec">核心發現</div><div class="fb">荷蘭研究者發起的單中心回顧性研究，敗血性休克患者接受 CRRT+CytoSorb（n=67）或 CRRT alone（n=49），以穩定化逆機率加權（sIPTW）平衡基線。治療起始時 CytoSorb 組乳酸更高（p<0.001）、MAP 更低（p=0.007）、去甲腎上腺素需求更高（p<0.001），病情明顯更重；但其實際 28 天死亡率低於依 SOFA 分數預測的死亡率。高基線乳酸與較差預後相關。</div><div class="sec">臨床應用建議</div><div class="sab"><div class="sal">臨床參考</div><div class="sat">以加權方法處理基線不平衡的早期重要研究。病情更重的吸附組死亡率反而低於預測，支持在高炎症負擔敗血性休克的輔助使用；高基線乳酸者效益較差，呼應患者選擇的重要性。</div></div><a class="lnk" href="https://ccforum.biomedcentral.com/articles/10.1186/s13054-019-2588-1" target="_blank">原文連結 ↗</a>
+  </div>
+</div>
+<div class="card" id="card197" data-ind="敗血症" data-type="回顧性分析" data-ce="0" data-year="2020" data-stars="3" data-search="mehta cytosorb sepsis management 100 patient experience wjccm world journal critical care medicine 印度 india 升壓藥 生物標記 pct crp il-6 il-10 tnf 存活者 100 例">
+  <div class="ch" onclick="toggle(197)">
+    <div class="cl">
+      <div class="cb"><span class="badge bi">敗血症</span><span class="badge bt">回顧性分析</span><span class="badge by">2020</span><span class="st">⭐⭐⭐</span></div>
+      <div class="ct">Mehta Y. et al. — CytoSorb in Sepsis Management: 100-Patient Experience (WJCCM)</div>
+      <div class="cs">印度單中心 100 例敗血症回顧。40 名存活者的升壓藥劑量、生物標記（PCT、CRP、乳酸、膽紅素）及炎症指標（IL-6、IL-10、TNF）治療後均顯著下降。</div>
+    </div>
+    <svg class="cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="cd" id="det197">
+    <div class="dg"><div><div class="dl">期刊</div><div class="dv">World Journal of Critical Care Medicine</div></div><div><div class="dl">研究規模</div><div class="dv">N = 100 例</div></div></div><div class="sec">臨床指標變化</div><div class="mb"><table class="mtbl"><tr>
+  <td class="mn">升壓藥劑量（存活者）↓</td>
+  <td colspan="3"><div class="mb-row">
+    <div class="mbar" style="flex:1"><div class="mfg fg" style="width:75%"></div></div>
+    <span class="ms g">達顯著</span>
+    <span class="mv vb">顯著↓</span>
+  </div></td>
+</tr><tr>
+  <td class="mn">PCT／CRP↓</td>
+  <td colspan="3"><div class="mb-row">
+    <div class="mbar" style="flex:1"><div class="mfg fg" style="width:75%"></div></div>
+    <span class="ms g">達顯著</span>
+    <span class="mv vb">顯著↓</span>
+  </div></td>
+</tr><tr>
+  <td class="mn">IL-6／IL-10／TNF↓</td>
+  <td colspan="3"><div class="mb-row">
+    <div class="mbar" style="flex:1"><div class="mfg fg" style="width:70%"></div></div>
+    <span class="ms g">達顯著</span>
+    <span class="mv vb">顯著↓</span>
+  </div></td>
+</tr><tr>
+  <td class="mn">乳酸／膽紅素↓</td>
+  <td colspan="3"><div class="mb-row">
+    <div class="mbar" style="flex:1"><div class="mfg fg" style="width:70%"></div></div>
+    <span class="ms g">達顯著</span>
+    <span class="mv vb">顯著↓</span>
+  </div></td>
+</tr></table></div><div class="pp"><div class="sec">P 值與統計分析</div><div class="pr"><div class="pd psig"></div><div class="pt">100 例敗血症中，40 名存活者的升壓藥劑量及所有生物標記（PCT、CRP、乳酸、膽紅素）與炎症指標（IL-6、IL-10、TNF）治療後均顯著下降。</div></div><div class="pr"><div class="pd pwn"></div><div class="pt">單中心回顧性、無對照組，存活者偏差需注意。</div></div><div class="pm">提供亞洲族群的真實世界數據。存活者全面性的生物標記與升壓藥改善具一致性，但無對照組設計限制因果推論。</div></div><div class="pp"><div class="sec">真實性評估</div>
+<div class="rw">
+  <div><svg width="180" height="180" viewBox="0 0 180 180">
+<polygon points="90.0,77.0 102.4,86.0 97.6,100.5 82.4,100.5 77.6,86.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,64.0 114.7,82.0 105.3,111.0 74.7,111.0 65.3,82.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 67.1,121.6 52.9,77.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 139.5,73.9 120.6,132.1 59.4,132.1 40.5,73.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,25.0 151.8,69.9 128.2,142.6 51.8,142.6 28.2,69.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="90.0" y2="25.0" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="151.8" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="128.2" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="51.8" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="28.2" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 105.3,111.0 59.4,132.1 52.9,77.9" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" stroke-width="2"/><circle cx="90.0" cy="51.0" r="3" fill="#3B82F6"/><circle cx="127.1" cy="77.9" r="3" fill="#3B82F6"/><circle cx="105.3" cy="111.0" r="3" fill="#3B82F6"/><circle cx="59.4" cy="132.1" r="3" fill="#3B82F6"/><circle cx="52.9" cy="77.9" r="3" fill="#3B82F6"/><text x="90.0" y="7.0" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">內部效度</text><text x="168.9" y="64.4" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">外部效度</text><text x="138.8" y="157.1" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">偏誤控制</text><text x="41.2" y="157.1" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">臨床相關性</text><text x="11.1" y="64.4" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">可重複性</text>
+</svg></div>
+  <div><div class="rli"><div class="rld"></div><div><div class="rll">內部效度 <span class="rls">3/5</span></div><div class="rln">單中心回顧性</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">外部效度 <span class="rls">3/5</span></div><div class="rln">印度族群代表亞洲人群</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">偏誤控制 <span class="rls">2/5</span></div><div class="rln">無對照組</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">臨床相關性 <span class="rls">4/5</span></div><div class="rln">升壓藥與生物標記為直接指標</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">可重複性 <span class="rls">3/5</span></div><div class="rln">需對照研究</div></div></div><div class="vs"><div class="vl">整體可信度</div><div class="vv">2.8 <span style="font-size:14px;color:var(--t3)">/ 5</span></div><div class="vt">中低可信度 — 亞洲真實世界數據，存活者偏差需注意</div></div></div>
+</div></div><div class="sec">核心發現</div><div class="fb">印度單中心回顧性研究，評估 100 例加護病房敗血症患者接受 CytoSorb 治療的臨床結果。在 40 名存活者中觀察到升壓藥劑量顯著下降，所有生物標記（降鈣素原、C 反應蛋白、血清乳酸、膽紅素）及炎症介質（IL-6、IL-10、腫瘤壞死因子）治療後皆下降。</div><div class="sec">臨床應用建議</div><div class="sab"><div class="sal">臨床參考</div><div class="sat">提供亞洲人群的真實世界數據。存活者在升壓藥與多項生物標記呈現一致改善，支持在高炎症負擔敗血症的輔助應用；無對照組與存活者偏差為主要限制，建議搭配 CytoScore 篩選族群。</div></div><a class="lnk" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC7031623/" target="_blank">原文連結 ↗</a>
+  </div>
+</div>
+<div class="card" id="card198" data-ind="敗血症" data-type="Case Series" data-ce="0" data-year="2017" data-stars="2" data-search="kogelmann hemoadsorption cytosorb septic patients case series critical care 2017 n=26 奠基 血流動力學 乳酸 rrt 敗血性休克 預測死亡率 emden hamburg">
+  <div class="ch" onclick="toggle(198)">
+    <div class="cl">
+      <div class="cb"><span class="badge bi">敗血症</span><span class="badge bt">Case Series</span><span class="badge by">2017</span><span class="st">⭐⭐</span></div>
+      <div class="ct">Kogelmann K. et al. — Hemoadsorption by CytoSorb in Septic Patients: A Case Series (Critical Care 2017, N=26)</div>
+      <div class="cs">CytoSorb 敗血症應用的奠基性案例系列。26 例需 RRT 的敗血性休克患者治療後血流動力學穩定、血乳酸下降，實際死亡率低於預測。</div>
+    </div>
+    <svg class="cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="cd" id="det198">
+    <div class="dg"><div><div class="dl">期刊</div><div class="dv">Critical Care</div></div><div><div class="dl">研究規模</div><div class="dv">N = 26 例</div></div></div><div class="sec">臨床指標變化</div><div class="mb"><table class="mtbl"><tr>
+  <td class="mn">血流動力學穩定↑</td>
+  <td colspan="3"><div class="mb-row">
+    <div class="mbar" style="flex:1"><div class="mfg fg" style="width:75%"></div></div>
+    <span class="ms g">達顯著</span>
+    <span class="mv vg">顯著改善</span>
+  </div></td>
+</tr><tr>
+  <td class="mn">血乳酸↓</td>
+  <td colspan="3"><div class="mb-row">
+    <div class="mbar" style="flex:1"><div class="mfg fg" style="width:70%"></div></div>
+    <span class="ms g">達顯著</span>
+    <span class="mv vb">顯著↓</span>
+  </div></td>
+</tr><tr>
+  <td class="mn">實際 vs 預測死亡率↓</td>
+  <td colspan="3"><div class="mb-row">
+    <div class="mbar" style="flex:1"><div class="mfg fg" style="width:65%"></div></div>
+    <span class="ms g">趨勢</span>
+    <span class="mv vb">低於預測</span>
+  </div></td>
+</tr></table></div><div class="pp"><div class="sec">P 值與統計分析</div><div class="pr"><div class="pd psig"></div><div class="pt">26 例需 RRT 的敗血性休克患者，治療後血流動力學穩定、血乳酸下降，整體實際死亡率低於預測值。</div></div><div class="pr"><div class="pd pwn"></div><div class="pt">案例系列、N=26、無對照組，作者明確呼籲需 RCT 驗證。</div></div><div class="pm">CytoSorb 敗血症應用的奠基性案例系列之一（2017）。雖證據等級低，但為後續患者選擇與時機研究（CytoScore）奠定臨床觀察基礎。</div></div><div class="pp"><div class="sec">真實性評估</div>
+<div class="rw">
+  <div><svg width="180" height="180" viewBox="0 0 180 180">
+<polygon points="90.0,77.0 102.4,86.0 97.6,100.5 82.4,100.5 77.6,86.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,64.0 114.7,82.0 105.3,111.0 74.7,111.0 65.3,82.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 67.1,121.6 52.9,77.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 139.5,73.9 120.6,132.1 59.4,132.1 40.5,73.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,25.0 151.8,69.9 128.2,142.6 51.8,142.6 28.2,69.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="90.0" y2="25.0" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="151.8" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="128.2" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="51.8" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="28.2" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,64.0 127.1,77.9 97.6,100.5 59.4,132.1 52.9,77.9" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" stroke-width="2"/><circle cx="90.0" cy="64.0" r="3" fill="#3B82F6"/><circle cx="127.1" cy="77.9" r="3" fill="#3B82F6"/><circle cx="97.6" cy="100.5" r="3" fill="#3B82F6"/><circle cx="59.4" cy="132.1" r="3" fill="#3B82F6"/><circle cx="52.9" cy="77.9" r="3" fill="#3B82F6"/><text x="90.0" y="7.0" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">內部效度</text><text x="168.9" y="64.4" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">外部效度</text><text x="138.8" y="157.1" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">偏誤控制</text><text x="41.2" y="157.1" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">臨床相關性</text><text x="11.1" y="64.4" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">可重複性</text>
+</svg></div>
+  <div><div class="rli"><div class="rld"></div><div><div class="rll">內部效度 <span class="rls">2/5</span></div><div class="rln">案例系列最低設計</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">外部效度 <span class="rls">3/5</span></div><div class="rln">德國單中心</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">偏誤控制 <span class="rls">1/5</span></div><div class="rln">無對照組</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">臨床相關性 <span class="rls">4/5</span></div><div class="rln">血流動力學為直接指標</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">可重複性 <span class="rls">3/5</span></div><div class="rln">被後續研究廣泛引用</div></div></div><div class="vs"><div class="vl">整體可信度</div><div class="vv">2.4 <span style="font-size:14px;color:var(--t3)">/ 5</span></div><div class="vt">低可信度 — 奠基性案例系列，歷史與機制價值高</div></div></div>
+</div></div><div class="sec">核心發現</div><div class="fb">CytoSorb 敗血症應用的早期奠基性案例系列。26 例需腎臟替代治療的重症敗血性休克患者接受 CytoSorb 輔助治療，治療後與血流動力學穩定及血乳酸下降相關，整體族群實際死亡率低於預測。作者強調亟需隨機對照試驗以確認此新治療選項的潛在效益。</div><div class="sec">臨床應用建議</div><div class="sab"><div class="sal">臨床參考</div><div class="sat">CytoSorb 敗血症領域的奠基文獻（2017）。雖為無對照案例系列、證據等級低，但確立了血流動力學穩定與乳酸下降的觀察基礎，並直接催生後續 Kogelmann 團隊的 CytoScore 時機與劑量研究。</div></div><a class="lnk" href="https://pubmed.ncbi.nlm.nih.gov/28343448/" target="_blank">原文連結 ↗</a>
+  </div>
+</div>
+<div class="card" id="card199" data-ind="肝衰竭" data-type="回顧性分析" data-ce="1" data-year="2025" data-stars="3" data-search="feasibility safety cytosorb acute liver failure vienna general hospital liver international 2025 n=28 alf 急性肝衰竭 膽紅素 bilirubin 20.85 9.46 ggt alt 血小板 crrt ce核准">
+  <div class="ch" onclick="toggle(199)">
+    <div class="cl">
+      <div class="cb"><span class="badge bi">肝衰竭</span><span class="badge bt">回顧性分析</span><span class="badge by">2025</span><span class="badge bce">✓ CE</span><span class="st">⭐⭐⭐</span></div>
+      <div class="ct">Feasibility and Safety of CytoSorb in Acute Liver Failure — Vienna General Hospital (Liver International 2025, N=28)</div>
+      <div class="cs">維也納大學醫院急性肝衰竭（ALF）回顧。14 例接受 CytoSorb，膽紅素顯著下降（20.85→9.46 mg/dL，p<0.001），併發症與單純 CRRT 相當。</div>
+    </div>
+    <svg class="cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="cd" id="det199">
+    <div class="dg"><div><div class="dl">期刊</div><div class="dv">Liver International</div></div><div><div class="dl">研究規模</div><div class="dv">N = 28 例（14 治療）</div></div></div><div class="sec">臨床指標變化</div><div class="mb"><table class="mtbl"><tr>
+  <td class="mn">膽紅素（24h）↓</td>
+  <td colspan="3"><div class="mb-row">
+    <div class="mbar" style="flex:1"><div class="mfg fg" style="width:85%"></div></div>
+    <span class="ms g">強一致</span>
+    <span class="mv vb">20.85→12.32 mg/dL</span>
+  </div></td>
+</tr><tr>
+  <td class="mn">膽紅素（療程後）↓</td>
+  <td colspan="3"><div class="mb-row">
+    <div class="mbar" style="flex:1"><div class="mfg fg" style="width:90%"></div></div>
+    <span class="ms g">強一致</span>
+    <span class="mv vb">→9.46 p<0.001</span>
+  </div></td>
+</tr><tr>
+  <td class="mn">GGT／ALT↓</td>
+  <td colspan="3"><div class="mb-row">
+    <div class="mbar" style="flex:1"><div class="mfg fg" style="width:70%"></div></div>
+    <span class="ms g">達顯著</span>
+    <span class="mv vb">顯著↓</span>
+  </div></td>
+</tr><tr>
+  <td class="mn">血小板↓</td>
+  <td colspan="3"><div class="mb-row">
+    <div class="mbar" style="flex:1"><div class="mfg fg" style="width:45%"></div></div>
+    <span class="ms w">副作用</span>
+    <span class="mv vw">治療後下降</span>
+  </div></td>
+</tr></table></div><div class="pp"><div class="sec">P 值與統計分析</div><div class="pr"><div class="pd psig"></div><div class="pt">急性肝衰竭患者啟動 CytoSorb 後膽紅素顯著下降（20.85→24h 12.32→療程後 9.46 mg/dL，p&lt;0.001），GGT、ALT 亦下降。</div></div><div class="pr"><div class="pd pwn"></div><div class="pt">回顧性、單中心、僅 14 例接受 CytoSorb；血小板下降需監測；併發症與未使用組相當。</div></div><div class="pm">急性肝衰竭（ALF，非 ACLF）的維也納經驗。膽紅素達統計顯著下降，安全性與單純 CRRT 相當，補充 CE 核准膽紅素移除在 ALF 情境的證據。</div></div><div class="pp"><div class="sec">真實性評估</div>
+<div class="rw">
+  <div><svg width="180" height="180" viewBox="0 0 180 180">
+<polygon points="90.0,77.0 102.4,86.0 97.6,100.5 82.4,100.5 77.6,86.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,64.0 114.7,82.0 105.3,111.0 74.7,111.0 65.3,82.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 67.1,121.6 52.9,77.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 139.5,73.9 120.6,132.1 59.4,132.1 40.5,73.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,25.0 151.8,69.9 128.2,142.6 51.8,142.6 28.2,69.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="90.0" y2="25.0" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="151.8" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="128.2" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="51.8" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="28.2" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 59.4,132.1 52.9,77.9" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" stroke-width="2"/><circle cx="90.0" cy="51.0" r="3" fill="#3B82F6"/><circle cx="127.1" cy="77.9" r="3" fill="#3B82F6"/><circle cx="112.9" cy="121.6" r="3" fill="#3B82F6"/><circle cx="59.4" cy="132.1" r="3" fill="#3B82F6"/><circle cx="52.9" cy="77.9" r="3" fill="#3B82F6"/><text x="90.0" y="7.0" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">內部效度</text><text x="168.9" y="64.4" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">外部效度</text><text x="138.8" y="157.1" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">偏誤控制</text><text x="41.2" y="157.1" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">臨床相關性</text><text x="11.1" y="64.4" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">可重複性</text>
+</svg></div>
+  <div><div class="rli"><div class="rld"></div><div><div class="rll">內部效度 <span class="rls">3/5</span></div><div class="rln">回顧性觀察設計</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">外部效度 <span class="rls">3/5</span></div><div class="rln">維也納單中心 ALF</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">偏誤控制 <span class="rls">3/5</span></div><div class="rln">與 CRRT 對照部分可比</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">臨床相關性 <span class="rls">4/5</span></div><div class="rln">膽紅素為 CE 核准終點</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">可重複性 <span class="rls">3/5</span></div><div class="rln">需更大樣本驗證</div></div></div><div class="vs"><div class="vl">整體可信度</div><div class="vv">3.0 <span style="font-size:14px;color:var(--t3)">/ 5</span></div><div class="vt">中等可信度 — ALF 情境的膽紅素移除證據，安全性良好</div></div></div>
+</div></div><div class="sec">核心發現</div><div class="fb">維也納大學醫院 2012–2025 年急性肝衰竭（ALF）回顧性研究，28 例（中位 SOFA 11、SAPS II 43）接受 CRRT，其中 14 例加用 CytoSorb。CytoSorb 啟動後膽紅素顯著下降（20.85→24h 12.32→療程後 9.46 mg/dL，p<0.001），GGT、ALT、血小板亦下降；併發症（血流動力學不穩、檸檬酸蓄積、出血、低纖維蛋白原、血小板低下）在使用與未使用 CytoSorb 者相當。</div><div class="sec">臨床應用建議</div><div class="sab"><div class="sal">臨床參考</div><div class="sat">CE 核准膽紅素移除在急性肝衰竭（有別於 ACLF）情境的真實世界證據。膽紅素達統計顯著下降且安全性與單純 CRRT 相當，可作為 ALF 等待肝移植或恢復期間的橋接輔助；治療中需監測血小板與纖維蛋白原。</div></div><a class="lnk" href="https://pmc.ncbi.nlm.nih.gov/articles/PMC12617026/" target="_blank">原文連結 ↗</a>
+  </div>
+</div>
+<div class="card" id="card200" data-ind="肝衰竭" data-type="回顧性分析" data-ce="1" data-year="2024" data-stars="3" data-search="grafe bilirubin surrogate toxic bile acid elimination cytosorb scientific reports 2024 n=16 膽紅素 毒性膽酸 tba 替代指標 膽汁淤積 監測 sci rep 21762">
+  <div class="ch" onclick="toggle(200)">
+    <div class="cl">
+      <div class="cb"><span class="badge bi">肝衰竭</span><span class="badge bt">回顧性分析</span><span class="badge by">2024</span><span class="badge bce">✓ CE</span><span class="st">⭐⭐⭐</span></div>
+      <div class="ct">Grafe C. et al. — Bilirubin as Surrogate for Toxic Bile Acid Elimination by CytoSorb (Scientific Reports 2024, N=16)</div>
+      <div class="cs">前瞻觀察 16 例膽汁淤積性肝功能障礙患者。膽紅素與毒性膽酸（TBA）濃度在各時間點中至高度相關，膽紅素適合作為 TBA 清除的替代監測指標。</div>
+    </div>
+    <svg class="cv" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
+  </div>
+  <div class="cd" id="det200">
+    <div class="dg"><div><div class="dl">期刊</div><div class="dv">Scientific Reports</div></div><div><div class="dl">研究規模</div><div class="dv">N = 16 例</div></div></div><div class="sec">臨床指標變化</div><div class="mb"><table class="mtbl"><tr>
+  <td class="mn">膽紅素 vs 毒性膽酸相關性</td>
+  <td colspan="3"><div class="mb-row">
+    <div class="mbar" style="flex:1"><div class="mfg fg" style="width:80%"></div></div>
+    <span class="ms g">中高度相關</span>
+    <span class="mv vb">各時間點一致</span>
+  </div></td>
+</tr><tr>
+  <td class="mn">膽紅素作為 TBA 替代指標</td>
+  <td colspan="3"><div class="mb-row">
+    <div class="mbar" style="flex:1"><div class="mfg fg" style="width:75%"></div></div>
+    <span class="ms g">達顯著</span>
+    <span class="mv vg">適合替代</span>
+  </div></td>
+</tr></table></div><div class="pp"><div class="sec">P 值與統計分析</div><div class="pr"><div class="pd psig"></div><div class="pt">前瞻觀察 16 例膽汁淤積性肝功能障礙患者，膽紅素與毒性膽酸（TBA）濃度在所有時間點呈中至高度相關。</div></div><div class="pr"><div class="pd pwn"></div><div class="pt">樣本數小（N=16），為機制/替代指標研究而非臨床結果研究。</div></div><div class="pm">提供臨床實用觀點：膽紅素可作為 CytoSorb 清除毒性膽酸的替代監測指標，讓床邊以易測的膽紅素追蹤 TBA 清除成效。</div></div><div class="pp"><div class="sec">真實性評估</div>
+<div class="rw">
+  <div><svg width="180" height="180" viewBox="0 0 180 180">
+<polygon points="90.0,77.0 102.4,86.0 97.6,100.5 82.4,100.5 77.6,86.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,64.0 114.7,82.0 105.3,111.0 74.7,111.0 65.3,82.0" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 127.1,77.9 112.9,121.6 67.1,121.6 52.9,77.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,38.0 139.5,73.9 120.6,132.1 59.4,132.1 40.5,73.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,25.0 151.8,69.9 128.2,142.6 51.8,142.6 28.2,69.9" fill="none" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="90.0" y2="25.0" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="151.8" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="128.2" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="51.8" y2="142.6" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><line x1="90" y1="90" x2="28.2" y2="69.9" stroke="rgba(255,255,255,0.08)" stroke-width="1"/><polygon points="90.0,51.0 114.7,82.0 112.9,121.6 59.4,132.1 52.9,77.9" fill="rgba(59,130,246,0.2)" stroke="#3B82F6" stroke-width="2"/><circle cx="90.0" cy="51.0" r="3" fill="#3B82F6"/><circle cx="114.7" cy="82.0" r="3" fill="#3B82F6"/><circle cx="112.9" cy="121.6" r="3" fill="#3B82F6"/><circle cx="59.4" cy="132.1" r="3" fill="#3B82F6"/><circle cx="52.9" cy="77.9" r="3" fill="#3B82F6"/><text x="90.0" y="7.0" text-anchor="middle" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">內部效度</text><text x="168.9" y="64.4" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">外部效度</text><text x="138.8" y="157.1" text-anchor="start" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">偏誤控制</text><text x="41.2" y="157.1" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">臨床相關性</text><text x="11.1" y="64.4" text-anchor="end" font-size="9" fill="rgba(255,255,255,0.55)" dominant-baseline="middle">可重複性</text>
+</svg></div>
+  <div><div class="rli"><div class="rld"></div><div><div class="rll">內部效度 <span class="rls">3/5</span></div><div class="rln">前瞻觀察設計</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">外部效度 <span class="rls">2/5</span></div><div class="rln">單中心小樣本</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">偏誤控制 <span class="rls">3/5</span></div><div class="rln">時間點對照</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">臨床相關性 <span class="rls">4/5</span></div><div class="rln">膽紅素替代指標臨床實用</div></div></div><div class="rli"><div class="rld"></div><div><div class="rll">可重複性 <span class="rls">3/5</span></div><div class="rln">需更大樣本</div></div></div><div class="vs"><div class="vl">整體可信度</div><div class="vv">2.8 <span style="font-size:14px;color:var(--t3)">/ 5</span></div><div class="vt">中低可信度 — 替代指標研究，提供床邊監測實用依據</div></div></div>
+</div></div><div class="sec">核心發現</div><div class="fb">前瞻觀察性研究，調查 16 例膽汁淤積性肝功能障礙合併 CytoSorb 治療患者中膽紅素與毒性膽酸（TBA）的相關性，於治療前、開始後 6 及 12 小時量測。結果發現膽紅素與 TBA 濃度在所有時間點皆呈中至高度相關，顯示膽紅素適合作為 CytoSorb 清除 TBA 成效的替代參數。</div><div class="sec">臨床應用建議</div><div class="sab"><div class="sal">臨床參考</div><div class="sat">提供床邊監測的實用依據：由於毒性膽酸不易常規檢測，可用易測的膽紅素作為替代指標，追蹤 CytoSorb 對膽汁淤積患者的清除成效，輔助 CE 核准膽紅素移除適應症的療效監測。</div></div><a class="lnk" href="https://www.nature.com/articles/s41598-024-72676-6" target="_blank">原文連結 ↗</a>
+  </div>
+</div>
       </div>
     </main>
   </div>
@@ -4322,7 +4651,7 @@ function applyFilters(){
     c.style.display=show?"":"none";
     if(show) shown++;
   });
-  document.getElementById("rinfo").innerHTML="顯示 <span>"+shown+"</span> 篇 / 共 <span>193</span> 篇";
+  document.getElementById("rinfo").innerHTML="顯示 <span>"+shown+"</span> 篇 / 共 <span>201</span> 篇";
 }
 
 function filterInd(v){
