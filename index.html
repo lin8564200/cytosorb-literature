@@ -23,7 +23,7 @@ input[type=text]{width:100%;padding:10px 16px 10px 36px;border:1px solid var(--b
 input[type=text]:focus{border-color:var(--ac);}
 .lb{width:100%;padding:13px;background:var(--ac);color:#fff;border:none;border-radius:10px;font-size:14px;cursor:pointer;}
 .le{margin-top:10px;font-size:12px;color:#EF4444;font-family:"DM Mono",monospace;display:none;}
-#app{display:none;}
+#app{display:block;}
 .tb{background:var(--sf);border-bottom:1px solid var(--bd);padding:0 2rem;height:58px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:100;}
 .tbl{display:flex;align-items:center;gap:12px;}
 .tlo{width:30px;height:30px;background:linear-gradient(135deg,#1D4ED8,#3B82F6);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:14px;}
@@ -178,17 +178,6 @@ select{padding:10px 12px;border:1px solid var(--bd);border-radius:8px;font-size:
 </head>
 <body>
 
-<div id="ls">
-  <div class="lc">
-    <div class="ll">🧬</div>
-    <h1 class="lt">CytoSorb 文獻庫</h1>
-    <p class="ls2">Kris森鎂健康 · 臨床文獻資料庫</p>
-    <input type="password" id="pw" placeholder="請輸入密碼">
-    <button class="lb" onclick="login()">進入文獻庫</button>
-    <p class="le" id="err">密碼錯誤，請重試</p>
-  </div>
-</div>
-
 <div id="app">
   <div class="tb">
     <div class="tbl">
@@ -196,7 +185,7 @@ select{padding:10px 12px;border:1px solid var(--bd);border-radius:8px;font-size:
       <span class="tlt">CytoSorb 文獻資料庫</span>
       <span class="tc">201 篇文獻</span>
     </div>
-    <button class="cs-btn" onclick="openCS()">🩺 病人評估</button><button class="leg-btn" onclick="openLeg()">⭐ 評分說明</button><button class="xb" onclick="logout()">登出</button>
+    <button class="cs-btn" onclick="openCS()">🩺 病人評估</button><button class="leg-btn" onclick="openLeg()">⭐ 評分說明</button>
   </div>
   <div class="mob-bar"><select class="mob-sel" id="mob-ind" onchange="mobFilter()"><option value="">全部適應症</option><option value="敗血症">敗血症</option><option value="ARDS">ARDS</option><option value="心臟手術">心臟手術</option><option value="ECMO／心因性休克">ECMO／心因性休克</option><option value="CPR／心跳停止">CPR／心跳停止</option><option value="橫紋肌溶解">橫紋肌溶解</option><option value="肝衰竭">肝衰竭</option><option value="藥物移除">藥物移除</option><option value="COVID-19">COVID-19</option><option value="兒科">兒科</option><option value="急性中毒">急性中毒</option><option value="燒燙傷">燒燙傷</option><option value="急性胰臟炎">急性胰臟炎</option><option value="整體綜述">整體綜述</option></select><button class="mob-ce" id="mob-ce-btn" onclick="mobCE()">✓ CE</button></div>
 <div class="lay">
@@ -4609,25 +4598,6 @@ select{padding:10px 12px;border:1px solid var(--bd);border-radius:8px;font-size:
 
 <script>
 var activeInd="", activeCE=false, activeType="";
-
-function login(){
-  if(document.getElementById("pw").value==="cytosorb"){
-    document.getElementById("ls").style.display="none";
-    document.getElementById("app").style.display="block";
-  }else{
-    var e=document.getElementById("err");
-    e.style.display="block";
-    document.getElementById("pw").value="";
-    setTimeout(function(){e.style.display="none";},3000);
-  }
-}
-document.getElementById("pw").addEventListener("keydown",function(e){if(e.key==="Enter")login();});
-
-function logout(){
-  document.getElementById("ls").style.display="flex";
-  document.getElementById("app").style.display="none";
-  document.getElementById("pw").value="";
-}
 
 function toggle(i){
   var card=document.getElementById("card"+i);
